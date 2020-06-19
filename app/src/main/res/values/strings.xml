@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">InfraMov</string>
+    <string name="title_activity_reglamento">Multas</string>
+
+    <!--TEXTOS DE LA APP-->
+    <string name="Usuario">Usuario</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Iniciar">Iniciar</string>
+    <string name="Titulo1">Hola</string>
+    <string name="Titulo2">Karla Adriana</string>
+    <string name="Titulo3">Cambiar de Usuario</string>
+    <string name="Titulo4">Olvidé mi contraseña</string>
+    <string name="Ingresar">Ingresar</string>
+
+    <!--TEXTOS DEL MENÚ-->
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Términos y condiciones</string>
+    <string name="menu_slideshow">Guía de uso</string>
+    <string name="menu_tools">Aviso de Privacidad</string>
+    <string name="menu_share">Acerca de InfraMov</string>
+    <string name="menu_send">Ayuda</string>
+</resources>

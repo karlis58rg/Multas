@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5B0422</color>
+    <color name="colorPrimaryDark">#5B0422 </color>
+    <color name="colorAccent">#0063f2</color>
+
+    <!--ESTILOS EN BLANCO Y AZUL -->
+    <color name="background">#FFFFFF</color>
+    <color name="backgroundLogoCafe">#5B0422</color>
+    <color name="backgroundBotones">#BC955C</color>
+    <color name="backgroundtxt">#003147</color>
+    <color name="hint">#001C44</color>
+    <color name="pagarInfraccion">#FFBC00</color>
+    <color name="texcolor">#6E6E6E</color>
+    <color name="verdeMarked">#2DC691</color>
+
+
+    <!-- Colores Categoria PDF -->
+    <color name="whiteTrans">#daffffff</color>
+</resources>
