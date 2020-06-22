@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical"
+    tools:context=".Contactos">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.88">
+        <LinearLayout
+            android:id="@+id/content"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/lySearch"
+                android:background="@color/backgroundLogoCafe"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.08"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/btnList"
+                        android:layout_width="35dp"
+                        android:src="@drawable/icn_list_white"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.75"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imgLogoContacto"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/icn_logo_login"
+                        android:layout_height="48dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentWebView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.18">
+
+                <ImageView
+                    android:id="@+id/imgContacto"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/icn_telefono" />
+
+                <TextView
+                    android:id="@+id/lblContacto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/hint"
+                    android:text="Contacto"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.09">
+
+                <ImageView
+                    android:id="@+id/imgWeb"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/icn_web" />
+
+                <TextView
+                    android:id="@+id/lblWeb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/hint"
+                    android:text="https://inframov.com.mx/soporte"
+                    android:textSize="19sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.09">
+
+                <ImageView
+                    android:id="@+id/imgSoportre"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/icn_mail" />
+
+                <TextView
+                    android:id="@+id/lblSoporte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/hint"
+                    android:text="soporteinframov@gmail.com"
+                    android:textSize="19sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.09">
+
+                <ImageView
+                    android:id="@+id/imgContactoInfra"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/icn_telefono" />
+
+                <TextView
+                    android:id="@+id/lblContactoInfra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/hint"
+                    android:text="771 341 6959"
+                    android:textSize="19sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.09">
+
+                <ImageView
+                    android:id="@+id/imgUbicacon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/icn_ubicacion" />
+
+                <TextView
+                    android:id="@+id/lblUbicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/hint"
+                    android:text="Pachuca de Soto, Hidalgo"
+                    android:textSize="19sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25">
+                <TextView
+                    android:id="@+id/lblSoporteTercnico"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/hint"
+                    android:text="Soporte Técnico"
+                    android:textStyle="bold"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <LinearLayout
+        android:id="@+id/menu"
+        android:background="@color/backgroundBotones"
+        android:layout_width="match_parent"
+        android:layout_weight="0.12"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/lyInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:layout_width="31.3dp"
+                android:layout_height="29.3dp"
+                android:src="@drawable/icn_reglamento"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="@android:color/white"
+                android:text="Reglamento"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyCategoria"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:layout_width="31.3dp"
+                android:layout_height="29.3dp"
+                android:src="@drawable/icn_lugares_pago"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="Lugres de pago"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyContacto"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25">
+            <ImageView
+                android:layout_width="31.3dp"
+                android:layout_height="29.3dp"
+                android:src="@drawable/icn_telefono"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="Contactos"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyFavoritos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:layout_width="31.3dp"
+                android:layout_height="29.3dp"
+                android:src="@drawable/icn_tabulador"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:textSize="12dp"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="Tabulador"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

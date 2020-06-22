@@ -19,4 +19,13 @@
     <string name="menu_tools">Aviso de Privacidad</string>
     <string name="menu_share">Acerca de InfraMov</string>
     <string name="menu_send">Ayuda</string>
+
+    <string-array name="arrayTipoServicio">
+        <item>--Selecciona--</item>
+        <item>Privado</item>
+        <item>Publico</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

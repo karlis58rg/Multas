@@ -17,22 +17,50 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Reglamento"
-            android:label="@string/title_activity_reglamento"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".LoginUser"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login"
-            android:screenOrientation="portrait">
+        <activity android:name=".Infraccion"></activity>
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Tabulador"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Contactos"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LugaresDePago"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewPDFController"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TarjetaCirculacion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LicenciaConducir"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TarjetasConductor"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Reglamento"
+            android:label="@string/title_activity_reglamento"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB2f69vutimPOZ6XXqOGKpcalOIPe5Tt5w" />
     </application>
 
 </manifest>

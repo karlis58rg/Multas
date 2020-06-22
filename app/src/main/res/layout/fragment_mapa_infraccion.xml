@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapaInfraccion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:orientation="vertical">
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.88">
+            <LinearLayout
+                android:id="@+id/content"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/lySearch"
+                    android:background="@color/backgroundLogoCafe"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.08"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.15"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/btnListInfra"
+                            android:layout_width="35dp"
+                            android:src="@drawable/icn_list_white"
+                            android:layout_height="35dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/imgLogoContacto"
+                            android:layout_width="match_parent"
+                            android:src="@drawable/icn_logo_login"
+                            android:layout_height="48dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/contentWebViewInfra"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.13"
+                    android:orientation="horizontal">
+                    <!--IMAGEN 1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/imgLicenciaC"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:layout_weight="0.12">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/icn_terminal"/>
+                    </LinearLayout>
+                    <!--TITULO IMAGEN1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/lblTargetaCirculacion"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.25">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.4"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColorHint="@color/hint"
+                            android:text="Infracción"/>
+                    </LinearLayout>
+                    <!--IMAGEN2 TITLE-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:layout_weight="0.12">
+                        <ImageView
+                            android:id="@+id/imgQrLicenciaConducir"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contentWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.15">
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="0dp">
+                    </fragment>
+                </LinearLayout>
+                <!--BODY-->
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.79">
+                    <!--LINEAR BODY-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <!--REGISTRO 1-->
+                        <LinearLayout
+                            android:id="@+id/contentBuscar"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
+                            <!--TITULO REGISTRO 1-->
+                            <LinearLayout
+                                android:id="@+id/lblGarantia"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Garantía"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 1-->
+                            <LinearLayout
+                                android:id="@+id/lyGarantia"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <RadioGroup
+                                    android:id="@+id/radioGarantia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/radioPlaca"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Placa" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioTCirculacion"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="19dp"
+                                        android:text="T.Circulación" />
+
+                                </RadioGroup>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 1-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgBuscarLicencia"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 2-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosConductor"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/lblNombreL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:visibility="gone"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/lyNombreL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <RadioGroup
+                                    android:id="@+id/radioGarantia1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+                                    <RadioButton
+                                        android:id="@+id/radioVehiculo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Vehículo" />
+
+                                    <RadioButton
+                                        android:id="@+id/radioLConducir"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="L.Conducir" />
+
+                                </RadioGroup>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar2L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 3-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosDocRetenido"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lblDocRetenido"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Doc Retenido"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lyApaternoL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtApaternoL"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:text="Ninguno HOLA"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar3L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 4-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosInfraccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/lblClaveInfra"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Clave Infracción"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/lyAmaternoL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtAmaternoL"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:text="117"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar4L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgAgregarInfraccion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icn_agregar" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 4-->
+                        <LinearLayout
+                            android:id="@+id/contentClave"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
+                            <!--IMAGEN 1 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="Descripción"/>
+                                <TextView
+                                    android:id="@+id/txtDescInfraccion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:text="DERRAPAR QUEMANDO LLANTA"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.3"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="Salarios"/>
+                                <TextView
+                                    android:id="@+id/txtSalariosInfraccion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:text="20"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 4-->
+                        <LinearLayout
+                            android:id="@+id/contentGuardarDatosL"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
+                            <!--IMAGEN 1 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Salario mínimo"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="$120.°° MXN"/>
+                            </LinearLayout>
+                            <!--BOTTON FOODER-->
+                            <LinearLayout
+                                android:id="@+id/lblGuardarL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Monto a pagar"/>
+                                <TextView
+                                    android:id="@+id/lblMontoInfraccion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:textStyle="bold"
+                                    android:text="$120.°° MXN"/>
+
+                            </LinearLayout>
+                            <!--IMAGEN2 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <Button
+                                    android:id="@+id/imgGuardarInfraccion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.4"
+                                    android:background="@drawable/boton_redondo"
+                                    android:text="Continuar"
+                                    android:textColor="@color/background" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+        </androidx.drawerlayout.widget.DrawerLayout>
+        <LinearLayout
+            android:id="@+id/menu"
+            android:background="@color/backgroundBotones"
+            android:layout_width="match_parent"
+            android:layout_weight="0.12"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/lyInicioInfra"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_reglamento"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/white"
+                    android:text="Reglamento"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyCategoriaInfra"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_lugares_pago"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Lugres de pago"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyContactoInfra"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_telefono"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Contactos"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyFavoritosInfra"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_tabulador"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:textSize="12dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Tabulador"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_miadres"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/background"
+        android:visibility="gone"/>
+
+</FrameLayout>
