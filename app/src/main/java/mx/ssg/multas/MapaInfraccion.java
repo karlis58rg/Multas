@@ -101,7 +101,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     private LinearLayout lyInicio;
     private LinearLayout lyCategoria;
-    private LinearLayout lyContacto;
+    private LinearLayout lyContact;
     private LinearLayout lyFavoritos;
     private ImageView btnList;
 
@@ -142,7 +142,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         //Random();
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
-        lyContacto = view.findViewById(R.id.lyContactoInfra);
+        lyContact = view.findViewById(R.id.lyContactInfra);
         lyFavoritos = view.findViewById(R.id.lyFavoritosInfra);
         btnList = view.findViewById(R.id.btnListInfra);
 
@@ -174,7 +174,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        lyContacto.setOnClickListener(new View.OnClickListener() {
+        lyContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), Contactos.class);
@@ -193,6 +193,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(getActivity(), Reglamento.class);
                 startActivity(i);
             }
