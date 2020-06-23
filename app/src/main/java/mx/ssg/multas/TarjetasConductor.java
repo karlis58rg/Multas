@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class TarjetasConductor extends AppCompatActivity {
-    private ImageView btnLicenciaC,btnTarjetaC;
+    private ImageView btnList,btnLicenciaC,btnTarjetaC;
     private LinearLayout btnReglamentoTC,btnLugaresPagoTC,btnContactoTC,btnTabuladorTC;
 
     @Override
@@ -20,9 +20,19 @@ public class TarjetasConductor extends AppCompatActivity {
         btnLicenciaC = findViewById(R.id.imgLicenciaConducir);
         btnTarjetaC = findViewById(R.id.imgTarjetaCirculacon);
 
+        btnList = findViewById(R.id.btnListTarjetas);
         btnReglamentoTC = findViewById(R.id.lyInicio);
         btnLugaresPagoTC = findViewById(R.id.lyCategoria);
         btnContactoTC = findViewById(R.id.lyContacto);
+        btnTabuladorTC = findViewById(R.id.lyFavoritos);
+
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TarjetasConductor.this, Reglamento.class);
+                startActivity(i);
+            }
+        });
 
         btnLicenciaC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +72,15 @@ public class TarjetasConductor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, Contactos.class);
+                startActivity(i);
+
+            }
+        });
+
+        btnTabuladorTC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TarjetasConductor.this, Tabulador.class);
                 startActivity(i);
 
             }

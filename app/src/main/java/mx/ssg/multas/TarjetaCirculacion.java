@@ -36,7 +36,7 @@ import okhttp3.Response;
 
 public class TarjetaCirculacion extends AppCompatActivity {
     LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
-    ImageView btnQrScan,btnLicencia,btnBuscarTarjeta,btnBuscarSerie,btnBuscarPlaca,btnMenuTC;
+    ImageView btnQrScan,btnLicencia,btnBuscarTarjeta,btnBuscarSerie,btnBuscarPlaca,btnMenuTC,btnTerminalTC;
     TextView lblResultScaner;
     String ResultQR,servicio,origen,observaciones,resOrigen,resObservaciones,resServicio,respuestaJson;
     String Tag = "TarjetaCirculación";
@@ -64,6 +64,7 @@ public class TarjetaCirculacion extends AppCompatActivity {
         lblResultScaner = findViewById(R.id.linkQrTC);
         btnLicencia = findViewById(R.id.imgLicenciaTC);
         btnGuardarTC = findViewById(R.id.btnGuardarTC);
+        btnTerminalTC = findViewById(R.id.imgTerminalTC);
 
         txtNoTarjetaTC = findViewById(R.id.txtNoTarjeta);
         txtNoSerieTC = findViewById(R.id.txtNoSerie);
@@ -203,6 +204,15 @@ public class TarjetaCirculacion extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetaCirculacion.this, Tabulador.class);
                 startActivity(i);
+            }
+        });
+
+        btnTerminalTC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TarjetaCirculacion.this, Infraccion.class);
+                startActivity(i);
+
             }
         });
     }

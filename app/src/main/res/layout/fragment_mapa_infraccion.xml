@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapaInfraccion">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -115,7 +114,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.15">
                     <fragment
-                        android:id="@+id/map"
+                        android:id="@+id/mapInfraccion"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -127,7 +126,7 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.79">
+                    android:layout_weight="0.60">
                     <!--LINEAR BODY-->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -300,11 +299,10 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtApaternoL"
+                                    android:id="@+id/txtDocRetenido"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:gravity="center"
-                                    android:text="Ninguno HOLA"/>
+                                    android:gravity="center"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->
                             <LinearLayout
@@ -352,11 +350,10 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtAmaternoL"
+                                    android:id="@+id/txtClaveInfraccion"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:gravity="center"
-                                    android:text="117"/>
+                                    android:gravity="center"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 4-->
                             <LinearLayout
@@ -403,7 +400,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
-                                    android:text="DERRAPAR QUEMANDO LLANTA"/>
+                                    android:text=""/>
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -424,7 +421,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
-                                    android:text="20"/>
+                                    android:text=""/>
                             </LinearLayout>
                         </LinearLayout>
                         <!--REGISTRO 4-->
@@ -479,7 +476,7 @@
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="$120.°° MXN"/>
+                                    android:text="$ MXN"/>
 
                             </LinearLayout>
                             <!--IMAGEN2 FOODER-->
@@ -618,7 +615,7 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
-        android:id="@+id/tv_miadres"
+        android:id="@+id/tv_miadresInfraccion"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentStart="true"

@@ -168,7 +168,8 @@ public class LicenciaConducir extends AppCompatActivity {
         btnInfraccionL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(LicenciaConducir.this, Infraccion.class);
+                startActivity(i);
             }
         });
 
@@ -209,7 +210,6 @@ public class LicenciaConducir extends AppCompatActivity {
                 } else if (checkedId == R.id.radioExtrangeraL) {
                     resNacionalidad = "Extranjera";
                 }
-
             }
         });
     }

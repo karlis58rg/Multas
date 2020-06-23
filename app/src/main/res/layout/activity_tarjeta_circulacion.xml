@@ -1264,7 +1264,6 @@
                         </LinearLayout>
                         <!--IMAGEN2 FOODER-->
                         <LinearLayout
-                            android:id="@+id/imgTerminalTC"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -1273,6 +1272,7 @@
                             android:background="@drawable/drawable_pressed"
                             android:layout_weight="0.12">
                             <ImageView
+                                android:id="@+id/imgTerminalTC"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:src="@drawable/icn_terminal"/>

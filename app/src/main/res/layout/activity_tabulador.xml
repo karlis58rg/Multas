@@ -171,19 +171,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="0.25">
-                <TextView
-                    android:id="@+id/lblinformacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/hint"
-                    android:text="Lorem ipusom....."
-                    android:textStyle="normal"
-                    android:textSize="25sp" />
-            </LinearLayout>
+                android:layout_weight="0.25"/>
 
         </LinearLayout>
 
