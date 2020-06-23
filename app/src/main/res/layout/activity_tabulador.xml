@@ -100,8 +100,90 @@
                     android:layout_marginLeft="10dp"
                     app:srcCompat="@drawable/icn_lupa" />
 
+
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="0.09">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.10"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="5dp"
+                    android:text="CLAVE"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="DESCRIPCION"
+                    android:textSize="9sp"
+                    android:layout_weight="0.30"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="ARTICULOS"
+                    android:textSize="10sp"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="ID.FRACCION"
+                    android:textSize="9sp"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="SAL.MINIMOS"
+                    android:textSize="9sp"
+                    android:layout_weight="0.25"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_weight="0.25">
+
+                <ListView
+                    android:id="@+id/Lista"
+                    android:layout_width="match_parent"
+                    android:layout_height="216dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0.25">
+                <TextView
+                    android:id="@+id/lblinformacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/hint"
+                    android:text="Lorem ipusom....."
+                    android:textStyle="normal"
+                    android:textSize="25sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -216,6 +298,7 @@
                 android:textColor="@android:color/white"
                 android:text="Tabulador"/>
         </LinearLayout>
+
 
     </LinearLayout>
 
