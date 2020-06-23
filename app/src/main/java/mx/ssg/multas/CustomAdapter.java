@@ -49,7 +49,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
 
         if (view == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            view = inf.inflate(R.layout.activity_tabulador_2, parent, false);
+            view = inf.inflate(R.layout.activity_tabulador_3, parent, false);
 
 
         }else {
