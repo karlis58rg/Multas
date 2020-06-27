@@ -21,6 +21,7 @@
             android:layout_height="match_parent"
             android:weightSum="1"
             android:orientation="vertical">
+            <!--HEADER-->
             <LinearLayout
                 android:id="@+id/lySearch"
                 android:background="@color/backgroundLogoCafe"
@@ -29,6 +30,7 @@
                 android:layout_weight="0.08"
                 android:orientation="horizontal"
                 android:weightSum="1">
+                <!--IMAGEN1 HEADER-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="0.15"
@@ -40,6 +42,7 @@
                         android:src="@drawable/icn_list_white"
                         android:layout_height="35dp" />
                 </LinearLayout>
+                <!--IMAGEN2 HEADER-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="0.75"
@@ -53,129 +56,187 @@
                         android:layout_height="48dp"/>
                 </LinearLayout>
             </LinearLayout>
-
+            <!--TITLE-->
             <LinearLayout
                 android:id="@+id/contentWebView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.18">
-
-                <ImageView
-                    android:id="@+id/imgContacto"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/icn_tabulador" />
-
-                <TextView
-                    android:id="@+id/lblContacto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/hint"
-                    android:text="Tabulador"
-                    android:textSize="25sp" />
-
+                android:layout_weight="0.13"
+                android:orientation="horizontal">
+                <!--IMAGEN 1 TITLE-->
+                <LinearLayout
+                    android:id="@+id/imgLicenciaC"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:layout_weight="0.12">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/icn_tabulador"/>
+                </LinearLayout>
+                <!--TITULO IMAGEN1 TITLE-->
+                <LinearLayout
+                    android:id="@+id/lblInfraccion"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:background="@drawable/drawable_pressed"
+                    android:layout_weight="0.25">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.4"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColorHint="@color/hint"
+                        android:text="Tabulador"/>
+                </LinearLayout>
+                <!--IMAGEN2 TITLE-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:layout_weight="0.12"/>
             </LinearLayout>
-            <LinearLayout
+            <!--BODY-->
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.09">
-                <EditText
-                    android:id="@+id/txtBuscarTabulador"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:textColor="@color/hint"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="19sp" />
-                <ImageView
-                    android:id="@+id/imgWebBuscar"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/icn_lupa" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_weight="0.09">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.10"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="5dp"
-                    android:text="CLAVE"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="DESCRIPCION"
-                    android:textSize="9sp"
-                    android:layout_weight="0.30"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="10dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="ARTICULOS"
-                    android:textSize="10sp"
-                    android:layout_weight="0.25"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="10dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="ID.FRACCION"
-                    android:textSize="9sp"
-                    android:layout_weight="0.25"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="10dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="SAL.MINIMOS"
-                    android:textSize="9sp"
-                    android:layout_weight="0.25"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:paddingLeft="10dp"/>
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_weight="0.25">
-
-                <ListView
-                    android:id="@+id/Lista"
+                android:layout_weight="0.79">
+                <!--LINEAR BODY-->
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="216dp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <!--REGISTRO 1-->
+                    <LinearLayout
+                        android:id="@+id/contentBuscar"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <!--TITULO REGISTRO 1-->
+                        <LinearLayout
+                            android:id="@+id/lblNoLicencia"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center|left"
+                            android:weightSum="1"
+                            android:layout_weight="0.02"/>
+                        <!--TXT REGISTRO 1-->
+                        <LinearLayout
+                            android:id="@+id/lyBuscar"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:weightSum="1"
+                            android:background="@drawable/drawable_pressed"
+                            android:layout_weight="0.1">
+                            <EditText
+                                android:id="@+id/txtBuscarTabulador"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+                        <!--IMG BUSCAR REGISTRO 1-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.03"
+                            android:gravity="left|center_vertical"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+                            <ImageView
+                                android:id="@+id/imgWebBuscar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/icn_buscar" />
+                        </LinearLayout>
+                    </LinearLayout>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0.25"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="0"
+                        android:background="@color/backgroundBotones">
 
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.10"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="5dp"
+                            android:text="CLAVE"
+                            android:textSize="8sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="DESCRIPCION"
+                            android:textSize="9sp"
+                            android:layout_weight="0.30"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="ARTICULOS"
+                            android:textSize="10sp"
+                            android:layout_weight="0.25"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="ID.FRACCION"
+                            android:textSize="9sp"
+                            android:layout_weight="0.25"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="SAL.MINIMOS"
+                            android:textSize="9sp"
+                            android:layout_weight="0.25"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="10dp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_weight="0"
+                        android:layout_marginTop="5dp">
+                        <ListView
+                            android:id="@+id/Lista"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
         </LinearLayout>
-
-
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <LinearLayout
