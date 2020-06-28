@@ -31,6 +31,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, Reglamento.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -39,6 +40,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, LicenciaConducir.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -47,6 +49,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, TarjetaCirculacion.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -56,6 +59,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, ViewPDFController.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -64,6 +68,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, LugaresDePago.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -73,6 +78,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, Contactos.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -82,7 +88,7 @@ public class TarjetasConductor extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, Tabulador.class);
                 startActivity(i);
-
+                finish();
             }
         });
     }

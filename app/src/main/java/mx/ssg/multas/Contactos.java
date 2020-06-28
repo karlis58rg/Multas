@@ -28,6 +28,7 @@ public class Contactos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Contactos.this, ViewPDFController.class);
                 startActivity(i);
+                finish();
             }
         });
         btnLugaresPago.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,7 @@ public class Contactos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Contactos.this, LugaresDePago.class);
                 startActivity(i);
+                finish();
             }
         });
         btnTabulador.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +44,7 @@ public class Contactos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Contactos.this, Tabulador.class);
                 startActivity(i);
+                finish();
             }
         });
         btnList.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +52,7 @@ public class Contactos extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Contactos.this, Reglamento.class);
                 startActivity(i);
+                finish();
             }
         });
     }

@@ -55,6 +55,7 @@ public class Tabulador extends AppCompatActivity {
         listado = findViewById(R.id.Lista);
         btnReglamento = findViewById(R.id.lyInicioTab);
         btnLugaresPago = findViewById(R.id.lyCategoriaTab);
+        btnContactos = findViewById(R.id.lyContactoTab);
         btnTabulador = findViewById(R.id.lyFavoritosTab);
         btnList = findViewById(R.id.btnListTab);
         btnbuscar = findViewById(R.id.imgWebBuscar);
@@ -65,6 +66,7 @@ public class Tabulador extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Tabulador.this, ViewPDFController.class);
                 startActivity(i);
+                finish();
             }
         });
         btnLugaresPago.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +74,15 @@ public class Tabulador extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Tabulador.this, LugaresDePago.class);
                 startActivity(i);
+                finish();
+            }
+        });
+        btnContactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Tabulador.this, Contactos.class);
+                startActivity(i);
+                finish();
             }
         });
         btnTabulador.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +90,7 @@ public class Tabulador extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Tabulador.this, Tabulador.class);
                 startActivity(i);
+                finish();
             }
         });
         btnList.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +98,7 @@ public class Tabulador extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Tabulador.this, Reglamento.class);
                 startActivity(i);
+                finish();
             }
         });
         btnbuscar.setOnClickListener(new View.OnClickListener() {

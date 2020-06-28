@@ -172,6 +172,7 @@ public class ViewPDFController extends BaseController implements View.OnClickLis
             public void onClick(View v) {
                 Intent i = new Intent(ViewPDFController.this, Contactos.class);
                 startActivity(i);
+                finish();
 
             }
         });
@@ -181,7 +182,7 @@ public class ViewPDFController extends BaseController implements View.OnClickLis
             public void onClick(View v) {
                 Intent i = new Intent(ViewPDFController.this, Tabulador.class);
                 startActivity(i);
-
+                finish();
             }
         });
     }

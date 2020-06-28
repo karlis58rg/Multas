@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,11 +49,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import mx.ssg.multas.SqLite.DataHelper;
+import mx.ssg.multas.SqLite.Insert.CatTabulador;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -113,6 +118,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     Infraccion tm =new Infraccion();
     int runAudio = 0;
+    Spinner spinCatTabulador;
 
     public MapaInfraccion() {
         // Required empty public constructor
@@ -140,6 +146,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
+        ListTabulador();
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
         lyContact = view.findViewById(R.id.lyContactInfra);
@@ -157,6 +164,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         txtDescSalarios = view.findViewById(R.id.txtDescInfraccion);
         txtSalarios = view.findViewById(R.id.txtSalariosInfraccion);
         txtMontoInfraPagar = view.findViewById(R.id.lblMontoInfraccion);
+        spinCatTabulador = view.findViewById(R.id.spinInfraccion);
 
         lyInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -566,6 +574,17 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         aux = new LatLng(lat_origen, lon_origen);
 
         mi_ubi(aux);
+    }
+
+    /******************** LLENAR EL COMBO *************************************/
+    private void ListTabulador(){
+        DataHelper dataHelper = new DataHelper(getContext());
+        CatTabulador catTabulador = new CatTabulador();
+        catTabulador.spinner();
+        ArrayList<String> list = dataHelper.getAllTabulador();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.spinner_layout,R.id.txt,list);
+        spinCatTabulador.setAdapter(adapter);
+
     }
 
 }

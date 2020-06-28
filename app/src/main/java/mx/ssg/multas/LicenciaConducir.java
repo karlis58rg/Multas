@@ -122,6 +122,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this,Reglamento.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -150,6 +151,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this,TarjetaCirculacion.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -170,6 +172,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this, Infraccion.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -178,6 +181,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this, ViewPDFController.class);
                 startActivity(i);
+                finish();
             }
         });
         btnLugaresPago.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +189,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this, LugaresDePago.class);
                 startActivity(i);
+                finish();
             }
         });
         btnContactos.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +197,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this, Contactos.class);
                 startActivity(i);
+                finish();
             }
         });
         btnTabulador.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +205,7 @@ public class LicenciaConducir extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(LicenciaConducir.this, Tabulador.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -213,7 +220,6 @@ public class LicenciaConducir extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

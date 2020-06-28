@@ -146,7 +146,10 @@
                                 android:id="@+id/txtBuscarTabulador"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:inputType="textCapCharacters"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" />
+
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
