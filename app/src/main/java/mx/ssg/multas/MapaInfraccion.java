@@ -56,7 +56,6 @@ import java.util.Locale;
 import java.util.Random;
 
 import mx.ssg.multas.SqLite.DataHelper;
-import mx.ssg.multas.SqLite.Insert.CatTabulador;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -146,7 +145,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
-        ListTabulador();
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
         lyContact = view.findViewById(R.id.lyContactInfra);
@@ -165,6 +163,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         txtSalarios = view.findViewById(R.id.txtSalariosInfraccion);
         txtMontoInfraPagar = view.findViewById(R.id.lblMontoInfraccion);
         spinCatTabulador = view.findViewById(R.id.spinInfraccion);
+        ListTabulador();
 
         lyInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,7 +200,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(getActivity(), Reglamento.class);
                 startActivity(i);
             }
@@ -222,14 +220,17 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnGuardarInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtDocReteInfra.toString().isEmpty()){
+               /* if(txtDocReteInfra.toString().isEmpty()){
                     Toast.makeText(getContext(),"DEBE AGREGAR UNA OBSERVACIÓN",Toast.LENGTH_SHORT).show();
                 }else{
                     Random();
                     Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroInfraccion();
                     eliminarDatos();
-                }
+                }*/
+                Intent i = new Intent(getActivity(), NetPay.class);
+                startActivity(i);
+
 
 
             }
@@ -578,12 +579,13 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     /******************** LLENAR EL COMBO *************************************/
     private void ListTabulador(){
-        DataHelper dataHelper = new DataHelper(getContext());
-        CatTabulador catTabulador = new CatTabulador();
-        catTabulador.spinner();
+        DataHelper dataHelper = new DataHelper(getActivity());
+        //dataHelper.insertTabulador(1,"MANEJAR SIN LICENCIA","51 / 76","",15);
+        //dataHelper.insertTabulador(2,"OBSTRUIR EL PASO AL PEATÓN","94","I",3);
         ArrayList<String> list = dataHelper.getAllTabulador();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.spinner_layout,R.id.txt,list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_layout,R.id.txt,list);
         spinCatTabulador.setAdapter(adapter);
+        System.out.println(dataHelper.getAllTabulador());
 
     }
 
