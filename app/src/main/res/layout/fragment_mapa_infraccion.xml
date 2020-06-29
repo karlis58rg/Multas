@@ -302,7 +302,8 @@
                                     android:id="@+id/txtDocRetenido"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:gravity="center"/>
+                                    android:gravity="center"
+                                    android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->
                             <LinearLayout
@@ -353,7 +354,8 @@
                                     android:id="@+id/txtClaveInfraccion"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:gravity="center"/>
+                                    android:gravity="center"
+                                    android:inputType="number"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 4-->
                             <LinearLayout
@@ -372,14 +374,13 @@
                                     android:src="@drawable/icn_agregar" />
                             </LinearLayout>
                         </LinearLayout>
-
-                        <!--REGISTRO 4-->
+                        <!--REGISTRO 6-->
                         <LinearLayout
-                            android:id="@+id/contentClave"
+                            android:id="@+id/contentTable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="10dp">
                             <!--IMAGEN 1 FOODER-->
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -389,42 +390,23 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <TextView
+                                    android:id="@+id/lblEliminar"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
-                                    android:layout_marginLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Descripción"/>
-                                <TextView
-                                    android:id="@+id/txtDescInfraccion"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:text=""/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.3"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:weightSum="1">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:layout_marginLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:text="Salarios"/>
-                                <TextView
-                                    android:id="@+id/txtSalariosInfraccion"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:text=""/>
+                                    android:text="Hacer una presión larga sobre el dato que desea borrar"/>
                             </LinearLayout>
                         </LinearLayout>
-                        <!--REGISTRO 5-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+                        <ListView
+                            android:id="@+id/ListaP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+                        <!--REGISTRO 6-->
                         <LinearLayout
                             android:id="@+id/contentGuardarDatosL"
                             android:layout_width="match_parent"
@@ -502,8 +484,7 @@
                         <LinearLayout
                             android:id="@+id/contentDatosInfraccionCmb"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_marginTop="10dp">
                             <!--TITULO REGISTRO 4-->

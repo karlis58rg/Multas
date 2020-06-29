@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -28,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -53,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 import mx.ssg.multas.SqLite.DataHelper;
@@ -94,6 +97,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     int monto = 0;
     int salarioMinimo = 120;
     int sumaSalarios = 0;
+    int restaSalarios = 0;
     int valor = 0;
     int cargarInfoValor = 0;
     int varSalarios = 0;
@@ -102,6 +106,10 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     Button btnGuardarInfraccion;
     int numberRandom;
     public String codigoVerifi;
+
+    ListView lv1;
+    ArrayList<String> palabras;
+    ArrayAdapter<String> adaptador1;
 
     private LinearLayout lyInicio;
     private LinearLayout lyCategoria;
@@ -159,11 +167,15 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnAgregarInfraccion = view.findViewById(R.id.imgAgregarInfraccion);
         btnGuardarInfraccion = view.findViewById(R.id.imgGuardarInfraccion);
 
-        txtDescSalarios = view.findViewById(R.id.txtDescInfraccion);
-        txtSalarios = view.findViewById(R.id.txtSalariosInfraccion);
+
         txtMontoInfraPagar = view.findViewById(R.id.lblMontoInfraccion);
         spinCatTabulador = view.findViewById(R.id.spinInfraccion);
         ListTabulador();
+
+        palabras = new ArrayList<String>();
+        adaptador1 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,palabras);
+        lv1 = view.findViewById(R.id.ListaP);
+        lv1.setAdapter(adaptador1);
 
         lyInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,16 +232,16 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnGuardarInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if(txtDocReteInfra.toString().isEmpty()){
+               if(txtDocReteInfra.toString().isEmpty()){
                     Toast.makeText(getContext(),"DEBE AGREGAR UNA OBSERVACIÓN",Toast.LENGTH_SHORT).show();
                 }else{
                     Random();
                     Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroInfraccion();
                     eliminarDatos();
-                }*/
-                Intent i = new Intent(getActivity(), NetPay.class);
-                startActivity(i);
+                }
+                //Intent i = new Intent(getActivity(), NetPay.class);
+                //startActivity(i);
 
 
 
@@ -255,6 +267,31 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 } else if (checkedId == R.id.radioLConducir) {
                     resGarantia1 = "L.Conducir";
                 }
+            }
+        });
+
+        lv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final int posicion=i;
+
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getActivity());
+                dialogo1.setTitle("IMPORTANTE");
+                dialogo1.setMessage("¿DESEA ELIMINAR ESTE DATO?");
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton("CONFIRMAR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        palabras.remove(posicion);
+                        adaptador1.notifyDataSetChanged();
+                        /****** NUEVO VALOR*/
+                    }
+                });
+                dialogo1.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                    }
+                });
+                dialogo1.show();
+                return false;
             }
         });
 
@@ -300,8 +337,10 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                     jObj = new JSONObject(""+myResponse+"");
                                     resDescripcionClave = jObj.getString("Descripcion");
                                     resSalarios = jObj.getString("SalMinimos");
-                                    txtDescSalarios.setText(resDescripcionClave);
-                                    txtSalarios.setText(resSalarios);
+                                    /***LLENADO DE LA TABLA***/
+                                    palabras.add(resDescripcionClave+"  "+"  "+resSalarios);
+                                    adaptador1.notifyDataSetChanged();
+                                    /*************************/
                                     Log.i("HERE", ""+jObj);
                                     if(cargarInfoValor != 0){
                                         monto = Integer.parseInt(resSalarios);
@@ -380,8 +419,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                             radioGarantia.clearCheck();
                             radioGarantia1.clearCheck();
                             txtClaveInfra.setText("");
-                            txtDescSalarios.setText("");
-                            txtSalarios.setText("");
                             txtDocReteInfra.setText("");
                             txtMontoInfraPagar.setText("$ MXN");
 
@@ -582,6 +619,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         DataHelper dataHelper = new DataHelper(getActivity());
         //dataHelper.insertTabulador(1,"MANEJAR SIN LICENCIA","51 / 76","",15);
         //dataHelper.insertTabulador(2,"OBSTRUIR EL PASO AL PEATÓN","94","I",3);
+
+
         ArrayList<String> list = dataHelper.getAllTabulador();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_layout,R.id.txt,list);
         spinCatTabulador.setAdapter(adapter);

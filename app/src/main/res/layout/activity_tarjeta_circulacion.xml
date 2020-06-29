@@ -160,7 +160,8 @@
                                 android:id="@+id/txtNoTarjeta"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:inputType="number"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
@@ -376,7 +377,8 @@
                                 android:id="@+id/txtNombreTC"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 4-->
                         <LinearLayout
@@ -427,7 +429,8 @@
                                 android:id="@+id/txtApaternoTC"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 5-->
                         <LinearLayout
@@ -478,7 +481,8 @@
                                 android:id="@+id/txtAmaternoTC"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 6-->
                         <LinearLayout
@@ -580,7 +584,8 @@
                                 android:id="@+id/txtNombreR"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 7-->
                         <LinearLayout
@@ -631,7 +636,8 @@
                                 android:id="@+id/txtApaternoR"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 8-->
                         <LinearLayout
@@ -682,7 +688,8 @@
                                 android:id="@+id/txtAmaternoR"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 9-->
                         <LinearLayout
@@ -733,7 +740,8 @@
                                 android:id="@+id/txtNoMotor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:inputType="number"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 10-->
                         <LinearLayout
@@ -901,7 +909,8 @@
                                 android:id="@+id/txtMarca"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 13-->
                         <LinearLayout
@@ -952,7 +961,8 @@
                                 android:id="@+id/txtSubMarca"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 14-->
                         <LinearLayout
@@ -1054,7 +1064,8 @@
                                 android:id="@+id/txtColor"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 16-->
                         <LinearLayout
@@ -1105,7 +1116,8 @@
                                 android:id="@+id/txtMunicipio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 17-->
                         <LinearLayout
@@ -1156,7 +1168,8 @@
                                 android:id="@+id/txtLocalidad"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 18-->
                         <LinearLayout

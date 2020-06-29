@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_splash"
     tools:context=".Splash">
 
     <pl.droidsonroids.gif.GifImageView
@@ -12,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/backgroundLogoCafe"
+        android:src="@drawable/icn_splash_screen"
         app:layout_constraintTop_toTopOf="parent"></pl.droidsonroids.gif.GifImageView>
 
 

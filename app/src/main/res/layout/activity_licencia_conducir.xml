@@ -160,7 +160,8 @@
                                 android:id="@+id/txtNoLicencia"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:inputType="number"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
@@ -214,7 +215,8 @@
                                 android:id="@+id/txtNombreL"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 2-->
                         <LinearLayout
@@ -265,7 +267,8 @@
                                 android:id="@+id/txtApaternoL"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 3-->
                         <LinearLayout
@@ -316,7 +319,8 @@
                                 android:id="@+id/txtAmaternoL"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 4-->
                         <LinearLayout
