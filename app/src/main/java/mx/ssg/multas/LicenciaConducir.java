@@ -158,12 +158,14 @@ public class LicenciaConducir extends AppCompatActivity {
         btnGuardarLC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtObservaciones.getText().toString().isEmpty()){
+               /* if(txtObservaciones.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroLicencia();
-                }
+                }*/
+                Intent i = new Intent(LicenciaConducir.this, NetPay.class);
+                startActivity(i);
             }
         });
 

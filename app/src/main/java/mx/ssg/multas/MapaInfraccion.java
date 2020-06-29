@@ -232,16 +232,16 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnGuardarInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(txtDocReteInfra.toString().isEmpty()){
+              /* if(txtDocReteInfra.toString().isEmpty()){
                     Toast.makeText(getContext(),"DEBE AGREGAR UNA OBSERVACIÓN",Toast.LENGTH_SHORT).show();
                 }else{
                     Random();
                     Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroInfraccion();
                     eliminarDatos();
-                }
-                //Intent i = new Intent(getActivity(), NetPay.class);
-                //startActivity(i);
+                }*/
+                Intent i = new Intent(getActivity(), NetPay.class);
+                startActivity(i);
 
 
 
