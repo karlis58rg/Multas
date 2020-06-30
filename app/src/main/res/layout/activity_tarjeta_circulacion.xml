@@ -161,7 +161,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:inputType="number"/>
+                                android:inputType="number"
+                                android:imeOptions="actionNext"
+                                android:maxLength="20"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
@@ -216,7 +218,10 @@
                                 android:id="@+id/txtNoSerie"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="20"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 2-->
                         <LinearLayout
@@ -271,7 +276,10 @@
                                 android:id="@+id/txtPlaca"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="10"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 3-->
                         <LinearLayout
@@ -378,7 +386,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 4-->
                         <LinearLayout
@@ -430,7 +440,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 5-->
                         <LinearLayout
@@ -482,7 +494,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 6-->
                         <LinearLayout
@@ -585,7 +599,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 7-->
                         <LinearLayout
@@ -637,7 +653,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 8-->
                         <LinearLayout
@@ -689,7 +707,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:imeOptions="actionNext"
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:maxLength="25"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 9-->
                         <LinearLayout
@@ -741,7 +761,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:inputType="number"/>
+                                android:inputType="textCapCharacters"
+                                android:imeOptions="actionNext"
+                                android:maxLength="20"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 10-->
                         <LinearLayout
@@ -910,7 +932,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+                                android:imeOptions="actionNext"
+                                android:maxLength="40"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 13-->
                         <LinearLayout
@@ -962,7 +986,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:inputType="textCapCharacters"
+                                android:imeOptions="actionNext"
+                                android:maxLength="20"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 14-->
                         <LinearLayout
@@ -1013,7 +1039,10 @@
                                 android:id="@+id/txtModelo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="4"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 15-->
                         <LinearLayout
@@ -1065,7 +1094,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+                                android:imeOptions="actionNext"
+                                android:maxLength="30"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 16-->
                         <LinearLayout
@@ -1117,7 +1148,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."/>
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."
+                                android:imeOptions="actionNext"
+                                android:maxLength="50"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 17-->
                         <LinearLayout
@@ -1169,7 +1202,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."/>
+                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ ,."
+                                android:imeOptions="actionNext"
+                                android:maxLength="50"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 18-->
                         <LinearLayout
@@ -1221,7 +1256,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:inputType="textMultiLine"
-                                android:gravity="top|left"/>
+                                android:gravity="top|left"
+                                android:imeOptions="actionNext"
+                                android:maxLength="100"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 19-->
                         <LinearLayout
@@ -1239,7 +1276,7 @@
                     <LinearLayout
                         android:id="@+id/contentGuardarDatos"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <!--IMAGEN 1 FOODER-->
@@ -1270,7 +1307,7 @@
                                 android:id="@+id/btnGuardarTC"
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
-                                android:layout_weight="0.4"
+                                android:layout_weight="0.6"
                                 android:text="Guardar"
                                 android:textColor="@color/background"
                                 android:background="@drawable/boton_redondo"/>

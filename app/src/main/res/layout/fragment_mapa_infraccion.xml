@@ -317,16 +317,18 @@
                                 android:weightSum="1">
                             </LinearLayout>
                         </LinearLayout>
+
+
                         <!--REGISTRO 4-->
                         <LinearLayout
-                            android:id="@+id/contentDatosInfraccion"
+                            android:id="@+id/contentDatosInfraccionCmb"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
                             <!--TITULO REGISTRO 4-->
                             <LinearLayout
-                                android:id="@+id/lblClaveInfra"
+                                android:id="@+id/lblClaveInfraCmb"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -338,11 +340,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Clave Infracción"/>
+                                    android:text="Infracción"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 4-->
                             <LinearLayout
-                                android:id="@+id/lyAmaternoL"
+                                android:id="@+id/lyInfraccion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -350,16 +352,15 @@
                                 android:weightSum="1"
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
-                                <EditText
-                                    android:id="@+id/txtClaveInfraccion"
+                                <Spinner
+                                    android:id="@+id/spinInfraccion"
                                     android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:gravity="center"
-                                    android:inputType="number"/>
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 4-->
                             <LinearLayout
-                                android:id="@+id/imgBuscar4L"
+                                android:id="@+id/imgBuscarInfra"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.03"
@@ -398,7 +399,7 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                    <LinearLayout
+                        <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="150dp">
                         <ListView
@@ -480,57 +481,7 @@
                                     android:textColor="@color/background" />
                             </LinearLayout>
                         </LinearLayout>
-                        <!--REGISTRO 4-->
-                        <LinearLayout
-                            android:id="@+id/contentDatosInfraccionCmb"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="10dp">
-                            <!--TITULO REGISTRO 4-->
-                            <LinearLayout
-                                android:id="@+id/lblClaveInfraCmb"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center|left"
-                                android:weightSum="1"
-                                android:layout_weight="0.1">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="Infracción"/>
-                            </LinearLayout>
-                            <!--TXT REGISTRO 4-->
-                            <LinearLayout
-                                android:id="@+id/lyInfraccion"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center"
-                                android:weightSum="1"
-                                android:background="@drawable/drawable_pressed"
-                                android:layout_weight="0.20">
-                                <Spinner
-                                    android:id="@+id/spinInfraccion"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"/>
-                            </LinearLayout>
-                            <!--IMG BUSCAR REGISTRO 4-->
-                            <LinearLayout
-                                android:id="@+id/imgBuscarInfra"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.03"
-                                android:background="@drawable/drawable_pressed"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:weightSum="1">
-                            </LinearLayout>
-                        </LinearLayout>
+
                     </LinearLayout>
                 </ScrollView>
 

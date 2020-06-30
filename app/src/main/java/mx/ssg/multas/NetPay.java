@@ -23,10 +23,11 @@ import mx.com.netpay.sdk.models.SaleRequest;
 import mx.com.netpay.sdk.models.SaleResponse;
 
 
+
 public class NetPay extends AppCompatActivity {
     EditText txtMonto,txtFolio,txtOrderId;
     TextView lblRespuesta;
-    Button btnVenta,btnImpresion;
+    Button btnVenta,btnImpresion,btnReimpresion;
     String appId = "mx.ssg.multas";
     String orderId;
     Double amount;
@@ -45,8 +46,6 @@ public class NetPay extends AppCompatActivity {
     String pendingAmount;
     BaseResponse response;
     private SmartApi smartApi = SmartApiFactory.INSTANCE.createSmartApi(this);
-    private Object SaleResponse;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,7 @@ public class NetPay extends AppCompatActivity {
         txtOrderId = findViewById(R.id.txtOrderId);
         lblRespuesta = findViewById(R.id.lblRespuesta);
         btnVenta = findViewById(R.id.btnVenta);
+        btnReimpresion = findViewById(R.id.btnReimpresion);
         btnImpresion = findViewById(R.id.btnImpresión);
 
         btnVenta.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +71,10 @@ public class NetPay extends AppCompatActivity {
                     lblRespuesta.setText(e.getMessage());
                     System.out.println(e);
                 }
-
             }
         });
 
-        btnImpresion.setOnClickListener(new View.OnClickListener() {
+        btnReimpresion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orderId = txtOrderId.getText().toString();
