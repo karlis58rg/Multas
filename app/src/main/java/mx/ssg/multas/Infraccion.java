@@ -35,7 +35,9 @@ public class Infraccion extends AppCompatActivity implements MapaInfraccion.OnFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infraccion);
 
-        if (ContextCompat.checkSelfPermission(Infraccion.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Infraccion.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        iniciar_fragment();
+
+        /*if (ContextCompat.checkSelfPermission(Infraccion.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(Infraccion.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(Infraccion.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1000);
         }
 
@@ -48,7 +50,7 @@ public class Infraccion extends AppCompatActivity implements MapaInfraccion.OnFr
         } else {
             iniciar_fragment();
 
-        }
+        }*/
     }
 
     public void iniciar_fragment(){
@@ -103,7 +105,7 @@ public class Infraccion extends AppCompatActivity implements MapaInfraccion.OnFr
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        /*switch (requestCode){
             case CODIGO_SOLICITUD_PERMISO :
                 int resultado = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -116,7 +118,7 @@ public class Infraccion extends AppCompatActivity implements MapaInfraccion.OnFr
 
                     Toast.makeText(activity, "LOS PERMISOS NO SE ENCUENTRAN ACTIVOS", Toast.LENGTH_SHORT).show();
                 }
-        }
+        }*/
     }
 
     @Override

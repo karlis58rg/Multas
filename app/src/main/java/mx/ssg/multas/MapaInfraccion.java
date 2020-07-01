@@ -422,6 +422,59 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         });
     }
 
+    //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
+    private void inserInfraccionTemp() {
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("IdInfraccion", codigoVerifi)
+                .add("Usuario", cargarInfoUsuario)
+                .add("Latitud", lat_origen.toString())
+                .add("Longitud", lon_origen.toString())
+                .add("Fecha", fecha)
+                .add("Hora", hora)
+                .add("Garantia", resGarantia+" "+resGarantia1)
+                .add("SalariosMinimos", resSalarios)
+                .add("Condonacion", "0")
+                .add("Pago", String.valueOf(valor))
+                .add("StatusPago", "1")
+                .build();
+
+        Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Infracciones/")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare(); // to be able to make toast
+                Toast.makeText(getContext(), "ERROR AL ENVIAR SU REGISTRO", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().toString();
+                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            alertaGPS();
+                            Toast.makeText(getContext(), "DATO AGREGADO", Toast.LENGTH_SHORT).show();
+                            radioGarantia.clearCheck();
+                            radioGarantia1.clearCheck();
+                            txtDocReteInfra.setText("");
+                            txtMontoInfraPagar.setText("$ MXN");
+
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
     public void cargarDatos(){
         share = getActivity().getSharedPreferences("main",Context.MODE_PRIVATE);
         cargarInfoValor = share.getInt("ValorInfraccion",0);
@@ -613,12 +666,12 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         dataHelper.insertTabulador(2,"OBSTRUIR EL PASO AL PEATÓN","94","I",3);
         dataHelper.insertTabulador(3,"MANEJAR EN ESTADO DE EBRIEDAD","78","I",75);
         dataHelper.insertTabulador(4,"EXCESO DE VELOCIDAD","166","X",20);
-        dataHelper.insertTabulador(5,"IR A MAS DE 15 KMS.FRENTE A ESCUELA","14","I",3);
+        dataHelper.insertTabulador(5,"IR A MAS DE 15 KMS. FRENTE A ESCUELA","14","I",3);
         dataHelper.insertTabulador(6,"NEGARSE A PRESTAR LIC. Y TARJ. DE CIRCULACION","67","",3);
         dataHelper.insertTabulador(7,"NO OBEDECER LAS INDICACIONES DE AGENTE ","77","IV",3);
         dataHelper.insertTabulador(8,"RECURRIR A LA FUGA","111","VI",20);
         dataHelper.insertTabulador(9,"FALTAS AL AGENTE","62","",5);
-        dataHelper.insertTabulador(10,"PRESTAR SERVS.PUB. SIN AUT Y/O CONCESION","130","I",55);
+        dataHelper.insertTabulador(10,"PRESTAR SERVS. PUB. SIN AUT Y/O CONCESION","130","I",55);
         dataHelper.insertTabulador(11,"CIRCULAR FUERA DE RUTA ","139 / 166","139-XXI   166-III",5);
         dataHelper.insertTabulador(12,"ESTACIONARSE MAL","94","",3);
         dataHelper.insertTabulador(13,"ESTACIONARSE EN PARADEROS, CAJONES Y RAMPAS","94","XIII",10);
@@ -679,7 +732,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         dataHelper.insertTabulador(68,"USAR CALCOMANIA DE OTRO VEHICULO","33","",10);
         dataHelper.insertTabulador(69,"PERMITIR MANEJAR A PERS.INCAPAZ FISICO-MENTAL","62","",10);
         dataHelper.insertTabulador(70,"ARROJAR OBJETOS O BASURA A LA VIA PUBLICA ","129","II",10);
-        dataHelper.insertTabulador(71,"LLEVAR OBJETOS QUE OBSTR.LA VISIBILIDAD","62","",2);
+        dataHelper.insertTabulador(71,"LLEVAR OBJETOS QUE OBSTR. LA VISIBILIDAD","62","",2);
         dataHelper.insertTabulador(72,"CARGAR COMBUSTIBLE CON EL MOTOR ENCENDIDO","139","V",2);
         dataHelper.insertTabulador(73,"CARGAR COMBUSTIBLE CON PASAJE ABORDO","139","III",3);
         dataHelper.insertTabulador(74,"TRANSPORTAR PERSONAS EN VEH. DE REMOLQUE POR CADA UNA","62 / 78","78-IX",2);
@@ -717,9 +770,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         dataHelper.insertTabulador(106,"ESTACIONAR FRENTE A BOMBEROS Y AMBULANCIAS","94","VI",10);
         dataHelper.insertTabulador(107,"NO ATENDER DESCUENTOS A ESTUDIANTES Y PERSONAS DE LA TERCERA EDAD","139 / 140 ","140-I",5);
         dataHelper.insertTabulador(108,"MANEJAR Y TRANSP. PASAJE DE AUTOBUS BAJO LA INFLUENCIA DE ESTUPEFACIENTE-EBRIO O DROGADO","134 / 139","139-III",200);
-        dataHelper.insertTabulador(109,"TRANSP. ANIMALES,BULTOS QUE MOLESTEN AL PASAJE ","139","XV",5);
+        dataHelper.insertTabulador(109,"TRANSP. ANIMALES, BULTOS QUE MOLESTEN AL PASAJE ","139","XV",5);
         dataHelper.insertTabulador(110,"TRANSP. MAS DE 2 CARGADORES EN CAM/CARGA ","139","XXIV",1);
-        dataHelper.insertTabulador(111,"TRANSP.MAS DE 2 PERS. EN CABINA VEH. DE CARGA","139","XXIV",1);
+        dataHelper.insertTabulador(111,"TRANSP. MAS DE 2 PERS. EN CABINA VEH. DE CARGA","139","XXIV",1);
         dataHelper.insertTabulador(112,"TRANSP. CARGA QUE NO SEA DEBIDAMENTE ABANDERADA","130 / 139","139-XXV",2);
         dataHelper.insertTabulador(113,"PINTAR CARROCERIA CON COLORES DE SERVICIO OFICIAL Y DE EMERGENCIA ","62 / 165 ","",2);
         dataHelper.insertTabulador(114,"ESTABLECER SITO EN LUGAR NO AUTORIZADO","183 / 185","",5);
@@ -736,12 +789,13 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         dataHelper.insertTabulador(125,"NO CEDER PASO A VEH.EN PREFERENCIA ","14","III D",5);
         dataHelper.insertTabulador(126,"NO USAR CINTURON DE SEGURIDAD ","77","I",3);
         dataHelper.insertTabulador(127,"NO PRESERVARLA ESCENA DEL LUGAR DE LOS HECHOS","111","IV",5);
-        dataHelper.insertTabulador(128,"POR PRESTACION DE SERVICIO PUB. SIN AUTORIZACION PARA TRANSPORTAR CARGA Y MAT.CONSTRUCCION","130","I",55);
+        dataHelper.insertTabulador(128,"POR PRESTACION DE SERVICIO PUB. SIN AUTORIZACION PARA TRANSPORTAR CARGA Y MAT. CONSTRUCCION","130","I",55);
         dataHelper.insertTabulador(129,"POR PINTAR INMUEBLES, PAREDES O TRANSPORTE PUBLICO CON GRAFFITI","62","",100);
         dataHelper.insertTabulador(130,"OBSTRUIR PASO DE VEHICULO DE EMERGENCIA","21","VII",10);
         dataHelper.insertTabulador(131,"POR MANEJAR VEHICULO MENOR DE EDAD FUERA DE HORARIO PERMITIDO ","24 / 58","24-XV",20);
-        dataHelper.insertTabulador(132,"PERSONA SORPRENDIDA EN COMPAÑIA DE MENOR DE EDAD INGIRIENDO BEBIDAS EMBRIAGANTES Y/O DROGADO,ALTAS HORAS ","78 / 190 ","78-XIX",100);
+        dataHelper.insertTabulador(132,"PERSONA SORPRENDIDA EN COMPAÑIA DE MENOR DE EDAD INGIRIENDO BEBIDAS EMBRIAGANTES Y/O DROGADO, ALTAS HORAS ","78 / 190 ","78-XIX",100);
         */
+
 
         ArrayList<String> list = dataHelper.getAllTabulador();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_layout,R.id.txt,list);

@@ -100,7 +100,7 @@ public class NetPay extends AppCompatActivity {
 
                 //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
                 IPage.ILine.IUnit unit2 = page.createUnit();
-                unit2.setText("MANEJAR EN ESTADO DE EBRIEDAD\n" + "DAR VUELTA EN LUGAR NO PERMITIDO");
+                unit2.setText("OBSTRUIR EL PASO AL PEATON \n MANEJAR EN ESTADO DE EBRIEDAD \n EXCESO DE VELOCIDAD \n TOTAL: 11760");
                 unit2.setGravity(Gravity.END);
 
                 //Se crea una línea y se agregan sus unidades.
@@ -110,7 +110,7 @@ public class NetPay extends AppCompatActivity {
 
                 //Se crea una nueva unidad
                 IPage.ILine.IUnit unit3 = page.createUnit();
-                unit3.setText("$3000.00");
+                unit3.setText("Costo: $3000.00");
                 unit3.setGravity(Gravity.CENTER);
 
                 //Se crea una nueva línea y se agrega la unidad pasada
@@ -118,7 +118,6 @@ public class NetPay extends AppCompatActivity {
 
                 //Se crea un request del tipo PrintRequest con el package name del app y la página creada
                 PrintRequest printRequest = new PrintRequest(appId, page);
-
                 smartApi.doTrans(printRequest);
             }
         });
