@@ -91,9 +91,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     long detenerse;
 
     EditText txtDocReteInfra;
-    ImageView btnAgregarInfraccion;
-    String cargarInfoUsuario;
-    String fecha,hora,documentoRetenido,claveInfraccion,respuestaJson,resClave,resSalarios,resGarantia,resGarantia1;
+    ImageView btnAgregarInfraccion,btnAlcohol,btnVelocimetro,btnSemaforo,btnVuelta,btnDobleFila,btnCasco,btnCinturon,btnEstacionarse;
+    String cargarInfoUsuario,cargarInfoRandom;
+    String fecha,hora,documentoRetenido,claveInfraccion,respuestaJson,resGarantia,resGarantia1;
     int monto = 0;
     int salarioMinimo = 120;
     int sumaSalarios = 0;
@@ -105,7 +105,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     RadioGroup radioGarantia,radioGarantia1;
     Button btnGuardarInfraccion;
     int numberRandom;
-    public String codigoVerifi;
+    public String codigoVerifi,resClave,resSalarios;
 
     ListView lv1;
     ArrayList<String> palabras;
@@ -152,7 +152,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         final View view = inflater.inflate(R.layout.fragment_mapa_infraccion, container, false);
 
         //************************************** ACCIONES DE LA VISTA **************************************//
-        //Random();
+        Random();
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
         lyContact = view.findViewById(R.id.lyContactInfra);
@@ -166,6 +166,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnAgregarInfraccion = view.findViewById(R.id.imgAgregarInfraccion);
         btnGuardarInfraccion = view.findViewById(R.id.imgGuardarInfraccion);
 
+        btnAlcohol = view.findViewById(R.id.imgAlcohol);
+        btnVelocimetro = view.findViewById(R.id.imgVelocimetro);
+        btnSemaforo = view.findViewById(R.id.imgSemaforo);
+        btnVuelta = view.findViewById(R.id.imgVuelta);
+        btnDobleFila = view.findViewById(R.id.imgDobleFila);
+        btnCasco = view.findViewById(R.id.imgCasco);
+        btnCinturon = view.findViewById(R.id.imgCinturon);
+        btnEstacionarse = view.findViewById(R.id.imgEstacionarse);
 
         txtMontoInfraPagar = view.findViewById(R.id.lblMontoInfraccion);
         spinCatTabulador = view.findViewById(R.id.spinInfraccion);
@@ -219,23 +227,22 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnAgregarInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    getClaveInfra();
+                getClaveInfra();
             }
         });
 
         btnGuardarInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /* if(txtDocReteInfra.toString().isEmpty()){
+               if(txtDocReteInfra.toString().isEmpty()){
                     Toast.makeText(getContext(),"DEBE AGREGAR UNA OBSERVACIÓN",Toast.LENGTH_SHORT).show();
                 }else{
                     Random();
                     Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroInfraccion();
                     eliminarDatos();
-                }*/
-                Intent i = new Intent(getActivity(), NetPay.class);
-                startActivity(i);
+                }
+
 
 
 
@@ -276,6 +283,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 dialogo1.setPositiveButton("CONFIRMAR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         palabras.remove(posicion);
+                        String cadena = palabras.toString();
+                        System.out.println(cadena.replaceAll("[0-9]", ""));
+                        System.out.println(posicion + palabras.toString());
                         adaptador1.notifyDataSetChanged();
                         /****** NUEVO VALOR*/
                     }
@@ -289,6 +299,209 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        btnAlcohol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarDatos();
+                claveInfraccion = "MANEJAR EN ESTADO DE EBRIEDAD";
+                resClave = "3";
+                resSalarios = "75";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
+        btnVelocimetro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "EXCESO DE VELOCIDAD";
+                resClave = "4";
+                resSalarios = "20";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
+        btnSemaforo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "PASARSE ALTO DEL SEMAFORO";
+                resClave = "22";
+                resSalarios = "20";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
+        btnVuelta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "DAR VUELTA EN “U” EN ZONA PROHIBIDA";
+                resClave = "30";
+                resSalarios = "5";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
+        btnDobleFila.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "ESTACIONARSE EN DOBLE FILA";
+                resClave = "17";
+                resSalarios = "4";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+
+            }
+        });
+        btnCasco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "FALTA DE CASCO PROTECTOR, AL CONDUCIRMOTOCICLETA";
+                resClave = "51";
+                resSalarios = "2";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
+        btnCinturon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "NO USAR CINTURON DE SEGURIDAD";
+                resClave = "128";
+                resSalarios = "3";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+
+            }
+        });
+        btnEstacionarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                claveInfraccion = "ESTACIONARSE EN ZONA PROHIBIDA";
+                resClave = "14";
+                resSalarios = "5";
+                /***LLENADO DE LA TABLA***/
+                palabras.add(claveInfraccion+"  "+"  "+resSalarios);
+                adaptador1.notifyDataSetChanged();
+                /**************************/
+                inserInfraccionTemp();
+                if(cargarInfoValor != 0){
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios+cargarInfoValor; //360
+                    guardarDatosInfra();
+                }else{
+                    monto = Integer.parseInt(resSalarios);
+                    sumaSalarios = monto*salarioMinimo;
+                    valor = sumaSalarios; //360
+                    guardarDatosInfra();
+                }
+                txtMontoInfraPagar.setText("$"+valor+" "+"MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+            }
+        });
 
         //*************************** SE MUESTRA EL MAPA ****************************************//
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mapInfraccion);
@@ -335,6 +548,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                     adaptador1.notifyDataSetChanged();
                                     /*************************/
                                     Log.i("HERE", ""+jObj);
+                                    /**************************/
+                                    inserInfraccionTemp();
                                     if(cargarInfoValor != 0){
                                         monto = Integer.parseInt(resSalarios);
                                         sumaSalarios = monto*salarioMinimo;
@@ -362,7 +577,82 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     }
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
+    private void inserInfraccionTemp() {
+        cargarDatos();
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("IdInfraccion", cargarInfoRandom)
+                .add("Clave", resClave)
+                .add("Descripcion", claveInfraccion)
+                .add("SalMinimos", resSalarios)
+                .build();
+        Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/TempInfraccion/")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare(); // to be able to make toast
+                Toast.makeText(getContext(), "ERROR AL ENVIAR SU REGISTRO, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().toString();
+                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("EL DATO SE ENVIO CORRECTAMENTE");
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
+    //***************** ELIMINA A LA BD MEDIANTE EL WS **************************//
+    private void deleteInfraccionTemp() {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("Clave", resClave)
+                .build();
+        Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/TempInfraccion?infraccionDelete="+resClave)
+                .delete()
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare(); // to be able to make toast
+                Toast.makeText(getContext(), "ERROR AL ENVIAR SU REGISTRO, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().toString();
+                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("EL DATO SE ELIMINO CORRECTAMENTE");
+                        }
+                    });
+                }
+
+            }
+        });
+    }
+
+    //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistroInfraccion() {
+        cargarDatos();
         //*************** FECHA **********************//
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -374,14 +664,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", codigoVerifi)
+                .add("IdInfraccion", cargarInfoRandom)
                 .add("Usuario", cargarInfoUsuario)
                 .add("Latitud", lat_origen.toString())
                 .add("Longitud", lon_origen.toString())
                 .add("Fecha", fecha)
                 .add("Hora", hora)
                 .add("Garantia", resGarantia+" "+resGarantia1)
-                .add("SalariosMinimos", resSalarios)
+                .add("SalariosMinimos", resSalarios) //CHECAR LA SUMA DE LOS SALARIOS
                 .add("Condonacion", "0")
                 .add("Pago", String.valueOf(valor))
                 .add("StatusPago", "1")
@@ -407,13 +697,13 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            alertaGPS();
                             Toast.makeText(getContext(), "DATO AGREGADO", Toast.LENGTH_SHORT).show();
                             radioGarantia.clearCheck();
                             radioGarantia1.clearCheck();
                             txtDocReteInfra.setText("");
-                            txtMontoInfraPagar.setText("$ MXN");
-
+                            Intent i = new Intent(getActivity(), NetPay.class);
+                            i.putExtra("MONTO",valor);
+                            startActivity(i);
                         }
                     });
                 }
@@ -422,69 +712,19 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
-    private void inserInfraccionTemp() {
-
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", codigoVerifi)
-                .add("Usuario", cargarInfoUsuario)
-                .add("Latitud", lat_origen.toString())
-                .add("Longitud", lon_origen.toString())
-                .add("Fecha", fecha)
-                .add("Hora", hora)
-                .add("Garantia", resGarantia+" "+resGarantia1)
-                .add("SalariosMinimos", resSalarios)
-                .add("Condonacion", "0")
-                .add("Pago", String.valueOf(valor))
-                .add("StatusPago", "1")
-                .build();
-
-        Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Infracciones/")
-                .post(body)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Looper.prepare(); // to be able to make toast
-                Toast.makeText(getContext(), "ERROR AL ENVIAR SU REGISTRO", Toast.LENGTH_LONG).show();
-                Looper.loop();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final String myResponse = response.body().toString();
-                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            alertaGPS();
-                            Toast.makeText(getContext(), "DATO AGREGADO", Toast.LENGTH_SHORT).show();
-                            radioGarantia.clearCheck();
-                            radioGarantia1.clearCheck();
-                            txtDocReteInfra.setText("");
-                            txtMontoInfraPagar.setText("$ MXN");
-
-                        }
-                    });
-                }
-
-            }
-        });
-    }
 
     public void cargarDatos(){
         share = getActivity().getSharedPreferences("main",Context.MODE_PRIVATE);
         cargarInfoValor = share.getInt("ValorInfraccion",0);
         cargarInfoUsuario = share.getString("USER","");
+        cargarInfoRandom = share.getString("RANDOM","");
     }
 
     private void eliminarDatos(){
         share = getActivity().getSharedPreferences("main",Context.MODE_PRIVATE);
         editor = share.edit();
         editor.remove("ValorInfraccion").commit();
+        editor.remove("RANDOM").commit();
     }
 
     private void guardarDatosInfra(){
@@ -493,6 +733,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         editor.putInt("ValorInfraccion",valor);
         editor.commit();
     }
+
+    private void guardarRandom(){
+        share = getActivity().getSharedPreferences("main",Context.MODE_PRIVATE);
+        editor = share.edit();
+        editor.putString("RANDOM",codigoVerifi);
+        editor.commit();
+    }
+
 
     private void alertaGPS(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -514,6 +762,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         Random random = new Random();
         numberRandom = random.nextInt(9000)*99;
         codigoVerifi = String.valueOf(numberRandom);
+        guardarRandom();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -795,12 +1044,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         dataHelper.insertTabulador(131,"POR MANEJAR VEHICULO MENOR DE EDAD FUERA DE HORARIO PERMITIDO ","24 / 58","24-XV",20);
         dataHelper.insertTabulador(132,"PERSONA SORPRENDIDA EN COMPAÑIA DE MENOR DE EDAD INGIRIENDO BEBIDAS EMBRIAGANTES Y/O DROGADO, ALTAS HORAS ","78 / 190 ","78-XIX",100);
         */
-
-
         ArrayList<String> list = dataHelper.getAllTabulador();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_layout,R.id.txt,list);
         spinCatTabulador.setAdapter(adapter);
-        System.out.println(dataHelper.getAllTabulador());
 
     }
 

@@ -136,7 +136,7 @@
                         <LinearLayout
                             android:id="@+id/contentBuscar"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:layout_marginTop="20dp">
@@ -205,7 +205,7 @@
                         <LinearLayout
                             android:id="@+id/contentDatosConductor"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 2-->
@@ -269,7 +269,7 @@
                         <LinearLayout
                             android:id="@+id/contentDatosDocRetenido"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 3-->
@@ -303,6 +303,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:gravity="center"
+                                    android:text="Hola"
                                     android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->
@@ -319,6 +320,145 @@
                         </LinearLayout>
 
 
+                        <!--REGISTRO 6-->
+                        <LinearLayout
+                            android:id="@+id/contentAccesoRapido"
+                            android:layout_width="match_parent"
+                            android:layout_height="85dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="20dp">
+                            <!--IMAGEN 1 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgAlcohol"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_alcohol"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgVelocimetro"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_velocimetro"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <!--BOTTON FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgSemaforo"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_semaforo"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <!--IMAGEN2 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgVuelta"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_vuelta"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+                        <!--REGISTRO 6-->
+                        <LinearLayout
+                            android:id="@+id/contentAccesos2"
+                            android:layout_width="match_parent"
+                            android:layout_height="85dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--IMAGEN 1 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgDobleFila"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_doblefila"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgCasco"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_casco"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <!--BOTTON FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgCinturon"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_cinturon"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <!--IMAGEN2 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgEstacionarse"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/icn_estacionarse"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
                         <!--REGISTRO 4-->
                         <LinearLayout
                             android:id="@+id/contentDatosInfraccionCmb"
@@ -330,7 +470,7 @@
                             <LinearLayout
                                 android:id="@+id/lblClaveInfraCmb"
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="40dp"
                                 android:orientation="vertical"
                                 android:gravity="center|left"
                                 android:weightSum="1"
@@ -385,7 +525,7 @@
                             <!--IMAGEN 1 FOODER-->
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="30dp"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
@@ -407,11 +547,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </LinearLayout>
+
                         <!--REGISTRO 6-->
                         <LinearLayout
                             android:id="@+id/contentGuardarDatosL"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="85dp"
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:layout_marginTop="20dp">

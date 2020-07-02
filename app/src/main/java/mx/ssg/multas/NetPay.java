@@ -59,10 +59,14 @@ public class NetPay extends AppCompatActivity {
         btnReimpresion = findViewById(R.id.btnReimpresion);
         btnImpresion = findViewById(R.id.btnImpresión);
 
+        Intent i1 = getIntent();
+        amount = i1.getDoubleExtra("MONTO",0);
+        String monto = Double.toString(amount);
+        txtMonto.setText(monto);
+
         btnVenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                amount =Double.parseDouble(txtMonto.getText().toString());
                 SaleRequest sale = new SaleRequest(appId,amount,tip,msi,waiter,settlementId,settlementDate,table,folio,checkIn,tableId,additionalData,traceability,exchangeRateUsd,pendingAmount);
                 try {
                     smartApi.doTrans(sale);

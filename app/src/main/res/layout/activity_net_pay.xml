@@ -8,33 +8,34 @@
 
     <EditText
         android:id="@+id/txtMonto"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Monto"
+        android:hint="Importe de infraccion a pagar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"/>
 
     <EditText
         android:id="@+id/txtFolio"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Folio"
+        android:hint="Folio infracción"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
 
     <EditText
         android:id="@+id/txtOrderId"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Order Id"
+        android:hint="No. de infracción a reimprimir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFolio" />
@@ -53,7 +54,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Venta"
+        android:text="Pago de infracción"
+        android:background="@drawable/boton_redondo"
+        android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblRespuesta" />
@@ -62,27 +65,36 @@
         android:id="@+id/btnCancelacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancelación"
+        android:text="Cancelación del Pago"
+        android:background="@drawable/boton_redondo"
+        android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVenta" />
+        app:layout_constraintTop_toBottomOf="@+id/btnVenta"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btnReimpresion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reimpresión"
+        android:text="Reimpresión de Infracción"
+        android:background="@drawable/boton_redondo"
+        android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCancelacion" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCancelacion"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btnImpresión"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Impresión"
+        android:text="Impresión de infracción a pagar"
+        android:background="@drawable/boton_redondo"
+        android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReimpresion" />
+        app:layout_constraintTop_toBottomOf="@+id/btnReimpresion"
+        android:layout_marginTop="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
