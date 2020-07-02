@@ -98,14 +98,15 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     int salarioMinimo = 120;
     int sumaSalarios = 0;
     int restaSalarios = 0;
-    int valor = 0;
-    int cargarInfoValor = 0;
     int varSalarios = 0;
     TextView txtMontoInfraPagar,txtDescSalarios,txtSalarios;
     RadioGroup radioGarantia,radioGarantia1;
     Button btnGuardarInfraccion;
     int numberRandom;
     public String codigoVerifi,resClave,resSalarios;
+    public int cargarInfoValor = 0;
+    public Double montoApagar;
+    int valor = 0;
 
     ListView lv1;
     ArrayList<String> palabras;
@@ -237,15 +238,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                if(txtDocReteInfra.toString().isEmpty()){
                     Toast.makeText(getContext(),"DEBE AGREGAR UNA OBSERVACIÓN",Toast.LENGTH_SHORT).show();
                 }else{
-                    Random();
                     Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroInfraccion();
-                    eliminarDatos();
                 }
-
-
-
-
             }
         });
 
@@ -282,6 +277,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 dialogo1.setCancelable(false);
                 dialogo1.setPositiveButton("CONFIRMAR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
+                        System.out.println(posicion + palabras.toString());
                         palabras.remove(posicion);
                         String cadena = palabras.toString();
                         System.out.println(cadena.replaceAll("[0-9]", ""));
@@ -666,14 +662,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         RequestBody body = new FormBody.Builder()
                 .add("IdInfraccion", cargarInfoRandom)
                 .add("Usuario", cargarInfoUsuario)
-                .add("Latitud", lat_origen.toString())
-                .add("Longitud", lon_origen.toString())
+                .add("Latitud", "20.0087036") //lat_origen.toString()
+                .add("Longitud", "-98.8208197") //
                 .add("Fecha", fecha)
                 .add("Hora", hora)
                 .add("Garantia", resGarantia+" "+resGarantia1)
-                .add("SalariosMinimos", resSalarios) //CHECAR LA SUMA DE LOS SALARIOS
+                //.add("SalariosMinimos", resSalarios) //CHECAR LA SUMA DE LOS SALARIOS
                 .add("Condonacion", "0")
-                .add("Pago", String.valueOf(valor))
+                .add("Pago", String.valueOf(cargarInfoValor))
                 .add("StatusPago", "1")
                 .build();
 
@@ -698,11 +694,11 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                         @Override
                         public void run() {
                             Toast.makeText(getContext(), "DATO AGREGADO", Toast.LENGTH_SHORT).show();
-                            radioGarantia.clearCheck();
-                            radioGarantia1.clearCheck();
-                            txtDocReteInfra.setText("");
                             Intent i = new Intent(getActivity(), NetPay.class);
-                            i.putExtra("MONTO",valor);
+                            montoApagar = Double.valueOf(cargarInfoValor);
+                            i.putExtra("MONTO",montoApagar);
+                            i.putExtra("FOLIO",cargarInfoRandom);
+                            eliminarDatos();
                             startActivity(i);
                         }
                     });

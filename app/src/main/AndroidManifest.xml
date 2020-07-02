@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NetPay">
+        <activity android:name=".Mapa">
         </activity>
+        <activity android:name=".NetPay"></activity>
         <activity android:name=".Infraccion" />
         <activity android:name=".Splash">
             <intent-filter>

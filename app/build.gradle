@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -52,6 +52,8 @@ dependencies {
     /*********************SERVICIOS DE MAPA ****************************/
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+    /********************* OCR **************************************/
+    implementation 'com.google.android.gms:play-services-vision:20.0.0'
     /****************** NETPAYMX ***************************************/
     //implementation 'com.gitlab.netpaymx.netpay-sdks:smart-sdk:V1.0.1'
     implementation 'com.google.code.gson:gson:2.3.1'
