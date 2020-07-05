@@ -202,7 +202,7 @@ public class NetPay extends AppCompatActivity {
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText(""+ cadenaImpresion +"");
+        unit2.setText(cadenaImpresion);
         unit2.setGravity(Gravity.END);
 
         //Se crea una línea y se agregan sus unidades.

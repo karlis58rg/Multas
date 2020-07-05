@@ -303,7 +303,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:gravity="center"
-                                    android:text="Hola"
                                     android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->
@@ -338,8 +337,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgAlcohol"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_alcohol"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -352,8 +351,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgVelocimetro"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_velocimetro"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -367,8 +366,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgSemaforo"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_semaforo"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -382,8 +381,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgVuelta"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_vuelta"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -408,8 +407,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgDobleFila"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_doblefila"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -422,8 +421,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgCasco"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_casco"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -437,8 +436,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgCinturon"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_cinturon"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
@@ -452,8 +451,8 @@
                                 android:weightSum="1">
                                 <ImageView
                                     android:id="@+id/imgEstacionarse"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
                                     android:src="@drawable/icn_estacionarse"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>

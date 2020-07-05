@@ -36,13 +36,13 @@ public class DataHelper extends SQLiteOpenHelper {
         ContentValues values;
         try {
             values = new ContentValues();
-            values.put("Clave",clave);
-            values.put("Descripcion",descripcion);
-            values.put("Articulos",articulos);
-            values.put("IdFraccion",idInfraccion);
-            values.put("SalMinimos",salMinimos);
-            dbSqLiteDatabase.insert(Table_Tabulador,null,values);
-            dbSqLiteDatabase.setTransactionSuccessful();
+                values.put("Clave",clave);
+                values.put("Descripcion",descripcion);
+                values.put("Articulos",articulos);
+                values.put("IdFraccion",idInfraccion);
+                values.put("SalMinimos",salMinimos);
+                dbSqLiteDatabase.insert(Table_Tabulador,null,values);
+                dbSqLiteDatabase.setTransactionSuccessful();
         }catch (Exception e){e.printStackTrace();}
         finally {
             dbSqLiteDatabase.endTransaction();
@@ -73,4 +73,5 @@ public class DataHelper extends SQLiteOpenHelper {
         }
         return  list;
     }
+
 }
