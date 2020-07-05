@@ -273,7 +273,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final int posicion = i;
-
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getActivity());
                 dialogo1.setTitle("IMPORTANTE");
                 dialogo1.setMessage("¿DESEA ELIMINAR ESTE DATO?");
@@ -290,7 +289,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                         cadenaSalarioBorrar = cadenaSalarioBorrar.trim();
                         System.out.println(cadenaBorrar);
                         System.out.println(cadenaSalarioBorrar);
-                        deleteInfraccionTemp();  // FALTA CONSUMIR EL SERVICIO Y ELIMINAR EL SALDO DEL TOTAL.
+                        deleteInfraccionTemp();
                         palabras.remove(posicion);
                         adaptador1.notifyDataSetChanged();
                     }

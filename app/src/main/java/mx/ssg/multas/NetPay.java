@@ -39,7 +39,7 @@ import okhttp3.Response;
 
 public class NetPay extends AppCompatActivity {
     EditText txtMonto,txtFolio,txtOrderId;
-    TextView lblRespuesta;
+    TextView lblRespuesta,lblRespuestaCadena;
     Button btnVenta,btnImpresion,btnReimpresion;
     String respuestaJson;
     String appId = "mx.ssg.multas";
@@ -64,6 +64,7 @@ public class NetPay extends AppCompatActivity {
     public String resp;
     SharedPreferences share;
     SharedPreferences.Editor editor;
+    public String valorCadenaImpresion = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class NetPay extends AppCompatActivity {
         txtFolio = findViewById(R.id.txtFolio);
         txtOrderId = findViewById(R.id.txtOrderId);
         lblRespuesta = findViewById(R.id.lblRespuesta);
+        lblRespuestaCadena = findViewById(R.id.lblRespuestaCadena);
         btnVenta = findViewById(R.id.btnVenta);
         btnReimpresion = findViewById(R.id.btnReimpresion);
         btnImpresion = findViewById(R.id.btnImpresión);
@@ -165,22 +167,28 @@ public class NetPay extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().string();
-                    //myResponse = myResponse.replace('"',' ');
-                    //myResponse = myResponse.trim();
-                    resp = myResponse;
-                    String valorRfc = "NO SE ENCONTRO INFORMACION";
-                    if(resp.equals(valorRfc)){
-                        Looper.prepare(); // to be able to make toast
-                        Toast.makeText(getApplicationContext(), "LO SENTIMOS " + resp, Toast.LENGTH_SHORT).show();
-                        Looper.loop();
-                    }else{
-                        cadenaImpresion = resp;
-                        cadenaImpresion = cadenaImpresion.replace('\n','\n');
-                        System.out.println(cadenaImpresion);
-                        cadenaInfraccion();
-                    }
-                    Log.i("HERE", resp);
+                   final String myResponse = response.body().string();
+                    NetPay.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //myResponse = myResponse.replace('"',' ');
+                            //myResponse = myResponse.trim();
+                            resp = myResponse;
+                            String valorRfc = "NO SE ENCONTRO INFORMACION";
+                            if(resp.equals(valorRfc)){
+                                Toast.makeText(getApplicationContext(), "LO SENTIMOS " + resp, Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                cadenaImpresion = resp;
+                                lblRespuestaCadena.setText(cadenaImpresion);
+                                //cadenaImpresion = cadenaImpresion.replace('\n','\n');
+                                System.out.println(cadenaImpresion);
+                                cadenaInfraccion();
+                            }
+                            Log.i("HERE", resp);
+                        }
+                    });
+
                 }
             }
 
@@ -188,6 +196,7 @@ public class NetPay extends AppCompatActivity {
     }
 
     private void cadenaInfraccion(){
+        valorCadenaImpresion = lblRespuestaCadena.getText().toString();
         //Crear una página
         IPage page = smartApi.createPage();
 
@@ -202,7 +211,7 @@ public class NetPay extends AppCompatActivity {
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText(cadenaImpresion);
+        unit2.setText(valorCadenaImpresion);
         unit2.setGravity(Gravity.END);
 
         //Se crea una línea y se agregan sus unidades.
@@ -217,6 +226,25 @@ public class NetPay extends AppCompatActivity {
 
         //Se crea una nueva línea y se agrega la unidad pasada
         //page.addLine().addUnit(unit3);
+        /*
+        *         page.addLine().addUnit(page.createUnit().apply {
+            text = ""
+            bitmap = logoBitmap()
+            gravity = Gravity.CENTER
+        })
+    }*/
+
+        IPage.ILine.IUnit unit4 = page.createUnit();
+        unit4.setText(valorCadenaImpresion);
+        unit4.getBitmap();
+        unit4.setGravity(Gravity.END);
+        page.addLine().
+                addUnit(unit4);
+
+
+
+
+
 
         //Se crea un request del tipo PrintRequest con el package name del app y la página creada
         PrintRequest printRequest = new PrintRequest(appId, page);

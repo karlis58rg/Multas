@@ -59,7 +59,7 @@
         android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRespuesta" />
+        app:layout_constraintTop_toBottomOf="@+id/lblRespuestaCadena" />
 
     <Button
         android:id="@+id/btnCancelacion"
@@ -96,5 +96,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnReimpresion"
         android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/lblRespuestaCadena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/lblRespuesta"
+        tools:layout_editor_absoluteX="189dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
