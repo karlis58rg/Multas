@@ -99,6 +99,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     int sumaSalarios = 0;
     int restaSalarios = 0;
     int varSalarios = 0;
+
     TextView txtMontoInfraPagar, txtDescSalarios, txtSalarios;
     RadioGroup radioGarantia, radioGarantia1;
     Button btnGuardarInfraccion;
@@ -108,6 +109,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     public Double montoApagar;
     int valor = 0;
     String cadenaBorrar = "";
+    String cadenaSalarioBorrar = "";
 
     ListView lv1;
     ArrayList<String> palabras;
@@ -277,17 +279,19 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 dialogo1.setMessage("¿DESEA ELIMINAR ESTE DATO?");
                 dialogo1.setCancelable(false);
                 cadenaBorrar = palabras.get(posicion);
+                cadenaSalarioBorrar = palabras.get(posicion);
                 System.out.println(cadenaBorrar);
+                System.out.println(cadenaSalarioBorrar);
                 dialogo1.setPositiveButton("CONFIRMAR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         cadenaBorrar = cadenaBorrar.replaceAll("[0-9]", "");
+                        cadenaBorrar = cadenaBorrar.trim();
+                        cadenaSalarioBorrar = cadenaSalarioBorrar.replaceAll("[a-zA-Z]","");
+                        cadenaSalarioBorrar = cadenaSalarioBorrar.trim();
                         System.out.println(cadenaBorrar);
-
-
-                        //deleteInfraccionTemp();  // FALTA CONSUMIR EL SERVICIO Y ELIMINAR EL SALDO DEL TOTAL.
+                        System.out.println(cadenaSalarioBorrar);
+                        deleteInfraccionTemp();  // FALTA CONSUMIR EL SERVICIO Y ELIMINAR EL SALDO DEL TOTAL.
                         palabras.remove(posicion);
-
-                        System.out.println(posicion + palabras.toString());
                         adaptador1.notifyDataSetChanged();
                     }
                 });
@@ -609,6 +613,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                         @Override
                         public void run() {
                             System.out.println("EL DATO SE ENVIO CORRECTAMENTE");
+                            System.out.println(cargarInfoRandom);
                         }
                     });
                 }
@@ -618,6 +623,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     //***************** ELIMINA A LA BD MEDIANTE EL WS **************************//
     private void deleteInfraccionTemp() {
+        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("http://187.174.102.142/AppTransito/api/TempInfraccion?infraccionDelete="+cargarInfoRandom+"&descripcionDelete="+cadenaBorrar)
@@ -638,7 +644,13 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            monto = Integer.parseInt(cadenaSalarioBorrar); //3
+                            sumaSalarios = monto * salarioMinimo; //120*3 = 360
+                            valor = cargarInfoValor - sumaSalarios; //360
+                            guardarDatosInfra();
                             System.out.println("EL DATO SE ELIMINO CORRECTAMENTE");
+                            System.out.println(valor);
+                            txtMontoInfraPagar.setText("$" + valor + " " + "MXN");
                         }
                     });
                 }
