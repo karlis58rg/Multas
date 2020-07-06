@@ -550,6 +550,7 @@
                                 android:layout_height="50dp"
                                 android:gravity="center"
                                 android:imeOptions="actionNext"
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ +-"
                                 android:inputType="textCapCharacters"
                                 android:maxLength="10"/>
                         </LinearLayout>

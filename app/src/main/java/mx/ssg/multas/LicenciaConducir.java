@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -49,7 +51,7 @@ public class LicenciaConducir extends AppCompatActivity {
     String licencia,nombre,apaterno,amaterno,fNacimiento,direccion,sangre,validez,clase,nacionalidad,observaciones,respuestaJson;
     String resNacionalidad = "";
     String resObservaciones = "";
-    DatePickerDialog datePickerDialog;
+    private  DatePickerDialog.OnDateSetListener dateSetListener,date;
     Calendar calendar = Calendar.getInstance();
 
     @Override
@@ -83,37 +85,55 @@ public class LicenciaConducir extends AppCompatActivity {
         btnContactos = findViewById(R.id.lyContactoL);
         btnTabulador = findViewById(R.id.lyFavoritosL);
 
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        txtFNacimiento.setOnClickListener(new View.OnClickListener() {
+        dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month=month+1;
+                txtFNacimiento.setText(+dayOfMonth+ "-" +month+ "-" +year);
+
+
+
+            }
+        };
+        date=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                txtValidez.setText(+dayOfMonth+ "-" +month+ "-" +year);
+
+
+            }};
+
+       txtFNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePickerDialog = new DatePickerDialog(LicenciaConducir.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = day +"-"+month+"-"+year;
-                        txtFNacimiento.setText(date);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dialog=new DatePickerDialog(LicenciaConducir.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        dateSetListener,day,month,year);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
             }
         });
 
         txtValidez.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePickerDialog = new DatePickerDialog(LicenciaConducir.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month = month + 1;
-                        String date = day +"-"+month+"-"+year;
-                        txtValidez.setText(date);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dialog=new DatePickerDialog(LicenciaConducir.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        date,day,month,year);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+
             }
         });
 
@@ -164,7 +184,7 @@ public class LicenciaConducir extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     insertRegistroLicencia();
                 }*/
-                Intent i = new Intent(LicenciaConducir.this, NetPay.class);
+                Intent i = new Intent(LicenciaConducir.this, TarjetasConductor.class);
                 startActivity(i);
             }
         });
