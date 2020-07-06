@@ -1,108 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical"
     tools:context=".NetPay">
 
-    <EditText
-        android:id="@+id/txtMonto"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Importe de infraccion a pagar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"/>
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.88">
+        <LinearLayout
+            android:id="@+id/content"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:orientation="vertical">
+            <!--HEADER-->
+            <LinearLayout
+                android:id="@+id/lySearch"
+                android:background="@color/backgroundLogoCafe"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.08"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <!--IMAGEN1 HEADER-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/btnListTC"
+                        android:layout_width="35dp"
+                        android:src="@drawable/icn_list_white"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+                <!--IMAGEN2 HEADER-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.75"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imgLogoContacto"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/icn_logo_login"
+                        android:layout_height="48dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!--TITLE-->
+            <LinearLayout
+                android:id="@+id/contentWebView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.13"
+                android:orientation="horizontal">
+                <!--IMAGEN 1 TITLE-->
+                <LinearLayout
+                    android:id="@+id/ingTarjetaCirculacion"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:layout_weight="0.12">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/icn_terminal"/>
+                </LinearLayout>
+                <!--TITULO IMAGEN1 TITLE-->
+                <LinearLayout
+                    android:id="@+id/lblPagoInfraccion"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:background="@drawable/drawable_pressed"
+                    android:layout_weight="0.25">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.4"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColorHint="@color/hint"
+                        android:text="Pago de Infracción"/>
+                </LinearLayout>
+                <!--IMAGEN2 TITLE-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:weightSum="1"
+                    android:background="@drawable/drawable_pressed"
+                    android:layout_weight="0.12"/>
+            </LinearLayout>
+            <!--BODY-->
 
-    <EditText
-        android:id="@+id/txtFolio"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Folio infracción"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
+            <EditText
+                android:id="@+id/txtMonto"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Importe de infraccion a pagar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="50dp"/>
 
-    <EditText
-        android:id="@+id/txtOrderId"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="No. de infracción a reimprimir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFolio" />
+            <EditText
+                android:id="@+id/txtFolio"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Folio infracción"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
 
-    <TextView
-        android:id="@+id/lblRespuesta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Respuesta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtOrderId" />
+            <EditText
+                android:id="@+id/txtOrderId"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="No. de infracción a reimprimir"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFolio" />
 
-    <Button
-        android:id="@+id/btnVenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Pago de infracción"
-        android:background="@drawable/boton_redondo"
-        android:textColor="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRespuestaCadena" />
+            <TextView
+                android:id="@+id/lblRespuesta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Respuesta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtOrderId" />
 
-    <Button
-        android:id="@+id/btnCancelacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelación del Pago"
-        android:background="@drawable/boton_redondo"
-        android:textColor="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVenta"
-        android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/btnVenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Pago de infracción"
+                android:background="@drawable/boton_redondo"
+                android:textColor="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblRespuestaCadena" />
 
-    <Button
-        android:id="@+id/btnReimpresion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reimpresión de Infracción"
-        android:background="@drawable/boton_redondo"
-        android:textColor="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCancelacion"
-        android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/btnCancelacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelación del Pago"
+                android:background="@drawable/boton_redondo"
+                android:textColor="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnVenta"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/btnImpresión"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Impresión de infracción a pagar"
-        android:background="@drawable/boton_redondo"
-        android:textColor="@color/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReimpresion"
-        android:layout_marginTop="10dp"/>
+            <Button
+                android:id="@+id/btnReimpresion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reimpresión de Infracción"
+                android:background="@drawable/boton_redondo"
+                android:textColor="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCancelacion"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/lblRespuestaCadena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/lblRespuesta"
-        tools:layout_editor_absoluteX="189dp" />
+            <Button
+                android:id="@+id/btnImpresión"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Impresión de infracción a pagar"
+                android:background="@drawable/boton_redondo"
+                android:textColor="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnReimpresion"
+                android:layout_marginTop="10dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/lblRespuestaCadena"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblRespuesta" />
+
+
+
+        </LinearLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+    <LinearLayout
+        android:id="@+id/menu"
+        android:background="@color/backgroundBotones"
+        android:layout_width="match_parent"
+        android:layout_weight="0.12"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/lyInicioTC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25"/>
+
+        <LinearLayout
+            android:id="@+id/lyCategoriaTC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25"/>
+
+        <LinearLayout
+            android:id="@+id/lyContactoTC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25"/>
+
+        <LinearLayout
+            android:id="@+id/lyFavoritosTC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="1"
+            android:background="@drawable/drawable_pressed"
+            android:layout_weight="0.25"/>
+    </LinearLayout>
+</LinearLayout>

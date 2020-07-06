@@ -382,7 +382,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnVuelta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                claveInfraccion = "DAR VUELTA EN “U” EN ZONA PROHIBIDA";
+                claveInfraccion = "DAR VUELTA EN U EN ZONA PROHIBIDA";
                 resClave = "30";
                 resSalarios = "5";
                 /***LLENADO DE LA TABLA***/
@@ -912,7 +912,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     private void ListTabulador() {
         DataHelper dataHelper = new DataHelper(getActivity());
         ArrayList<String> list = dataHelper.getAllTabulador();
-        if (list.toString().length() > 0) {
+        if (list.size() > 0) {
             System.out.println("YA EXISTE INFORMACIÓN");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, R.id.txt, list);
             spinCatTabulador.setAdapter(adapter);
@@ -946,7 +946,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             dataHelper.insertTabulador(27, "TRANSITAR CON LUZ ALTA EN LA CIUDAD ", "62", "", 2);
             dataHelper.insertTabulador(28, "FALTA DE RAZON SOCIAL", "170", "III", 5);
             dataHelper.insertTabulador(29, "CIRCULAR EN SENTIDO CONTRARIO", "24", "V", 5);
-            dataHelper.insertTabulador(30, "DAR VUELTA 'U' EN ZONA PROHIBIDA", "24", "XI", 5);
+            dataHelper.insertTabulador(30, "DAR VUELTA U EN ZONA PROHIBIDA", "24", "XI", 5);
             dataHelper.insertTabulador(31, "NO PROTEGER CON LONA LA CARGA", "62", "", 15);
             dataHelper.insertTabulador(32, "TRANSITAR SIN PLACAS ", "33", "", 20);
             dataHelper.insertTabulador(33, "TRANSITAR CON PLACAS VENCIDAS", "33 / 62", "", 10);

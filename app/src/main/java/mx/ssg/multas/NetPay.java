@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -65,9 +66,8 @@ public class NetPay extends AppCompatActivity {
     private SmartApi smartApi = SmartApiFactory.INSTANCE.createSmartApi(this);
     public String cadenaImpresion;
     public String resp;
-    SharedPreferences share;
-    SharedPreferences.Editor editor;
     public String valorCadenaImpresion = "";
+    public String imgString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +180,6 @@ public class NetPay extends AppCompatActivity {
                             String valorRfc = "NO SE ENCONTRO INFORMACION";
                             if(resp.equals(valorRfc)){
                                 Toast.makeText(getApplicationContext(), "LO SENTIMOS " + resp, Toast.LENGTH_SHORT).show();
-
                             }else{
                                 cadenaImpresion = resp;
                                 lblRespuestaCadena.setText(cadenaImpresion);
@@ -219,17 +218,24 @@ public class NetPay extends AppCompatActivity {
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText(cadena);
+        unit2.setText("No.Infracción:"+folio+"\n \n"+cadena+"\n");
         unit2.setGravity(Gravity.START);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit2);
 
         //Se crea una nueva unidad
         IPage.ILine.IUnit unit3 = page.createUnit();
-        unit3.setBitmap(imagen2());
+        unit3.setBitmap(logo());
         unit3.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
-        page.addLine().addUnit(unit3);
+        //page.addLine().addUnit(unit3);
+
+
+        IPage.ILine.IUnit unit4 = page.createUnit();
+        unit4.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");
+        unit4.setGravity(Gravity.CENTER);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit4);
         /*
         *         page.addLine().addUnit(page.createUnit().apply {
             text = ""
@@ -265,18 +271,18 @@ public class NetPay extends AppCompatActivity {
     }
 
 
-    private Bitmap imagen2() {
+    private Bitmap logo() {
         Bitmap bitLogo = BitmapFactory.decodeResource(getResources(),R.drawable.logo_ticket);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitLogo.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] imgBytes = baos.toByteArray();
-        String imgString = android.util.Base64.encodeToString(imgBytes, android.util.Base64.NO_WRAP);
+        imgString = android.util.Base64.encodeToString(imgBytes, android.util.Base64.NO_WRAP);
         //cadena = imgString;
 
         imgBytes = android.util.Base64.decode(imgString, android.util.Base64.NO_WRAP);
         Bitmap decoded = BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length);
-        //avatar2.setImageBitmap(decoded);
         System.out.print("IMAGEN" + decoded);
-        return decoded;
+        return bitLogo;
     }
+
 }
