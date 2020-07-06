@@ -283,7 +283,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 System.out.println(cadenaSalarioBorrar);
                 dialogo1.setPositiveButton("CONFIRMAR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-                        cadenaBorrar = cadenaBorrar.replaceAll("[0-9]", "");
+                        cadenaBorrar = cadenaBorrar.replaceAll("[0-9]", ""); // QUITAR LAS "" EN EL SQL Y EN EL SQLITE
                         cadenaBorrar = cadenaBorrar.trim();
                         cadenaSalarioBorrar = cadenaSalarioBorrar.replaceAll("[a-zA-Z]","");
                         cadenaSalarioBorrar = cadenaSalarioBorrar.trim();
@@ -702,20 +702,13 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String myResponse = response.body().toString();
-                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(), "DATO AGREGADO", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getActivity(), NetPay.class);
-                            montoApagar = Double.valueOf(cargarInfoValor);
-                            i.putExtra("MONTO", montoApagar);
-                            i.putExtra("FOLIO", cargarInfoRandom);
-                            eliminarDatos();
-                            startActivity(i);
-                        }
-                    });
+                    Intent i = new Intent(getActivity(), NetPay.class);
+                    montoApagar = Double.valueOf(cargarInfoValor);
+                    i.putExtra("MONTO", montoApagar);
+                    i.putExtra("FOLIO", cargarInfoRandom);
+                    eliminarDatos();
+                    startActivity(i);
                 }
-
             }
         });
     }

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -21,6 +23,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import mx.com.netpay.sdk.IPage;
@@ -202,30 +205,31 @@ public class NetPay extends AppCompatActivity {
 
         String cadena1 = cadenaImpresion;
         String cadena = cadena1;
+        cadena = cadena1.replace('"',' ');
+        cadena = cadena.trim();
         System.out.println(cadena);
 
         //Crear unidad que contiene texto y otros formatos
         IPage.ILine.IUnit unit1 = page.createUnit();
-        unit1.setText("INFRACCION");
-        unit1.setGravity(Gravity.START);
+        unit1.setText(" IMOS \n INSTITUTO DE MOVILIDAD SUSTENTABLE \n GOBIERNO DE BAJA CALIFORNIA \n");
+        unit1.setGravity(Gravity.CENTER);
+        unit1.setTextStyle(1);
+        page.addLine().addUnit(unit1);
+
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText(valorCadenaImpresion);
-        unit2.setGravity(Gravity.END);
-
+        unit2.setText(cadena);
+        unit2.setGravity(Gravity.START);
         //Se crea una línea y se agregan sus unidades.
-        page.addLine().
-                addUnit(unit1).
-                addUnit(unit2);
+        page.addLine().addUnit(unit2);
 
         //Se crea una nueva unidad
-        //IPage.ILine.IUnit unit3 = page.createUnit();
-        //unit3.setText("Costo: $3000.00");
-        //unit3.setGravity(Gravity.CENTER);
-
+        IPage.ILine.IUnit unit3 = page.createUnit();
+        unit3.setBitmap(imagen2());
+        unit3.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
-        //page.addLine().addUnit(unit3);
+        page.addLine().addUnit(unit3);
         /*
         *         page.addLine().addUnit(page.createUnit().apply {
             text = ""
@@ -234,20 +238,45 @@ public class NetPay extends AppCompatActivity {
         })
     }*/
 
-        IPage.ILine.IUnit unit4 = page.createUnit();
+       /* IPage.ILine.IUnit unit4 = page.createUnit();
         unit4.setText(valorCadenaImpresion);
         unit4.getBitmap();
         unit4.setGravity(Gravity.END);
         page.addLine().
-                addUnit(unit4);
-
-
-
-
-
+                addUnit(unit4);*/
 
         //Se crea un request del tipo PrintRequest con el package name del app y la página creada
         PrintRequest printRequest = new PrintRequest(appId, page);
         smartApi.doTrans(printRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(NetPay.this,Reglamento.class);
+        startActivity(i);
+    }
+
+    private Bitmap logoBitmap(){
+        Bitmap bitLogo = BitmapFactory.decodeResource(getResources(),R.drawable.logo_ticket);
+        return bitLogo;
+        //val myDrawable = getDrawable(R.drawable.logo_ticket)
+        //return (myDrawable as BitmapDrawable).bitmap
+    }
+
+
+    private Bitmap imagen2() {
+        Bitmap bitLogo = BitmapFactory.decodeResource(getResources(),R.drawable.logo_ticket);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitLogo.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] imgBytes = baos.toByteArray();
+        String imgString = android.util.Base64.encodeToString(imgBytes, android.util.Base64.NO_WRAP);
+        //cadena = imgString;
+
+        imgBytes = android.util.Base64.decode(imgString, android.util.Base64.NO_WRAP);
+        Bitmap decoded = BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length);
+        //avatar2.setImageBitmap(decoded);
+        System.out.print("IMAGEN" + decoded);
+        return decoded;
     }
 }
