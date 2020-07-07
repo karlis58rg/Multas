@@ -3,7 +3,9 @@ package mx.ssg.multas;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -25,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -50,11 +53,21 @@ public class TarjetaCirculacion extends AppCompatActivity {
     RadioGroup radioNacionalidadTC;
     RadioButton rNacional,rExtranjero;
     Button btnGuardarTC;
+    SharedPreferences share;
+    SharedPreferences.Editor editor;
+    int numberRandom;
+    public String codigoVerifi, cargarInfoRandom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarjeta_circulacion);
+        cargarDatos();
+        if(cargarInfoRandom.isEmpty()){
+            Random();
+        }else {
+            System.out.println(cargarInfoRandom);
+        }
 
         btnMenuTC = findViewById(R.id.btnListTC);
         btnBuscarTarjeta = findViewById(R.id.imgBuscarNoTarjeta);
@@ -143,7 +156,7 @@ public class TarjetaCirculacion extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    insertRegistroTarjeta();
+                    getExistRegistro();
                 }
             }
         });
@@ -231,6 +244,43 @@ public class TarjetaCirculacion extends AppCompatActivity {
                 ResultQR = "QR SIN INFORMACIÓN";
                 Toast.makeText(this, ResultQR, Toast.LENGTH_SHORT).show();
             }
+    }
+
+    /******************GET A LA BD***********************************/
+    public void getExistRegistro() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/TarjetaCirculacion?idExistente="+cargarInfoRandom)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getApplicationContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        insertRegistroTarjeta();
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
     }
 
     /********************************************************************************************************************/
@@ -422,7 +472,6 @@ public class TarjetaCirculacion extends AppCompatActivity {
                             }catch(JSONException e){
                                 e.printStackTrace();
                             }
-
                         }
                     });
                 }
@@ -548,11 +597,12 @@ public class TarjetaCirculacion extends AppCompatActivity {
         color = txtColor.getText().toString().toUpperCase();
         municipio = txtMunicipio.getText().toString().toUpperCase();
         localidad = txtLocalidad.getText().toString().toUpperCase();
-        servicio = (String) spinTipoServicio.getSelectedItem();
+        //servicio = (String) spinTipoServicio.getSelectedItem();
         observaciones = txtObservaciones.getText().toString().toUpperCase();
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
+                .add("IdInfraccion", cargarInfoRandom)
                 .add("NoTarjeta", noTarjetaTC)
                 .add("NoSerie", noSerieTC)
                 .add("Placa", noPlacaTC)
@@ -570,9 +620,9 @@ public class TarjetaCirculacion extends AppCompatActivity {
                 .add("Municipio", municipio)
                 .add("Localidad", localidad)
                 .add("Origen", resOrigen)
-                .add("TipoServicio", servicio)
+                //.add("TipoServicio", servicio)
                 .add("Observaciones", observaciones)
-                .add("Qr", ResultQR)
+                //.add("Qr", ResultQR)
                 .build();
 
         Request request = new Request.Builder()
@@ -613,7 +663,7 @@ public class TarjetaCirculacion extends AppCompatActivity {
                             txtMunicipio.setText("");
                             txtLocalidad.setText("");
                             radioNacionalidadTC.clearCheck();
-                            spinTipoServicio.setAdapter(null);
+                            //spinTipoServicio.setAdapter(null);
                             txtObservaciones.setText("");
                             lblResultScaner.setText("");
                         }
@@ -622,5 +672,22 @@ public class TarjetaCirculacion extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void Random() {
+        Random random = new Random();
+        numberRandom = random.nextInt(9000) * 99;
+        codigoVerifi = String.valueOf(numberRandom);
+        guardarRandom();
+    }
+    private void guardarRandom() {
+        share = getSharedPreferences("main", MODE_PRIVATE);
+        editor = share.edit();
+        editor.putString("RANDOM", codigoVerifi);
+        editor.commit();
+    }
+    public void cargarDatos() {
+        share = getSharedPreferences("main", Context.MODE_PRIVATE);
+        cargarInfoRandom = share.getString("RANDOM", "");
     }
 }

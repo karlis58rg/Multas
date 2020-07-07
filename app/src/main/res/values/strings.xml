@@ -12,8 +12,6 @@
     <string name="Titulo4">Olvidé mi contraseña</string>
     <string name="Ingresar">Ingresar</string>
 
-    <string name="cadenaImpresion">IMOS \n INSTITUTO DE MOVILIDAD SUSTENTABLE \n GOBIERNO DE BAJA CALIFORNIA </string>
-
     <!--TEXTOS DEL MENÚ-->
     <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Términos y condiciones</string>

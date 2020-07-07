@@ -107,110 +107,108 @@
                     android:layout_weight="0.12"/>
             </LinearLayout>
             <!--BODY-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.79">
+        <!--LINEAR BODY-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/txtMonto"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Importe de infraccion a pagar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="50dp"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/txtFolio"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Folio infracción"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
+                <TextView
+                    android:id="@+id/idInfraccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="64dp"
+                    android:text="Folio Infracción:"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/txtOrderId"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="No. de infracción a reimprimir"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtFolio" />
+                <EditText
+                    android:id="@+id/txtFolio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    android:ems="10"
+                    android:hint="Folio infracción"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.097"
+                    app:layout_constraintStart_toEndOf="@+id/idInfraccion"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/lblRespuesta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Respuesta"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtOrderId" />
+                <TextView
+                    android:id="@+id/montoPagar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="64dp"
+                    android:text="Monto a pagar $:"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/idInfraccion" />
 
-            <Button
-                android:id="@+id/btnVenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Pago de infracción"
-                android:background="@drawable/boton_redondo"
-                android:textColor="@color/background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblRespuestaCadena" />
+                <EditText
+                    android:id="@+id/txtMonto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:ems="10"
+                    android:hint="Monto a pagar"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.097"
+                    app:layout_constraintStart_toEndOf="@+id/idInfraccion"
+                    app:layout_constraintTop_toBottomOf="@+id/txtFolio" />
 
-            <Button
-                android:id="@+id/btnCancelacion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancelación del Pago"
-                android:background="@drawable/boton_redondo"
-                android:textColor="@color/background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnVenta"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/lblRespuesta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="Respuesta terminal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMonto"
+                    android:visibility="gone"/>
 
-            <Button
-                android:id="@+id/btnReimpresion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reimpresión de Infracción"
-                android:background="@drawable/boton_redondo"
-                android:textColor="@color/background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnCancelacion"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"/>
+                <Button
+                    android:id="@+id/btnVenta"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/boton_redondo"
+                    android:text="PAGAR CON TARJETA"
+                    android:textColor="@color/background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMonto" />
 
-            <Button
-                android:id="@+id/btnImpresión"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Impresión de infracción a pagar"
-                android:background="@drawable/boton_redondo"
-                android:textColor="@color/background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnReimpresion"
-                android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/btnImpresión"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/boton_redondo"
+                    android:text="Impresión de infracción"
+                    android:textColor="@color/background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnVenta" />
 
-            <TextView
-                android:id="@+id/lblRespuestaCadena"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblRespuesta" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        </LinearLayout>
+        </ScrollView>
 
         </LinearLayout>
     </androidx.drawerlayout.widget.DrawerLayout>

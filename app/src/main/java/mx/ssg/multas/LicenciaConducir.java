@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -53,11 +56,22 @@ public class LicenciaConducir extends AppCompatActivity {
     String resObservaciones = "";
     private  DatePickerDialog.OnDateSetListener dateSetListener,date;
     Calendar calendar = Calendar.getInstance();
+    SharedPreferences share;
+    SharedPreferences.Editor editor;
+    int numberRandom;
+    public String codigoVerifi, cargarInfoRandom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_licencia_conducir);
+        cargarDatos();
+
+        if(cargarInfoRandom.isEmpty()){
+            Random();
+        }else {
+            System.out.println(cargarInfoRandom);
+        }
 
         btnMenuL = findViewById(R.id.btnListL);
         btnQrL = findViewById(R.id.imgQrLicenciaConducir);
@@ -178,26 +192,22 @@ public class LicenciaConducir extends AppCompatActivity {
         btnGuardarLC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if(txtObservaciones.getText().toString().isEmpty()){
+                if(txtObservaciones.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    insertRegistroLicencia();
-                }*/
-                Intent i = new Intent(LicenciaConducir.this, TarjetasConductor.class);
-                startActivity(i);
+                    getExistRegistro();
+                }
             }
         });
-
         btnInfraccionL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LicenciaConducir.this, Infraccion.class);
-                startActivity(i);
-                finish();
+                    Intent i = new Intent(LicenciaConducir.this, Infraccion.class);
+                    startActivity(i);
+                    finish();
             }
         });
-
         btnReglamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,6 +267,43 @@ public class LicenciaConducir extends AppCompatActivity {
                 ResultQR = "QR SIN INFORMACIÓN";
                 Toast.makeText(this, ResultQR, Toast.LENGTH_SHORT).show();
             }
+    }
+
+    /******************GET A LA BD***********************************/
+    public void getExistRegistro() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?idExistente="+cargarInfoRandom)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getApplicationContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        insertRegistroLicencia();
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
     }
 
     /********************************************************************************************************************/
@@ -344,6 +391,7 @@ public class LicenciaConducir extends AppCompatActivity {
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistroLicencia() {
+        cargarDatos();
         nombre = txtNombre.getText().toString().toUpperCase();
         apaterno = txtApaterno.getText().toString().toUpperCase();
         amaterno = txtAmaterno.getText().toString().toUpperCase();
@@ -357,6 +405,7 @@ public class LicenciaConducir extends AppCompatActivity {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
+                .add("IdInfraccion", cargarInfoRandom)
                 .add("NombreL", nombre)
                 .add("ApellidoPL", apaterno)
                 .add("ApellidoML", amaterno)
@@ -368,7 +417,7 @@ public class LicenciaConducir extends AppCompatActivity {
                 .add("NoLicencia", licencia)
                 .add("Clase", clase)
                 .add("Observaciones", observaciones)
-                .add("Qr", ResultQR)
+                //.add("Qr", ResultQR)
                 .build();
 
         Request request = new Request.Builder()
@@ -404,12 +453,27 @@ public class LicenciaConducir extends AppCompatActivity {
                             txtClase.setText("");
                             txtObservaciones.setText("");
                             lblResultScaner.setText("");
-
                         }
                     });
                 }
-
             }
         });
+    }
+
+    public void Random() {
+        Random random = new Random();
+        numberRandom = random.nextInt(9000) * 99;
+        codigoVerifi = String.valueOf(numberRandom);
+        guardarRandom();
+    }
+    private void guardarRandom() {
+        share = getSharedPreferences("main", MODE_PRIVATE);
+        editor = share.edit();
+        editor.putString("RANDOM", codigoVerifi);
+        editor.commit();
+    }
+    public void cargarDatos() {
+        share = getSharedPreferences("main", Context.MODE_PRIVATE);
+        cargarInfoRandom = share.getString("RANDOM", "");
     }
 }

@@ -156,7 +156,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         final View view = inflater.inflate(R.layout.fragment_mapa_infraccion, container, false);
 
         //************************************** ACCIONES DE LA VISTA **************************************//
-        Random();
+        //Random();
+        cargarDatos();
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
         lyContact = view.findViewById(R.id.lyContactInfra);
@@ -735,12 +736,12 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         editor.commit();
     }
 
-    private void guardarRandom() {
+    /*private void guardarRandom() {
         share = getActivity().getSharedPreferences("main", Context.MODE_PRIVATE);
         editor = share.edit();
         editor.putString("RANDOM", codigoVerifi);
         editor.commit();
-    }
+    }*/
 
 
     private void alertaGPS() {
@@ -758,12 +759,12 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     }
 
     //********************* GENERA EL NÚMERO ALEATORIO PARA EL ID*****************************//
-    public void Random() {
+    /*public void Random() {
         Random random = new Random();
         numberRandom = random.nextInt(9000) * 99;
         codigoVerifi = String.valueOf(numberRandom);
         guardarRandom();
-    }
+    }*/
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

@@ -76,11 +76,11 @@ public class NetPay extends AppCompatActivity {
 
         txtMonto = findViewById(R.id.txtMonto);
         txtFolio = findViewById(R.id.txtFolio);
-        txtOrderId = findViewById(R.id.txtOrderId);
+        //txtOrderId = findViewById(R.id.txtOrderId);
         lblRespuesta = findViewById(R.id.lblRespuesta);
-        lblRespuestaCadena = findViewById(R.id.lblRespuestaCadena);
+        //lblRespuestaCadena = findViewById(R.id.lblRespuestaCadena);
         btnVenta = findViewById(R.id.btnVenta);
-        btnReimpresion = findViewById(R.id.btnReimpresion);
+        //btnReimpresion = findViewById(R.id.btnReimpresion);
         btnImpresion = findViewById(R.id.btnImpresión);
 
         /*********** PARAMETROS PROVINIENTES DE LA INFRACCION **********/
@@ -90,6 +90,8 @@ public class NetPay extends AppCompatActivity {
         String monto = Double.toString(amount);
         txtMonto.setText(monto);
         txtFolio.setText(folio);
+        txtMonto.setEnabled(false);
+        txtFolio.setEnabled(false);
 
         btnVenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +106,7 @@ public class NetPay extends AppCompatActivity {
             }
         });
 
-        btnReimpresion.setOnClickListener(new View.OnClickListener() {
+       /* btnReimpresion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orderId = txtOrderId.getText().toString();
@@ -116,7 +118,7 @@ public class NetPay extends AppCompatActivity {
                     System.out.println(e);
                 }
             }
-        });
+        });*/
 
         btnImpresion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +184,7 @@ public class NetPay extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "LO SENTIMOS " + resp, Toast.LENGTH_SHORT).show();
                             }else{
                                 cadenaImpresion = resp;
-                                lblRespuestaCadena.setText(cadenaImpresion);
+                                //lblRespuestaCadena.setText(cadenaImpresion);
                                 //cadenaImpresion = cadenaImpresion.replace('\n','\n');
                                 System.out.println(cadenaImpresion);
                                 cadenaInfraccion();
@@ -198,7 +200,7 @@ public class NetPay extends AppCompatActivity {
     }
 
     private void cadenaInfraccion(){
-        valorCadenaImpresion = lblRespuestaCadena.getText().toString();
+        //valorCadenaImpresion = lblRespuestaCadena.getText().toString();
         //Crear una página
         IPage page = smartApi.createPage();
 
@@ -228,14 +230,20 @@ public class NetPay extends AppCompatActivity {
         unit3.setBitmap(logo());
         unit3.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
-        //page.addLine().addUnit(unit3);
+        page.addLine().addUnit(unit3);
 
 
         IPage.ILine.IUnit unit4 = page.createUnit();
-        unit4.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");
+        unit4.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit4.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit4);
+
+        IPage.ILine.IUnit unit5 = page.createUnit();
+        unit4.setText("TECAJETE 240, PITAHAYAS, PACHUCA DE SOTO");
+        unit4.setGravity(Gravity.CENTER);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit5);
         /*
         *         page.addLine().addUnit(page.createUnit().apply {
             text = ""
@@ -274,7 +282,7 @@ public class NetPay extends AppCompatActivity {
     private Bitmap logo() {
         Bitmap bitLogo = BitmapFactory.decodeResource(getResources(),R.drawable.logo_ticket);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitLogo.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        bitLogo.compress(Bitmap.CompressFormat.PNG, 50, baos);
         byte[] imgBytes = baos.toByteArray();
         imgString = android.util.Base64.encodeToString(imgBytes, android.util.Base64.NO_WRAP);
         //cadena = imgString;
@@ -282,7 +290,7 @@ public class NetPay extends AppCompatActivity {
         imgBytes = android.util.Base64.decode(imgString, android.util.Base64.NO_WRAP);
         Bitmap decoded = BitmapFactory.decodeByteArray(imgBytes, 0, imgBytes.length);
         System.out.print("IMAGEN" + decoded);
-        return bitLogo;
+        return decoded;
     }
 
 }

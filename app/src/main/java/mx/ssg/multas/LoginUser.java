@@ -105,7 +105,6 @@ public class LoginUser extends AppCompatActivity {
                         respPass = resp;
                         Looper.prepare(); // to be able to make toast
                         guardarDatosUserLogin();
-                        Toast.makeText(getApplicationContext(), "BIENVENIDO", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(LoginUser.this,Reglamento.class);
                         startActivity(i);
                         finish();
