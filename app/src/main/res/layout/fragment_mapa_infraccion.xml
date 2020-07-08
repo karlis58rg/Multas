@@ -55,64 +55,10 @@
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/contentWebViewInfra"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.13"
-                    android:orientation="horizontal">
-                    <!--IMAGEN 1 TITLE-->
-                    <LinearLayout
-                        android:id="@+id/imgLicenciaC"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:weightSum="1"
-                        android:layout_weight="0.12">
-                        <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:src="@drawable/icn_terminal"/>
-                    </LinearLayout>
-                    <!--TITULO IMAGEN1 TITLE-->
-                    <LinearLayout
-                        android:id="@+id/lblTargetaCirculacion"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:weightSum="1"
-                        android:background="@drawable/drawable_pressed"
-                        android:layout_weight="0.25">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.4"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:textColorHint="@color/hint"
-                            android:text="Infracción"/>
-                    </LinearLayout>
-                    <!--IMAGEN2 TITLE-->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:weightSum="1"
-                        android:layout_weight="0.12">
-                        <ImageView
-                            android:id="@+id/imgQrLicenciaConducir"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/contentWebView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.15">
+                    android:layout_weight="0.30">
                     <fragment
                         android:id="@+id/mapInfraccion"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -141,29 +87,13 @@
                             android:orientation="horizontal"
                             android:layout_marginTop="20dp">
                             <!--TITULO REGISTRO 1-->
-                            <LinearLayout
-                                android:id="@+id/lblGarantia"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center|left"
-                                android:weightSum="1"
-                                android:layout_weight="0.1">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="Garantía"/>
-                            </LinearLayout>
                             <!--TXT REGISTRO 1-->
                             <LinearLayout
                                 android:id="@+id/lyGarantia"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
-                                android:gravity="center"
-                                android:weightSum="1"
+                                android:gravity="center|left"
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <CheckBox
@@ -171,93 +101,28 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Placa" />
+                                <CheckBox
+                                    android:id="@+id/checkVehiculo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vehí."/>
 
                                 <CheckBox
-                                        android:id="@+id/checkTCirculacion"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="19dp"
-                                        android:text="T.Circulación" />
+                                    android:id="@+id/checkTCirculacion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="T.Circulación" />
 
-
+                                <CheckBox
+                                    android:id="@+id/checkLConducir"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="L.Conducir" />
 
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 1-->
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.03"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:weightSum="1">
-                                <ImageView
-                                    android:id="@+id/imgBuscarLicencia"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
                         </LinearLayout>
                         <!--REGISTRO 2-->
-                        <LinearLayout
-                            android:id="@+id/contentDatosConductor"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-                            <!--TITULO REGISTRO 2-->
-                            <LinearLayout
-                                android:id="@+id/lblNombreL"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:gravity="center|left"
-                                android:weightSum="1"
-                                android:layout_weight="0.1">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="@color/hint"
-                                    android:layout_marginLeft="10dp"
-                                    android:visibility="gone"/>
-                            </LinearLayout>
-                            <!--TXT REGISTRO 2-->
-                            <LinearLayout
-                                android:id="@+id/lyNombreL"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal"
-                                android:gravity="center"
-                                android:weightSum="1"
-                                android:background="@drawable/drawable_pressed"
-                                android:layout_weight="0.20">
-
-                                    <CheckBox
-                                        android:id="@+id/checkVehiculo"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Vehículo" />
-
-                                    <CheckBox
-                                        android:id="@+id/checkLConducir"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="L.Conducir"
-                                        android:layout_marginLeft="19dp"/>
-
-
-
-                            </LinearLayout>
-                            <!--IMG BUSCAR REGISTRO 2-->
-                            <LinearLayout
-                                android:id="@+id/imgBuscar2L"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.03"
-                                android:background="@drawable/drawable_pressed"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:weightSum="1">
-                            </LinearLayout>
-                        </LinearLayout>
                         <!--REGISTRO 3-->
                         <LinearLayout
                             android:id="@+id/contentDatosDocRetenido"
@@ -296,6 +161,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:gravity="center"
+                                    android:maxLength="30"
                                     android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->

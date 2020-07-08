@@ -94,7 +94,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     EditText txtDocReteInfra;
     ImageView btnAgregarInfraccion, btnAlcohol, btnVelocimetro, btnSemaforo, btnVuelta, btnDobleFila, btnCasco, btnCinturon, btnEstacionarse;
     String cargarInfoUsuario, cargarInfoRandom;
-    String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson, resGarantia, resGarantia1;
+    String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson,resGarantia, resGarantiaPlaca, resGarantiaVehiculo, resGarantiaTCirculacion, resGarantiaLconducir;
     int monto = 0;
     int salarioMinimo = 120;
     int sumaSalarios = 0;
@@ -165,7 +165,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
         cargarDatos();
-
+        getExistRegistroLicencia();
+        getExistRegistroTarjeta();
 
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
@@ -557,7 +558,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }else{
 
 
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -568,27 +569,10 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
         return view;
     }
-
-    /******************metodo de checkbox*********************/
-    public void garantia(){
-
-        if(cheplaca.isChecked() == true ){
-            resGarantia = "Placa";
-
-        }if (chetcirculacion.isChecked()==true){
-            resGarantia = "T.Circulacion";
-
-        }if (chevehiculo.isChecked()==true){
-            resGarantia = "Vehiculo";
-
-        }if (chelconducir.isChecked()==true)
-            resGarantia = "L.Conducir";
-       }
-
     /******************GET A LA BD***********************************/
     public void getClaveInfra() {
         cargarDatos();
-        final String Claveinfraccion2=claveInfraccion;
+        final String Claveinfraccion2 = claveInfraccion;
         claveInfraccion = (String) spinCatTabulador.getSelectedItem();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -616,14 +600,11 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                 if (myResponse.equals(respuestaJson)) {
                                     Toast.makeText(getContext(), "NO SE CUENTA CON INFORMACIÓN", Toast.LENGTH_SHORT).show();
                                 } else {
-
-
                                     JSONObject jObj = null;
                                     jObj = new JSONObject("" + myResponse + "");
                                     resClave = jObj.getString("Clave");
                                     resSalarios = jObj.getString("SalMinimos");
                                     if(claveInfraccion!=Claveinfraccion2){
-
                                     /***LLENADO DE LA TABLA***/
                                     palabras.add(claveInfraccion + "  " + "  " + resSalarios);
                                     adaptador1.notifyDataSetChanged();
@@ -645,8 +626,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                     spinCatTabulador.clearFocus();
                                     txtMontoInfraPagar.setText("$" + valor + " " + "MXN");
                                 }else{
-
-                                        Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                                     }
                                 }
 
@@ -738,9 +718,40 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         });
     }
 
+    /******************metodo de checkbox*********************/
+    public void garantia(){
+
+        if(txtDocReteInfra.getText().toString().isEmpty()){
+            resGarantia = "NO SE ESPECIFICO DOCUMENTO";
+        }else{
+            resGarantia = txtDocReteInfra.getText().toString();
+        }
+        if(cheplaca.isChecked() == true ){
+            resGarantiaPlaca = "SE RETIENE PLACA";
+        }else{
+            resGarantiaPlaca = "NO SE RETIENE PLACA";
+        }
+        if (chetcirculacion.isChecked()==true){
+            resGarantiaTCirculacion = "SE RETIENE T.CIRCULACION ";
+        }else{
+            resGarantiaTCirculacion = "NO SE RETIENE T. CIRCULACION";
+        }
+        if (chevehiculo.isChecked()==true){
+            resGarantiaVehiculo = "SE RETIENE VEHÍCULO ";
+        }else{
+            resGarantiaVehiculo = "NO SE RETIENE VEHÍCULO";
+        }
+        if (chelconducir.isChecked()==true){
+            resGarantiaLconducir = "SE RETIENE L. CONDUCIR ";
+        }else{
+            resGarantiaLconducir = "NO SE RETIENE L. CONDUCIR";
+        }
+    }
+
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistroInfraccion() {
         cargarDatos();
+        garantia();
         //*************** FECHA **********************//
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -758,7 +769,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 .add("Longitud", lon_origen.toString()) //
                 .add("Fecha", fecha)
                 .add("Hora", hora)
-                .add("Garantia", resGarantia + " " + resGarantia1)
+                .add("Garantia",resGarantia+ " " +resGarantiaPlaca+ " " +resGarantiaTCirculacion+ " " +resGarantiaVehiculo+ " " +resGarantiaLconducir )
                 //.add("SalariosMinimos", resSalarios) //CHECAR LA SUMA DE LOS SALARIOS
                 .add("Condonacion", "0")
                 .add("Pago", String.valueOf(cargarInfoValor))
@@ -812,19 +823,21 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().string();
-                    myResponse = myResponse.replace('"',' ');
-                    myResponse = myResponse.trim();
-                    String resp = myResponse;
-                    String valorUser = "true";
-                    if(resp.equals(valorUser)){
-                        Looper.prepare(); // to be able to make toast
-                        Toast.makeText(getContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
-                        Looper.loop();
-                    }else{
-                        //los check box van en este campo
-                    }
-                    Log.i("HERE", resp);
+                    String myResponse = response.body().toString();
+                    final String resp = myResponse;
+                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String valorUser = "true";
+                            if(resp.equals(valorUser)){
+                                chelconducir.setChecked(true);
+                            }else{
+                                chelconducir.setChecked(false);
+                            }
+                            Log.i("HERE", resp);
+                        }
+                    });
+
                 }
             }
 
@@ -849,19 +862,21 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().string();
-                    myResponse = myResponse.replace('"',' ');
-                    myResponse = myResponse.trim();
-                    String resp = myResponse;
-                    String valorUser = "true";
-                    if(resp.equals(valorUser)){
-                        Looper.prepare(); // to be able to make toast
-                        Toast.makeText(getContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
-                        Looper.loop();
-                    }else{
-                        //aqui van los combos
-                    }
-                    Log.i("HERE", resp);
+                    String myResponse = response.body().toString();
+                    final String resp = myResponse;
+                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String valorUser = "true";
+                            if(resp.equals(valorUser)){
+                                chetcirculacion.setChecked(true);
+                            }else{
+                                chetcirculacion.setChecked(false);
+                            }
+                            Log.i("HERE", resp);
+
+                        }
+                    });
                 }
             }
 

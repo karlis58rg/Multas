@@ -61,7 +61,7 @@
                 android:id="@+id/contentWebView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.13"
+                android:layout_weight="0.15"
                 android:orientation="horizontal">
                 <!--IMAGEN 1 TITLE-->
                 <LinearLayout
@@ -107,8 +107,8 @@
                     android:layout_weight="0.12">
                     <ImageView
                         android:id="@+id/imgQrTarjetaCirculacion"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
                         android:src="@drawable/icn_qr"/>
                 </LinearLayout>
             </LinearLayout>
@@ -1277,7 +1277,7 @@
                     <LinearLayout
                         android:id="@+id/contentGuardarDatos"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="70dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
                         <!--IMAGEN 1 FOODER-->
