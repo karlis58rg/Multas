@@ -3,14 +3,11 @@ package mx.ssg.multas;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Looper;
-import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -21,11 +18,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import mx.com.netpay.sdk.IPage;
 import mx.com.netpay.sdk.SmartApi;
@@ -33,7 +32,6 @@ import mx.com.netpay.sdk.SmartApiFactory;
 import mx.com.netpay.sdk.models.BaseResponse;
 import mx.com.netpay.sdk.models.Constants;
 import mx.com.netpay.sdk.models.PrintRequest;
-import mx.com.netpay.sdk.models.ReprintRequest;
 import mx.com.netpay.sdk.models.SaleRequest;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -68,6 +66,10 @@ public class NetPay extends AppCompatActivity {
     public String resp;
     public String valorCadenaImpresion = "";
     public String imgString;
+    String respCadena;
+    private ArrayList<String> resDescripcion;
+    private ArrayList<String> resSalario;
+    public String direccionInfraccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class NetPay extends AppCompatActivity {
         Intent i1 = getIntent();
         amount = i1.getDoubleExtra("MONTO",0);
         folio = i1.getStringExtra("FOLIO");
+        direccionInfraccion = i1.getStringExtra("DIRECCION");
         String monto = Double.toString(amount);
         txtMonto.setText(monto);
         txtFolio.setText(folio);
@@ -123,6 +126,7 @@ public class NetPay extends AppCompatActivity {
         btnImpresion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //cadenaInfraccion();
                 Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                 getCadenaImpresion();
             }
@@ -184,8 +188,7 @@ public class NetPay extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "LO SENTIMOS " + resp, Toast.LENGTH_SHORT).show();
                             }else{
                                 cadenaImpresion = resp;
-                                //lblRespuestaCadena.setText(cadenaImpresion);
-                                //cadenaImpresion = cadenaImpresion.replace('\n','\n');
+                                cadenaImpresion = cadenaImpresion.replace('\n','\n');
                                 System.out.println(cadenaImpresion);
                                 cadenaInfraccion();
                             }
@@ -200,7 +203,7 @@ public class NetPay extends AppCompatActivity {
     }
 
     private void cadenaInfraccion(){
-        //valorCadenaImpresion = lblRespuestaCadena.getText().toString();
+        //valorCadenaImpresion = txtFolio.getText().toString();
         //Crear una página
         IPage page = smartApi.createPage();
 
@@ -217,33 +220,24 @@ public class NetPay extends AppCompatActivity {
         unit1.setTextStyle(1);
         page.addLine().addUnit(unit1);
 
-
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText("No.Infracción:"+folio+"\n \n"+cadena+"\n");
-        unit2.setGravity(Gravity.START);
+        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.Infracción:"+folio+"\n \n"+cadena+"\n");
+        unit2.setGravity(Gravity.CENTER);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit2);
 
-        //Se crea una nueva unidad
         IPage.ILine.IUnit unit3 = page.createUnit();
-        unit3.setBitmap(logo());
+        unit3.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit3.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit3);
 
-
-        IPage.ILine.IUnit unit4 = page.createUnit();
-        unit4.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
-        unit4.setGravity(Gravity.CENTER);
-        //Se crea una nueva línea y se agrega la unidad pasada
-        page.addLine().addUnit(unit4);
-
-        IPage.ILine.IUnit unit5 = page.createUnit();
+       /* IPage.ILine.IUnit unit4 = page.createUnit();
         unit4.setText("TECAJETE 240, PITAHAYAS, PACHUCA DE SOTO");
-        unit4.setGravity(Gravity.CENTER);
+        unit4.setGravity(Gravity.CENTER);*/
         //Se crea una nueva línea y se agrega la unidad pasada
-        page.addLine().addUnit(unit5);
+        /*page.addLine().addUnit(unit4);*/
         /*
         *         page.addLine().addUnit(page.createUnit().apply {
             text = ""

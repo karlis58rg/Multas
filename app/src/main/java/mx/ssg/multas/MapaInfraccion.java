@@ -110,6 +110,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     int valor = 0;
     String cadenaBorrar = "";
     String cadenaSalarioBorrar = "";
+    public static String direccion,municipio,estado;
+    public  static String direccionTurno;
 
     ListView lv1;
     ArrayList<String> palabras;
@@ -331,7 +333,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
                 }else{
 
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -361,7 +363,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     }
                     txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
                 } else {
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -390,7 +392,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
             }else{
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -419,7 +421,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
             }else{
-                Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                   }
             }
         });
@@ -449,7 +451,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
 
             }else{
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -478,7 +480,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
             }else{
-                    Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -508,7 +510,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
 
             }else{
-                Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
             }
            }
         });
@@ -711,8 +713,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         RequestBody body = new FormBody.Builder()
                 .add("IdInfraccion", cargarInfoRandom)
                 .add("Usuario", cargarInfoUsuario)
-                .add("Latitud", "20.0087036") //lat_origen.toString()
-                .add("Longitud", "-98.8208197") //
+                .add("Latitud", lat_origen.toString()) //lat_origen.toString()
+                .add("Longitud", lon_origen.toString()) //
                 .add("Fecha", fecha)
                 .add("Hora", hora)
                 .add("Garantia", resGarantia + " " + resGarantia1)
@@ -743,10 +745,85 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     montoApagar = Double.valueOf(cargarInfoValor);
                     i.putExtra("MONTO", montoApagar);
                     i.putExtra("FOLIO", cargarInfoRandom);
+                    i.putExtra("DIRECCION", direccionTurno);
                     eliminarDatos();
                     startActivity(i);
                 }
             }
+        });
+    }
+
+    /******************GET A LA BD***********************************/
+    public void getExistRegistroLicencia() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?idExistente="+cargarInfoRandom)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        //los check box van en este campo
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
+    }
+
+    /******************GET A LA BD***********************************/
+    public void getExistRegistroTarjeta() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/TarjetaCirculacion?idExistente="+cargarInfoRandom)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        //aqui van los combos
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
         });
     }
 
@@ -903,14 +980,16 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             address = "Dirección: \n" + address;
             tv_add.setText(address);
             Address DirCalle = addresses.get(0);
-            String direccion1 = DirCalle.getAddressLine(0);
-            String municipio = DirCalle.getLocality();
-            String estado = DirCalle.getAdminArea();
+            direccion = DirCalle.getAddressLine(0);
+            municipio = DirCalle.getLocality();
+            estado = DirCalle.getAdminArea();
             if (municipio != null) {
                 municipio = DirCalle.getLocality();
             } else {
                 municipio = "SIN INFORMACIÓN";
             }
+            direccionTurno = direccion +" " +municipio +" "+estado;
+            Log.i("HERE", "dir" + direccion + "mun"+ municipio + "est"+ estado);
 
         } catch (IOException e) {
 

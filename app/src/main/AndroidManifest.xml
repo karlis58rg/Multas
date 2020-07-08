@@ -20,7 +20,8 @@
         android:largeHeap="true">
         <activity android:name=".Mapa">
         </activity>
-        <activity android:name=".NetPay"></activity>
+        <activity android:name=".NetPay">
+        </activity>
         <activity android:name=".Infraccion" />
         <activity android:name=".Splash">
             <intent-filter>
