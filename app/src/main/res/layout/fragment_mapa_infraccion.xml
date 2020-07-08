@@ -161,31 +161,26 @@
                                 android:id="@+id/lyGarantia"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:gravity="center"
                                 android:weightSum="1"
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
-                                <RadioGroup
-                                    android:id="@+id/radioGarantia"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/checkPlaca"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Placa" />
 
-                                    <RadioButton
-                                        android:id="@+id/radioPlaca"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Placa" />
-
-                                    <RadioButton
-                                        android:id="@+id/radioTCirculacion"
+                                <CheckBox
+                                        android:id="@+id/checkTCirculacion"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="19dp"
                                         android:text="T.Circulación" />
 
-                                </RadioGroup>
+
+
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 1-->
                             <LinearLayout
@@ -229,29 +224,27 @@
                                 android:id="@+id/lyNombreL"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:gravity="center"
                                 android:weightSum="1"
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
-                                <RadioGroup
-                                    android:id="@+id/radioGarantia1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-                                    <RadioButton
-                                        android:id="@+id/radioVehiculo"
+
+                                    <CheckBox
+                                        android:id="@+id/checkVehiculo"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Vehículo" />
 
-                                    <RadioButton
-                                        android:id="@+id/radioLConducir"
+                                    <CheckBox
+                                        android:id="@+id/checkLConducir"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="L.Conducir" />
+                                        android:text="L.Conducir"
+                                        android:layout_marginLeft="19dp"/>
 
-                                </RadioGroup>
+
+
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 2-->
                             <LinearLayout

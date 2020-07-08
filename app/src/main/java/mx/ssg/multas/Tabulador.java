@@ -60,6 +60,7 @@ public class Tabulador extends AppCompatActivity {
         btnList = findViewById(R.id.btnListTab);
         btnbuscar = findViewById(R.id.imgWebBuscar);
         txtBuscar = findViewById(R.id.txtBuscarTabulador);
+        txtBuscar.setFocusableInTouchMode(true); txtBuscar.requestFocus();
 
         btnReglamento.setOnClickListener(new View.OnClickListener() {
             @Override
