@@ -80,8 +80,11 @@ public class TarjetaCirculacion extends AppCompatActivity {
         btnTerminalTC = findViewById(R.id.imgTerminalTC);
 
         txtNoTarjetaTC = findViewById(R.id.txtNoTarjeta);
+        txtNoTarjetaTC.setFocusableInTouchMode(true); txtNoTarjetaTC.requestFocus();
+
         txtNoSerieTC = findViewById(R.id.txtNoSerie);
         txtNoPlacaTC = findViewById(R.id.txtPlaca);
+
 
         txtNombreTC = findViewById(R.id.txtNombreTC);
         txtApaternoTC = findViewById(R.id.txtApaternoTC);

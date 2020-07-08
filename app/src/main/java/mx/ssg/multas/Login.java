@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
 
         btnIniciarL = findViewById(R.id.btnIniciar);
         txtUserL = findViewById(R.id.txtUser);
+        txtUserL.setFocusableInTouchMode(true); txtUserL.requestFocus();
         txtPassL = findViewById(R.id.txtPass);
 
         btnIniciarL.setOnClickListener(new View.OnClickListener() {

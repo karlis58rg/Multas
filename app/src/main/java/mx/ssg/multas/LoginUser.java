@@ -38,6 +38,7 @@ public class LoginUser extends AppCompatActivity {
         lblUsuarioLU = findViewById(R.id.lblUsuario);
         lblCambioUsuarioLU = findViewById(R.id.lblCambiarUsuario);
         txtPassUserLU = findViewById(R.id.txtPassUser);
+        txtPassUserLU.setFocusableInTouchMode(true); txtPassUserLU.requestFocus();
         btnEntrarLU = findViewById(R.id.btnEntrar);
         lblUsuarioLU.setText(cargarInfoUser);
 

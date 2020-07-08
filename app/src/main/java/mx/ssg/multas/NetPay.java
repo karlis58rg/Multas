@@ -75,6 +75,7 @@ public class NetPay extends AppCompatActivity {
         setContentView(R.layout.activity_net_pay);
 
         txtMonto = findViewById(R.id.txtMonto);
+        txtMonto.setFocusableInTouchMode(true); txtMonto.requestFocus();
         txtFolio = findViewById(R.id.txtFolio);
         //txtOrderId = findViewById(R.id.txtOrderId);
         lblRespuesta = findViewById(R.id.lblRespuesta);

@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -102,6 +103,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     TextView txtMontoInfraPagar, txtDescSalarios, txtSalarios;
     RadioGroup radioGarantia, radioGarantia1;
+    CheckBox cheplaca,chevehiculo,chetcirculacion,chelconducir;
     Button btnGuardarInfraccion;
     int numberRandom;
     public String codigoVerifi, resClave, resSalarios;
@@ -124,6 +126,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     SharedPreferences share;
     SharedPreferences.Editor editor;
 
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_VIDEO_CAPTURE = 1;
 
@@ -145,6 +148,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
         }
     }
@@ -158,14 +163,22 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
         cargarDatos();
+
+
         lyInicio = view.findViewById(R.id.lyInicioInfra);
         lyCategoria = view.findViewById(R.id.lyCategoriaInfra);
         lyContact = view.findViewById(R.id.lyContactInfra);
         lyFavoritos = view.findViewById(R.id.lyFavoritosInfra);
         btnList = view.findViewById(R.id.btnListInfra);
 
-        radioGarantia = view.findViewById(R.id.radioGarantia);
-        radioGarantia1 = view.findViewById(R.id.radioGarantia1);
+        //////checks/////////////
+        cheplaca= view.findViewById(R.id.checkPlaca);
+        chevehiculo= view.findViewById(R.id.checkVehiculo);
+        chelconducir= view.findViewById(R.id.checkLConducir);
+        chetcirculacion= view.findViewById(R.id.checkTCirculacion);
+
+       /*radioGarantia = view.findViewById(R.id.radioGarantia);
+        radioGarantia1 = view.findViewById(R.id.radioGarantia1);*/
 
         txtDocReteInfra = view.findViewById(R.id.txtDocRetenido);
         btnAgregarInfraccion = view.findViewById(R.id.imgAgregarInfraccion);
@@ -188,6 +201,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         adaptador1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, palabras);
         lv1 = view.findViewById(R.id.ListaP);
         lv1.setAdapter(adaptador1);
+
 
         lyInicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,12 +262,12 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        radioGarantia.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+      /* cheplaca.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioPlaca) {
+                if (checkedId == R.id.checkPlaca) {
                     resGarantia = "Placa";
-                } else if (checkedId == R.id.radioTCirculacion) {
+                } else if (checkedId == R.id.checkTCirculacion) {
                     resGarantia = "T.Circulacion";
                 }
             }
@@ -269,7 +283,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-
+*/
         lv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
@@ -366,9 +380,11 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
         btnSemaforo.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
-                if(claveInfraccion != "PASARSE ALTO DEL SEMAFORO"){
+                if(claveInfraccion != claveInfraccion){
                 claveInfraccion = "PASARSE ALTO DEL SEMAFORO";
                 resClave = "22";
                 resSalarios = "20";
@@ -551,9 +567,26 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         return view;
     }
 
+    /******************metodo de checkbox*********************/
+    public void garantia(){
+
+        if(cheplaca.isChecked() == true ){
+            resGarantia = "Placa";
+
+        }if (chetcirculacion.isChecked()==true){
+            resGarantia = "T.Circulacion";
+
+        }if (chevehiculo.isChecked()==true){
+            resGarantia = "Vehiculo";
+
+        }if (chelconducir.isChecked()==true)
+            resGarantia = "L.Conducir";
+       }
+
     /******************GET A LA BD***********************************/
     public void getClaveInfra() {
         cargarDatos();
+        final String Claveinfraccion2=claveInfraccion;
         claveInfraccion = (String) spinCatTabulador.getSelectedItem();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -581,10 +614,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                 if (myResponse.equals(respuestaJson)) {
                                     Toast.makeText(getContext(), "NO SE CUENTA CON INFORMACIÓN", Toast.LENGTH_SHORT).show();
                                 } else {
+
+
                                     JSONObject jObj = null;
                                     jObj = new JSONObject("" + myResponse + "");
                                     resClave = jObj.getString("Clave");
                                     resSalarios = jObj.getString("SalMinimos");
+                                    if(claveInfraccion!=Claveinfraccion2){
+
                                     /***LLENADO DE LA TABLA***/
                                     palabras.add(claveInfraccion + "  " + "  " + resSalarios);
                                     adaptador1.notifyDataSetChanged();
@@ -605,6 +642,10 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                                     }
                                     spinCatTabulador.clearFocus();
                                     txtMontoInfraPagar.setText("$" + valor + " " + "MXN");
+                                }else{
+
+                                        Toast.makeText(getContext(), "ya se encuentra el elemento", Toast.LENGTH_LONG).show();
+                                    }
                                 }
 
                             } catch (JSONException e) {

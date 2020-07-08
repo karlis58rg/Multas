@@ -59,6 +59,8 @@ public class ViewPDFController extends BaseController implements View.OnClickLis
 
         mWebView = findViewById(R.id.web_view_example);
         mEditText = findViewById(R.id.search_bar_example);
+        mEditText.setFocusableInTouchMode(true); mEditText.requestFocus();
+
         lyInicio = findViewById(R.id.lyInicio);
         lyInicio.setOnClickListener(this);
         lyCategoria = findViewById(R.id.lyCategoria);
