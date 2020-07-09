@@ -114,6 +114,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     String cadenaSalarioBorrar = "";
     public static String direccion,municipio,estado;
     public  static String direccionTurno;
+    public String respLicencia;
+    public String licenciaExist;
+    public String tarjetaExist;
 
     ListView lv1;
     ArrayList<String> palabras;
@@ -823,21 +826,20 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().toString();
-                    final String resp = myResponse;
-                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String valorUser = "true";
-                            if(resp.equals(valorUser)){
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
                                 chelconducir.setChecked(true);
-                            }else{
-                                chelconducir.setChecked(false);
                             }
-                            Log.i("HERE", resp);
-                        }
-                    });
-
+                        });
+                    }
+                    Log.i("HERE", resp);
                 }
             }
 
@@ -862,21 +864,20 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String myResponse = response.body().toString();
-                    final String resp = myResponse;
-                    MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String valorUser = "true";
-                            if(resp.equals(valorUser)){
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        MapaInfraccion.this.getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
                                 chetcirculacion.setChecked(true);
-                            }else{
-                                chetcirculacion.setChecked(false);
                             }
-                            Log.i("HERE", resp);
-
-                        }
-                    });
+                        });
+                    }
+                    Log.i("HERE", resp);
                 }
             }
 
