@@ -88,7 +88,8 @@ public class NetPay extends AppCompatActivity {
 
         /*********** PARAMETROS PROVINIENTES DE LA INFRACCION **********/
         Intent i1 = getIntent();
-        amount = i1.getDoubleExtra("MONTO",0);
+        //amount = i1.getDoubleExtra("MONTO",0);
+        amount = 1.0;
         folio = i1.getStringExtra("FOLIO");
         direccionInfraccion = i1.getStringExtra("DIRECCION");
         String monto = Double.toString(amount);
