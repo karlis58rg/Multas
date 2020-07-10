@@ -386,11 +386,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
         btnSemaforo.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
-                if(claveInfraccion != claveInfraccion){
+                if(claveInfraccion != "PASARSE ALTO DEL SEMAFORO"){
                 claveInfraccion = "PASARSE ALTO DEL SEMAFORO";
                 resClave = "22";
                 resSalarios = "20";
@@ -1006,11 +1004,11 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        /*map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+        map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override
             public void onMarkerDragStart(Marker marker) {
                 //scroll.requestDisallowInterceptTouchEvent(true);
-                Toast.makeText(getActivity(), "Se moverá el marcador", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "SE MOVERÁ EL MARCADOR", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -1023,7 +1021,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 LatLng neww = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);
                 mi_ubi(neww);
             }
-        });*/
+        });
     }
 
     public String mi_ubi(LatLng au) {

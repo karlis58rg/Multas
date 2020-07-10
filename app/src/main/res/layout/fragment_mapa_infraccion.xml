@@ -162,7 +162,7 @@
                                     android:layout_height="50dp"
                                     android:gravity="center"
                                     android:maxLength="30"
-                                    android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"/>
+                                    android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 3-->
                             <LinearLayout
