@@ -91,7 +91,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     Boolean correr = false;
     long detenerse;
 
-    EditText txtDocReteInfra;
+    EditText txtDocReteInfra, txtObservacionesInfraccion;
     ImageView btnAgregarInfraccion, btnAlcohol, btnVelocimetro, btnSemaforo, btnVuelta, btnDobleFila, btnCasco, btnCinturon, btnEstacionarse;
     String cargarInfoUsuario, cargarInfoRandom;
     String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson,resGarantia, resGarantiaPlaca, resGarantiaVehiculo, resGarantiaTCirculacion, resGarantiaLconducir;
@@ -187,6 +187,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         radioGarantia1 = view.findViewById(R.id.radioGarantia1);*/
 
         txtDocReteInfra = view.findViewById(R.id.txtDocRetenido);
+        txtObservacionesInfraccion = view.findViewById(R.id.txtObservacionesInfraccion);
         btnAgregarInfraccion = view.findViewById(R.id.imgAgregarInfraccion);
         btnGuardarInfraccion = view.findViewById(R.id.imgGuardarInfraccion);
 

@@ -129,7 +129,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:baselineAligned="false">
                             <!--TITULO REGISTRO 3-->
                             <LinearLayout
                                 android:id="@+id/lblDocRetenido"
@@ -167,6 +168,60 @@
                             <!--IMG BUSCAR REGISTRO 3-->
                             <LinearLayout
                                 android:id="@+id/imgBuscar3L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosDocRetenido"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:baselineAligned="false">
+                            <!--TITULO REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lblObservacionesInfraccion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Observaciones"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lyObservacionesInfraccion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtObservacionesInfraccion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:maxLength="30"
+                                    android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar3I"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.03"
