@@ -147,7 +147,8 @@ public class TarjetaCirculacion extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"LA PLACA ES NECESARIA",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    getPlaca();
+                    //getPlaca();
+                    getPlacaBJ();
                 }
             }
         });
@@ -610,7 +611,24 @@ public class TarjetaCirculacion extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
                                 }else{
                                     JSONObject jObj = null;
-                                    jObj = new JSONObject(""+myResponse+"");
+                                    String resObj = myResponse;
+                                    resObj = resObj.replace("["," ");
+                                    resObj = resObj.replace("]"," ");
+
+                                    jObj = new JSONObject(""+resObj+"");
+                                    noSerieTC = jObj.getString("serie");
+                                    marca = jObj.getString("marca");
+                                    subMarca = jObj.getString("version");
+                                    modelo = jObj.getString("modelo");
+                                    noMotorTC = jObj.getString("numMotor");
+                                    nombreTC = jObj.getString("propietario");
+                                    txtNoSerieTC.setText(noSerieTC);
+                                    txtMarca.setText(marca);
+                                    txtSubmarca.setText(subMarca);
+                                    txtModelo.setText(modelo);
+                                    txtNoMotorTC.setText(noMotorTC);
+                                    txtNombreTC.setText(nombreTC);
+
                                    /* noTarjetaTC = jObj.getString("NoTarjeta");
                                     noSerieTC = jObj.getString("NoSerie");
                                     nombreTC = jObj.getString("NombreP");
@@ -630,17 +648,11 @@ public class TarjetaCirculacion extends AppCompatActivity {
                                     resServicio = jObj.getString("TipoServicio");
                                     resObservaciones = jObj.getString("Observaciones");
                                     txtNoTarjetaTC.setText(noTarjetaTC);
-                                    txtNoSerieTC.setText(noSerieTC);
-                                    txtNombreTC.setText(nombreTC);
                                     txtApaternoTC.setText(aPaternoTC);
                                     txtAmaternoTC.setText(aMaternoTC);
                                     txtNombreR.setText(nombreR);
                                     txtApaternoR.setText(aPaternoR);
                                     txtAmaternoR.setText(aMaternoR);
-                                    txtNoMotorTC.setText(noMotorTC);
-                                    txtMarca.setText(marca);
-                                    txtSubmarca.setText(subMarca);
-                                    txtModelo.setText(modelo);
                                     txtColor.setText(color);
                                     txtMunicipio.setText(municipio);
                                     txtLocalidad.setText(localidad);
