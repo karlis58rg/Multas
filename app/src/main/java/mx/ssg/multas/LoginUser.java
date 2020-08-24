@@ -78,7 +78,7 @@ public class LoginUser extends AppCompatActivity {
 
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Usuarios?nombre="+user+"&pass="+pass)
+                .url("http://187.174.102.142/AppTransito/api/Usuarios?usuario="+user+"&pass="+pass)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
