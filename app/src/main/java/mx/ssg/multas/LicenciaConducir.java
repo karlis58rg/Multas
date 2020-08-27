@@ -81,6 +81,7 @@ public class LicenciaConducir extends AppCompatActivity {
         btnInfraccionL = findViewById(R.id.imgTerminalLC);
 
         txtLicencia = findViewById(R.id.txtNoLicencia);
+        /////posicion de cursor///////////
         txtLicencia.setFocusableInTouchMode(true); txtLicencia.requestFocus();
 
         txtNombre = findViewById(R.id.txtNombreL);
