@@ -183,11 +183,11 @@ public class TarjetaCirculacion extends AppCompatActivity {
         radioNacionalidadTC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioMexicanaL) {
+               /* if (checkedId == R.id.radioMexicanaL) {
                     resOrigen = "Nacional";
                 } else if (checkedId == R.id.radioExtrangeraL) {
                     resOrigen = "Extranjero";
-                }
+                }*/
 
             }
         });

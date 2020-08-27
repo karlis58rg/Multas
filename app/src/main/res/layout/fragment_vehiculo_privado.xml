@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".VehiculoPrivado"
+    android:orientation="vertical"
     android:weightSum="1">
+
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -94,7 +99,7 @@
                             android:textSize="18dp"
                             android:textStyle="bold"
                             android:textColorHint="@color/hint"
-                            android:text="Transporte Público"/>
+                            android:text="Vehículo Particular"/>
                     </LinearLayout>
                     <!--IMAGEN2 TITLE-->
                     <LinearLayout
@@ -132,7 +137,7 @@
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 1-->
                             <LinearLayout
-                                android:id="@+id/lblPlacaTp"
+                                android:id="@+id/lblPlacaVp"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -149,7 +154,7 @@
                             </LinearLayout>
                             <!--TXT REGISTRO 1-->
                             <LinearLayout
-                                android:id="@+id/lyPlacaTp"
+                                android:id="@+id/lyPlacaVp"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -159,7 +164,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtPlacaTp"
+                                    android:id="@+id/txtPlacaVp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:gravity="center"
@@ -184,14 +189,14 @@
                         </LinearLayout>
                         <!--REGISTRO 2-->
                         <LinearLayout
-                            android:id="@+id/contentDatosEconomico"
+                            android:id="@+id/contentDatosSerie"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 2-->
                             <LinearLayout
-                                android:id="@+id/lblEconomico"
+                                android:id="@+id/lblSerie"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -203,12 +208,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Económico:"
+                                    android:text="Serie:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 2-->
                             <LinearLayout
-                                android:id="@+id/lyEconomico"
+                                android:id="@+id/lySerie"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -218,7 +223,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtEconomico"
+                                    android:id="@+id/txtSerie"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
@@ -239,14 +244,14 @@
                         </LinearLayout>
                         <!--REGISTRO 3-->
                         <LinearLayout
-                            android:id="@+id/contentDatosEstatusActual"
+                            android:id="@+id/contentDatosDistribuidor"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 3-->
                             <LinearLayout
-                                android:id="@+id/lblEstatusActual"
+                                android:id="@+id/lblDistribuidor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -258,12 +263,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Estatus Actual:"
+                                    android:text="Distribuidor:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 3-->
                             <LinearLayout
-                                android:id="@+id/lyEstatusActual"
+                                android:id="@+id/lyDistribuidor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -273,9 +278,10 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtEstatusActual"
+                                    android:id="@+id/txtDistribuidor"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
+                                    android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
                                     android:gravity="center"
                                     android:imeOptions="actionNext"
                                     android:maxLength="25" />
@@ -295,14 +301,14 @@
                         </LinearLayout>
                         <!--REGISTRO 4-->
                         <LinearLayout
-                            android:id="@+id/contentDatosFechaExTp"
+                            android:id="@+id/contentDatosMarca"
                             android:layout_width="match_parent"
                             android:layout_height="59dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 4-->
                             <LinearLayout
-                                android:id="@+id/lblFechaExTp"
+                                android:id="@+id/lblMarca"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -314,12 +320,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text=" Fecha Expedición:"
+                                    android:text=" Marca:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 4-->
                             <LinearLayout
-                                android:id="@+id/lyFechaExTp"
+                                android:id="@+id/lyMarca"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -329,7 +335,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtFechaExTp"
+                                    android:id="@+id/txtMarcav"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
@@ -352,14 +358,14 @@
                         </LinearLayout>
                         <!--REGISTRO 5-->
                         <LinearLayout
-                            android:id="@+id/contentDatosFechaVigTp"
+                            android:id="@+id/contentDatosVersion"
                             android:layout_width="match_parent"
                             android:layout_height="57dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 5-->
                             <LinearLayout
-                                android:id="@+id/lblFechaVigTp"
+                                android:id="@+id/lblVersión"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -371,12 +377,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Fecha Vigencia:"
+                                    android:text="Versión:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 5-->
                             <LinearLayout
-                                android:id="@+id/lyFechaVigTp"
+                                android:id="@+id/lyVersion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -386,7 +392,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtFechaVigTp"
+                                    android:id="@+id/txtVersion"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -406,14 +412,14 @@
                         </LinearLayout>
                         <!--REGISTRO 6-->
                         <LinearLayout
-                            android:id="@+id/contentDatosOficinaExpedTp"
+                            android:id="@+id/contentDatosClase"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 6-->
                             <LinearLayout
-                                android:id="@+id/lblOficinaExpedTp"
+                                android:id="@+id/lblClase"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -425,12 +431,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Oficina Expedidora:"
+                                    android:text="Clase:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 6-->
                             <LinearLayout
-                                android:id="@+id/lyOficinaExpedTp"
+                                android:id="@+id/lyClase"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -440,7 +446,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtOficinaExpedTp"
+                                    android:id="@+id/txtClase"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -462,14 +468,14 @@
                         </LinearLayout>
                         <!--REGISTRO 7-->
                         <LinearLayout
-                            android:id="@+id/contentDatosDelegacionTp"
+                            android:id="@+id/contentDatosTipove"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 7-->
                             <LinearLayout
-                                android:id="@+id/lblDelegacionTp"
+                                android:id="@+id/lblTipove"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -481,12 +487,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Delegación :"
+                                    android:text="Tipo:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 7-->
                             <LinearLayout
-                                android:id="@+id/lyDelegacionTp"
+                                android:id="@+id/lyTipove"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -496,7 +502,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtDelegacionTp"
+                                    android:id="@+id/txtTipove"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -518,14 +524,14 @@
                         </LinearLayout>
                         <!--REGISTRO 8-->
                         <LinearLayout
-                            android:id="@+id/contentDatosNRepuveTp"
+                            android:id="@+id/contentDatosModelo"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 8-->
                             <LinearLayout
-                                android:id="@+id/lblNRepuveTp"
+                                android:id="@+id/lblModelo"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -537,12 +543,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="N° Repuve:"
+                                    android:text="Modelo:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 8-->
                             <LinearLayout
-                                android:id="@+id/lyNRepuveTp"
+                                android:id="@+id/lyModelo"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -552,7 +558,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtNRepuveTp"
+                                    android:id="@+id/txtModelove"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -575,14 +581,14 @@
                         <!--REGISTRO 9-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosMarcaTp"
+                            android:id="@+id/contentDatosCombustible"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 9-->
                             <LinearLayout
-                                android:id="@+id/lblMarcaTp"
+                                android:id="@+id/lblCombustible"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -594,12 +600,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Marca :"
+                                    android:text="Combustible:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 9-->
                             <LinearLayout
-                                android:id="@+id/lyMarcaTp"
+                                android:id="@+id/lyCombustible"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -609,7 +615,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtMarcaTp"
+                                    android:id="@+id/txtCombustible"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -632,14 +638,14 @@
                         <!--REGISTRO 10-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosLineaTp"
+                            android:id="@+id/contentDatosCilindros"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 10-->
                             <LinearLayout
-                                android:id="@+id/lblLineaTp"
+                                android:id="@+id/lblCilindros"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -651,12 +657,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Línea:"
+                                    android:text="Cilindros:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 10-->
                             <LinearLayout
-                                android:id="@+id/lyLineaTp"
+                                android:id="@+id/lyCilindros"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -666,7 +672,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtLineaTp"
+                                    android:id="@+id/txtCilindros"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -688,14 +694,14 @@
                         </LinearLayout>
                         <!--REGISTRO 11-->
                         <LinearLayout
-                            android:id="@+id/contentDatosVersionTp"
+                            android:id="@+id/contentDatosColor"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 11-->
                             <LinearLayout
-                                android:id="@+id/lblVersionTp"
+                                android:id="@+id/lblColor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -707,12 +713,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Versión:"
+                                    android:text="Color:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 11-->
                             <LinearLayout
-                                android:id="@+id/lyVersionTp"
+                                android:id="@+id/lyColor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -722,7 +728,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtVersionTp"
+                                    android:id="@+id/txtColor"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -745,14 +751,14 @@
                         <!--REGISTRO 12-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosClaseTipoTp"
+                            android:id="@+id/contentDatosUso"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 12-->
                             <LinearLayout
-                                android:id="@+id/lblClaseTipoTp"
+                                android:id="@+id/lblUso"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -764,12 +770,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Clase Tipo:"
+                                    android:text="Uso:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 12-->
                             <LinearLayout
-                                android:id="@+id/lyClaseTipoTp"
+                                android:id="@+id/lyUso"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -779,7 +785,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtClaseTipoTp"
+                                    android:id="@+id/txtUso"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -803,14 +809,14 @@
 
 
                         <LinearLayout
-                            android:id="@+id/contentDatosColorTp"
+                            android:id="@+id/contentDatosProcedencia"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 13-->
                             <LinearLayout
-                                android:id="@+id/lblColorTp"
+                                android:id="@+id/lblProcedencia"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -822,12 +828,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Color:"
+                                    android:text="Procedencia:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 13-->
                             <LinearLayout
-                                android:id="@+id/lyColorTp"
+                                android:id="@+id/lyProcedencia"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -837,7 +843,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtColorTp"
+                                    android:id="@+id/txtProcedencia"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -861,14 +867,14 @@
 
 
                         <LinearLayout
-                            android:id="@+id/contentDatosModeloTp"
+                            android:id="@+id/contentDatosPuertas"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 14-->
                             <LinearLayout
-                                android:id="@+id/lblModeloTp"
+                                android:id="@+id/lblPuertas"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -880,12 +886,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Modelo:"
+                                    android:text="Puertas:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 14-->
                             <LinearLayout
-                                android:id="@+id/lyModeloTp"
+                                android:id="@+id/lyPuertas"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -895,7 +901,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtModeloTp"
+                                    android:id="@+id/txtPuertas"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -918,14 +924,14 @@
                         <!--REGISTRO 15-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosPuertasTp"
+                            android:id="@+id/contentDatosNMotor"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 15-->
                             <LinearLayout
-                                android:id="@+id/lblPuertasTp"
+                                android:id="@+id/lblNMotor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -937,12 +943,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Puertas:"
+                                    android:text="N° Motor:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 15-->
                             <LinearLayout
-                                android:id="@+id/lyPuertasTp"
+                                android:id="@+id/lyNMotor"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -952,7 +958,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtPuertasTp"
+                                    android:id="@+id/txtNMotor"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -975,14 +981,14 @@
                         <!--REGISTRO 16-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosCilindrosTp"
+                            android:id="@+id/contentDatosRepuve"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 16-->
                             <LinearLayout
-                                android:id="@+id/lblCilindrosTp"
+                                android:id="@+id/lblRepuve"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -994,12 +1000,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Cilindros:"
+                                    android:text="Repuve:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 16-->
                             <LinearLayout
-                                android:id="@+id/lyCilindrosTp"
+                                android:id="@+id/lyRepuve"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -1009,7 +1015,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtCilindrosTp"
+                                    android:id="@+id/txtRepuve"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -1032,14 +1038,14 @@
                         <!--REGISTRO 17-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosCombustibleTp"
+                            android:id="@+id/contentDatosFolioSCT"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 17-->
                             <LinearLayout
-                                android:id="@+id/lblCombustibleTp"
+                                android:id="@+id/lblFolioSCT"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -1051,12 +1057,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Combustible:"
+                                    android:text="FolioSCT:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 17-->
                             <LinearLayout
-                                android:id="@+id/lyCombustibleTp"
+                                android:id="@+id/lyFolioSCT"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -1066,7 +1072,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtCombustibleTp"
+                                    android:id="@+id/txtFolioSCT"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -1090,14 +1096,14 @@
 
 
                         <LinearLayout
-                            android:id="@+id/contentDatosCapacidadTp"
+                            android:id="@+id/contentDatosOficinaExpedidora"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 18-->
                             <LinearLayout
-                                android:id="@+id/lblCapacidadTp"
+                                android:id="@+id/lblOficinaExp"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -1109,12 +1115,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Capacidad:"
+                                    android:text="Oficina Expedidora:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 18-->
                             <LinearLayout
-                                android:id="@+id/lyCapacidadTp"
+                                android:id="@+id/lyOficinaExp"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -1124,7 +1130,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtCapacidadTp"
+                                    android:id="@+id/txtOficinaExp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -1147,14 +1153,14 @@
                         <!--REGISTRO 19-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosAgrupacionTp"
+                            android:id="@+id/contentDatosPropietario"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 19-->
                             <LinearLayout
-                                android:id="@+id/lblAgrupacionTp"
+                                android:id="@+id/lblPropietario"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -1166,12 +1172,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Agrupación:"
+                                    android:text="Propietario:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 19-->
                             <LinearLayout
-                                android:id="@+id/lyAgrupacionTp"
+                                android:id="@+id/lyPropietario"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -1181,7 +1187,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtAgrupacionTp"
+                                    android:id="@+id/txtPropietario"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -1203,14 +1209,14 @@
                         </LinearLayout>
                         <!--REGISTRO 20-->
                         <LinearLayout
-                            android:id="@+id/contentDatosNSerieTp"
+                            android:id="@+id/contentDatosRFCv"
                             android:layout_width="match_parent"
                             android:layout_height="61dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 20-->
                             <LinearLayout
-                                android:id="@+id/lblNSerieTp"
+                                android:id="@+id/lblRFCv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.1"
@@ -1222,12 +1228,12 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="N° de Serie:"
+                                    android:text="RFC:"
                                     android:textColor="@color/hint" />
                             </LinearLayout>
                             <!--TXT REGISTRO 20-->
                             <LinearLayout
-                                android:id="@+id/lyNSerieTp"
+                                android:id="@+id/lyRFCv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.20"
@@ -1237,7 +1243,7 @@
                                 android:weightSum="1">
 
                                 <EditText
-                                    android:id="@+id/txtNSerieTp"
+                                    android:id="@+id/txtRFCv"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:focusable="false"
@@ -1260,14 +1266,14 @@
                         <!--REGISTRO 21-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosRegistroPropTp"
+                            android:id="@+id/contentDatosDireccion"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 21-->
                             <LinearLayout
-                                android:id="@+id/lblRegistroPropTp"
+                                android:id="@+id/lblDireccion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1279,11 +1285,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Registro Propiedad:"/>
+                                    android:text="Dirección:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 21-->
                             <LinearLayout
-                                android:id="@+id/lyRegistroPropTp"
+                                android:id="@+id/lyDireccion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1292,7 +1298,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtRegistroPropTp"
+                                    android:id="@+id/txtDireccion"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1315,14 +1321,14 @@
                         <!--REGISTRO 22-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosRutaSitioTp"
+                            android:id="@+id/contentDatosColoniav"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 22-->
                             <LinearLayout
-                                android:id="@+id/lblRutaSitioTp"
+                                android:id="@+id/lblColoniav"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1334,11 +1340,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Ruta Sitio:"/>
+                                    android:text="Colonia:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 22-->
                             <LinearLayout
-                                android:id="@+id/lyRutaSitioTp"
+                                android:id="@+id/lyColoniav"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1347,7 +1353,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtRutaSitioTp"
+                                    android:id="@+id/txtColoniav"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1370,14 +1376,14 @@
                         <!--REGISTRO 23-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosPermisionarioTp"
+                            android:id="@+id/contentDatosLocalidad"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 23-->
                             <LinearLayout
-                                android:id="@+id/lblPermisionarioTp"
+                                android:id="@+id/lblLocalidadv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1389,11 +1395,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Permisionario:"/>
+                                    android:text="Localidad:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 23-->
                             <LinearLayout
-                                android:id="@+id/lyPermisionarioTp"
+                                android:id="@+id/lyLocalidadv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1402,7 +1408,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtPermisionarioTp"
+                                    android:id="@+id/txtLocalidadv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1425,14 +1431,14 @@
                         <!--REGISTRO 24-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosNMotorTp"
+                            android:id="@+id/contentDatosUltimaRevalidacion"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 24-->
                             <LinearLayout
-                                android:id="@+id/lblNMotorTp"
+                                android:id="@+id/lblUltimaRevalidacion"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1444,11 +1450,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="N° de Motor:"/>
+                                    android:text="Ultima Revalidación:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 24-->
                             <LinearLayout
-                                android:id="@+id/lyNMotorTp"
+                                android:id="@+id/lyUltimaRevalidación"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1457,7 +1463,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtNMotorTp"
+                                    android:id="@+id/txtUltimaRevalidacion"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1481,14 +1487,14 @@
                         <!--REGISTRO 25-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosUsoTp"
+                            android:id="@+id/contentDatosEstatus"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 25-->
                             <LinearLayout
-                                android:id="@+id/lblUsoTp"
+                                android:id="@+id/lblEstatus"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1500,11 +1506,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Uso:"/>
+                                    android:text="Estatus:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 25-->
                             <LinearLayout
-                                android:id="@+id/lyUsoTp"
+                                android:id="@+id/lyEstatus"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1513,7 +1519,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtUsoTp"
+                                    android:id="@+id/txtEstatus"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1536,14 +1542,14 @@
                         <!--REGISTRO 26-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosObservacionesTp"
+                            android:id="@+id/contentDatosTelefono"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 26-->
                             <LinearLayout
-                                android:id="@+id/lblObservacionesTp"
+                                android:id="@+id/lblTelefono"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1555,11 +1561,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Observaciones:"/>
+                                    android:text="Telefono:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 26-->
                             <LinearLayout
-                                android:id="@+id/lyObservacionesTp"
+                                android:id="@+id/lyTelefono"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1568,7 +1574,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtObservacionesTp"
+                                    android:id="@+id/txtTelefono"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1591,14 +1597,14 @@
                         <!--REGISTRO 27-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosFolioSCTTp"
+                            android:id="@+id/contentDatosFechaVV"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 27-->
                             <LinearLayout
-                                android:id="@+id/lblFolioSCTTp"
+                                android:id="@+id/lblFechaVV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1610,11 +1616,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Folio SCT:"/>
+                                    android:text="Fecha Vencimiento:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 27-->
                             <LinearLayout
-                                android:id="@+id/lyFolioSCTTp"
+                                android:id="@+id/lyFechaVV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1623,7 +1629,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtFolioSCTTp"
+                                    android:id="@+id/txtFechaVV"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1646,14 +1652,14 @@
                         <!--REGISTRO 28-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosUrlTp"
+                            android:id="@+id/contentDatosUrl"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 28-->
                             <LinearLayout
-                                android:id="@+id/lblUrlTp"
+                                android:id="@+id/lblUrl"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1669,7 +1675,7 @@
                             </LinearLayout>
                             <!--TXT REGISTRO 28-->
                             <LinearLayout
-                                android:id="@+id/lyUrlTp"
+                                android:id="@+id/lyUrl"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1678,7 +1684,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtUrlTp"
+                                    android:id="@+id/txtUrl"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1701,14 +1707,14 @@
                         <!--REGISTRO 29-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosEmailTp"
+                            android:id="@+id/contentDatosEmailv"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 29-->
                             <LinearLayout
-                                android:id="@+id/lblEmailTp"
+                                android:id="@+id/lblEmailv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1724,7 +1730,7 @@
                             </LinearLayout>
                             <!--TXT REGISTRO 29-->
                             <LinearLayout
-                                android:id="@+id/lyEmailTp"
+                                android:id="@+id/lyEmailv"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1733,7 +1739,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtEmailTp"
+                                    android:id="@+id/txtEmailv"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -1757,14 +1763,14 @@
                         <!--REGISTRO 30-->
 
                         <LinearLayout
-                            android:id="@+id/contentDatosNotasTp"
+                            android:id="@+id/contentDatosObservacionesV"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
                             <!--TITULO REGISTRO 30-->
                             <LinearLayout
-                                android:id="@+id/lblNotasTp"
+                                android:id="@+id/lblObservacionesV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1776,11 +1782,11 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Notas:"/>
+                                    android:text="Observaciones:"/>
                             </LinearLayout>
                             <!--TXT REGISTRO 30-->
                             <LinearLayout
-                                android:id="@+id/lyNotasTp"
+                                android:id="@+id/lyObcervacionesV"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -1789,7 +1795,7 @@
                                 android:background="@drawable/drawable_pressed"
                                 android:layout_weight="0.20">
                                 <EditText
-                                    android:id="@+id/txtNotasTp"
+                                    android:id="@+id/txtObservacionesV"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textMultiLine"
@@ -2040,4 +2046,5 @@
         android:layout_alignParentRight="true"
         android:background="@color/background"
         android:visibility="gone"/>
+
 </FrameLayout>
