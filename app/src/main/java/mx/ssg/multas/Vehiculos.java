@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
-public class Vehiculos extends AppCompatActivity implements VehiculoPrivado.OnFragmentInteractionListener {
+public class Vehiculos extends AppCompatActivity implements VehiculoPrivado.OnFragmentInteractionListener, VehiculoPublico.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

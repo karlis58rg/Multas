@@ -87,13 +87,13 @@ public class LicenciaConducir extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombreL);
         txtApaterno = findViewById(R.id.txtApaternoL);
         txtAmaterno = findViewById(R.id.txtAmaternoL);
-        txtFNacimiento = findViewById(R.id.txtFechaNacimiento);
+        //txtFNacimiento = findViewById(R.id.txtFechaNacimiento);
         txtDireccion = findViewById(R.id.txtDireccion);
-        txtSangre = findViewById(R.id.txtTipoSangre);
-        txtValidez = findViewById(R.id.txtValidez);
+        //txtSangre = findViewById(R.id.txtTipoSangre);
+        //txtValidez = findViewById(R.id.txtValidez);
         txtClase = findViewById(R.id.txtClase);
         txtObservaciones = findViewById(R.id.txtObservacionesLC);
-        radioNacionalidad = findViewById(R.id.radioNacionalidadL);
+        //radioNacionalidad = findViewById(R.id.radioNacionalidadL);
 
         lblResultScaner = findViewById(R.id.linkQrL);
 
@@ -244,7 +244,7 @@ public class LicenciaConducir extends AppCompatActivity {
             }
         });
 
-        radioNacionalidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+       /* radioNacionalidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radioMexicanaL) {
@@ -253,7 +253,7 @@ public class LicenciaConducir extends AppCompatActivity {
                     resNacionalidad = "Extranjera";
                 }
             }
-        });
+        });*/
     }
 
     @Override

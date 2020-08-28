@@ -164,7 +164,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_mapa_infraccion, container, false);
-
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
         cargarDatos();
@@ -558,8 +557,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
                 txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
             }else{
-
-
                     Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
