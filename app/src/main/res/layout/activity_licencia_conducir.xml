@@ -163,8 +163,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:inputType="number" />
+                                android:imeOptions="actionNext"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
@@ -439,7 +438,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtCalle"
+                                android:id="@+id/txtCalleLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -495,7 +494,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtNumero"
+                                android:id="@+id/txtNumeroCalle"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -551,7 +550,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtColonia"
+                                android:id="@+id/txtColoniaLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -665,7 +664,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtMunicipio"
+                                android:id="@+id/txtMunicipioLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -721,7 +720,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtEstado"
+                                android:id="@+id/txtEstadoLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -778,7 +777,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtFechaEx"
+                                android:id="@+id/txtFechaExLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -836,7 +835,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtFechaVen"
+                                android:id="@+id/txtFechaVenLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -894,7 +893,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtTipoVig"
+                                android:id="@+id/txtTipoVigLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -1008,7 +1007,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtRFC"
+                                android:id="@+id/txtRFCLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -1065,7 +1064,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtHomo"
+                                android:id="@+id/txtHomoLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -1123,7 +1122,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtGrupoSangui"
+                                android:id="@+id/txtGrupoSanguiLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -1180,7 +1179,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtRequeriemientosEsp"
+                                android:id="@+id/txtRequeriemientosEspLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"
@@ -1236,7 +1235,7 @@
                             android:weightSum="1">
 
                             <EditText
-                                android:id="@+id/txtEmail"
+                                android:id="@+id/txtEmailLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:focusable="false"

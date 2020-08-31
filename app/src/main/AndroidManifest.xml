@@ -48,7 +48,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LicenciaConducir"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".TarjetasConductor"
             android:screenOrientation="portrait" />

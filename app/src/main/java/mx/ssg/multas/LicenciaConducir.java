@@ -44,16 +44,12 @@ import okhttp3.Response;
 public class LicenciaConducir extends AppCompatActivity {
     ImageView btnMenuL,btnQrL,btnBuscarL,btnTarjetaL,btnInfraccionL;
     Button btnGuardarLC;
-    EditText txtLicencia,txtNombre,txtApaterno,txtAmaterno,txtFNacimiento,txtDireccion,txtSangre,txtValidez,txtClase,txtObservaciones;
-    RadioGroup radioNacionalidad;
-    RadioButton rMexicano,rExtranjero;
-    TextView lblResultScaner;
+    EditText txtLicencia,txtNombre,txtApaterno,txtAmaterno,txtTipocalle,txtCalleLC,txtNumeroCalle,txtColoniaLC,txtCP,txtMunicipioLC,txtEstadoLC;
+    EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
-    String ResultQR = "SIN QR";
     String Tag = "LICENCIA CONDUCIR";
-    String licencia,nombre,apaterno,amaterno,fNacimiento,direccion,sangre,validez,clase,nacionalidad,observaciones,respuestaJson;
-    String resNacionalidad = "";
-    String resObservaciones = "";
+    String licencia,nombre,apaterno,amaterno,Tipocalle,CalleLC,NumeroCalle,ColoniaLC,CP,MunicipioLC,EstadoLC,FechaExLC,respuestaJson;
+    String FechaVenLC,TipoVigLC,TipoLic,RFCLC,HomoLC,GrupoSanguiLC,RequeriemientosEspLC,EmailLC,ObservacionesLC;
     private  DatePickerDialog.OnDateSetListener dateSetListener,date;
     Calendar calendar = Calendar.getInstance();
     SharedPreferences share;
@@ -84,60 +80,43 @@ public class LicenciaConducir extends AppCompatActivity {
         /////posicion de cursor///////////
         txtLicencia.setFocusableInTouchMode(true); txtLicencia.requestFocus();
 
-        txtNombre = findViewById(R.id.txtNombreL);
         txtApaterno = findViewById(R.id.txtApaternoL);
         txtAmaterno = findViewById(R.id.txtAmaternoL);
-        //txtFNacimiento = findViewById(R.id.txtFechaNacimiento);
-        txtDireccion = findViewById(R.id.txtDireccion);
-        //txtSangre = findViewById(R.id.txtTipoSangre);
-        //txtValidez = findViewById(R.id.txtValidez);
-        txtClase = findViewById(R.id.txtClase);
-        txtObservaciones = findViewById(R.id.txtObservacionesLC);
-        //radioNacionalidad = findViewById(R.id.radioNacionalidadL);
-
-        lblResultScaner = findViewById(R.id.linkQrL);
+        txtNombre = findViewById(R.id.txtNombreL);
+        txtTipocalle = findViewById(R.id.txtTipocalle);
+        txtCalleLC = findViewById(R.id.txtCalleLC);
+        txtNumeroCalle = findViewById(R.id.txtNumeroCalle);
+        txtColoniaLC = findViewById(R.id.txtColoniaLC);
+        txtCP = findViewById(R.id.txtCP);
+        txtMunicipioLC = findViewById(R.id.txtMunicipioLC);
+        txtEstadoLC = findViewById(R.id.txtEstadoLC);
+        txtFechaExLC = findViewById(R.id.txtFechaExLC);
+        txtFechaVenLC = findViewById(R.id.txtFechaVenLC);
+        txtTipoVigLC = findViewById(R.id.txtTipoVigLC);
+        txtTipoLic = findViewById(R.id.txtTipoLic);
+        txtRFCLC = findViewById(R.id.txtRFCLC);
+        txtHomoLC = findViewById(R.id.txtHomoLC);
+        txtGrupoSanguiLC = findViewById(R.id.txtGrupoSanguiLC);
+        txtRequeriemientosEspLC = findViewById(R.id.txtRequeriemientosEspLC);
+        txtEmailLC = findViewById(R.id.txtEmailLC);
+        txtObservacionesLC = findViewById(R.id.txtObservacionesLC);
 
         btnReglamento = findViewById(R.id.lyInicioL);
         btnLugaresPago = findViewById(R.id.lyCategoriaL);
         btnContactos = findViewById(R.id.lyContactoL);
         btnTabulador = findViewById(R.id.lyFavoritosL);
 
-
-        dateSetListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month=month+1;
-                txtFNacimiento.setText(+dayOfMonth+ "-" +month+ "-" +year);
-
-
-
-            }
-        };
-        date=new DatePickerDialog.OnDateSetListener() {
+       /* date=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
                 txtValidez.setText(+dayOfMonth+ "-" +month+ "-" +year);
 
 
-            }};
-
-       txtFNacimiento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+            }};*/
 
 
-                DatePickerDialog dialog=new DatePickerDialog(LicenciaConducir.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        dateSetListener,day,month,year);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        txtValidez.setOnClickListener(new View.OnClickListener() {
+        /*txtValidez.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int year = calendar.get(Calendar.YEAR);
@@ -152,7 +131,7 @@ public class LicenciaConducir extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
         btnMenuL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +174,7 @@ public class LicenciaConducir extends AppCompatActivity {
         btnGuardarLC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtObservaciones.getText().toString().isEmpty()){
+                if(txtObservacionesLC.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
@@ -256,7 +235,7 @@ public class LicenciaConducir extends AppCompatActivity {
         });*/
     }
 
-    @Override
+  /*  @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
@@ -270,7 +249,7 @@ public class LicenciaConducir extends AppCompatActivity {
                 ResultQR = "QR SIN INFORMACIÓN";
                 Toast.makeText(this, ResultQR, Toast.LENGTH_SHORT).show();
             }
-    }
+    }*/
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {
@@ -300,7 +279,7 @@ public class LicenciaConducir extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }else{
-                        insertRegistroLicencia();
+                        //insertRegistroLicencia();
                     }
                     Log.i("HERE", resp);
                 }
@@ -339,45 +318,49 @@ public class LicenciaConducir extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
                                 }else{
                                     JSONObject jObj = null;
-                                    jObj = new JSONObject(""+myResponse+"");
-                                    nombre = jObj.getString("NombreL");
-                                    apaterno = jObj.getString("ApellidoPL");
-                                    amaterno = jObj.getString("ApellidoML");
-                                    fNacimiento = jObj.getString("FechaNacimiento");
-                                    direccion = jObj.getString("Direccion");
-                                    sangre = jObj.getString("Sangre");
-                                    validez = jObj.getString("Validez");
-                                    clase = jObj.getString("Clase");
-                                    txtNombre.setText(nombre);
+                                    String resObj = myResponse;
+                                    resObj = resObj.replace("["," ");
+                                    resObj = resObj.replace("]"," ");
+
+                                    jObj = new JSONObject(""+resObj+"");
+                                    apaterno = jObj.getString("paterno");
+                                    amaterno = jObj.getString("materno");
+                                    nombre = jObj.getString("nombre");
+                                    Tipocalle = jObj.getString("tipoCalle");
+                                    CalleLC = jObj.getString("calle");
+                                    NumeroCalle = jObj.getString("numero");
+                                    ColoniaLC = jObj.getString("colonia");
+                                    CP = jObj.getString("cp");
+                                    MunicipioLC = jObj.getString("municipio");
+                                    EstadoLC = jObj.getString("estado");
+                                    FechaExLC = jObj.getString("fechaExp");
+                                    FechaVenLC = jObj.getString("fechaVenc");
+                                    TipoVigLC = jObj.getString("tipoVigencia");
+                                    TipoLic = jObj.getString("tipoLic");
+                                    RFCLC = jObj.getString("rfc");
+                                    HomoLC = jObj.getString("homo");
+                                    GrupoSanguiLC = jObj.getString("grupoSanguineo");
+                                    RequeriemientosEspLC = jObj.getString("requerimientosEspeciales");
+
                                     txtApaterno.setText(apaterno);
                                     txtAmaterno.setText(amaterno);
-                                    txtFNacimiento.setText(fNacimiento);
-                                    txtDireccion.setText(direccion);
-                                    txtSangre.setText(sangre);
-                                    txtValidez.setText(validez);
-                                    txtLicencia.setText(licencia);
-                                    txtClase.setText(clase);
-                                    resNacionalidad = jObj.getString("Nacionalidad");
-                                    resObservaciones = jObj.getString("Observaciones");
-                                    System.out.println(resNacionalidad);
-                                    System.out.println(resObservaciones);
-                                    nacionalidad = "Mexicana";
-                                    observaciones = "null";
-                                    if(resNacionalidad.equals(nacionalidad)){
-                                        rMexicano = (RadioButton)radioNacionalidad.getChildAt(0);
-                                        rMexicano.setChecked(true);
-                                    }else {
-                                        rExtranjero = (RadioButton)radioNacionalidad.getChildAt(1);
-                                        rExtranjero.setChecked(true);
-                                    }
-                                    if(resObservaciones.equals(observaciones)){
-                                        txtObservaciones.setText("SIN OBSERVACIONES");
-                                    }else{
-                                        resObservaciones = jObj.getString("Observaciones");
-                                        txtObservaciones.setText(resObservaciones);
-                                    }
+                                    txtNombre.setText(nombre);
+                                    txtTipocalle.setText(Tipocalle);
+                                    txtCalleLC.setText(CalleLC);
+                                    txtNumeroCalle.setText(NumeroCalle);
+                                    txtColoniaLC.setText(ColoniaLC);
+                                    txtCP.setText(CP);
+                                    txtMunicipioLC.setText(MunicipioLC);
+                                    txtEstadoLC.setText(EstadoLC);
+                                    txtFechaExLC.setText(FechaExLC);
+                                    txtFechaVenLC.setText(FechaVenLC);
+                                    txtTipoVigLC.setText(TipoVigLC);
+                                    txtTipoLic.setText(TipoLic);
+                                    txtRFCLC.setText(RFCLC);
+                                    txtHomoLC.setText(HomoLC);
+                                    txtGrupoSanguiLC.setText(GrupoSanguiLC);
+                                    txtRequeriemientosEspLC.setText(RequeriemientosEspLC);
                                     Log.i("HERE", ""+jObj);
-
                                 }
 
                             }catch(JSONException e){
@@ -393,7 +376,7 @@ public class LicenciaConducir extends AppCompatActivity {
     }
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
-    private void insertRegistroLicencia() {
+   /* private void insertRegistroLicencia() {
         cargarDatos();
         nombre = txtNombre.getText().toString().toUpperCase();
         apaterno = txtApaterno.getText().toString().toUpperCase();
@@ -461,7 +444,7 @@ public class LicenciaConducir extends AppCompatActivity {
                 }
             }
         });
-    }
+    }*/
 
     public void Random() {
         Random random = new Random();

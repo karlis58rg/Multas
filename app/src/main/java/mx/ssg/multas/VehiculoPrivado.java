@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -30,7 +32,41 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class VehiculoPrivado extends Fragment {
-    ImageView btnList;
+    ImageView btnList,btnBuscarPlaca;
+    TextView txtNoPlacaTC;
+    EditText txtSerieVp,txtDistribuidorVp,txtMarcaVp,txtVersionVp,txtClaseVp,txtTipoVp,txtModeloVp,txtCombustibleVp,txtCilindrosVp,txtColorVp;
+    EditText txtUsoVp,txtProcedenciaVp,txtPuertasVp,txtNMotorVp,txtRepuveVp,txtFolioSCTVp,txtOficinaExpVp,txtPropietarioVp,txtRFCVp,txtDireccionVp;
+    EditText txtColoniaVp,txtLocalidadVp,txtUltimaRevalidacionVp,txtEstatusVp,txtTelefonoVp,txtFechaVp,txtUrlVp,txtEmailVp,txtObservacionesVp;
+    String noPlacaTC,respuestaJson;
+    String SerieVp;
+    String DistribuidorVp;
+    String MarcaVp;
+    String VersionVp;
+    String ClaseVp;
+    String TipoVp;
+    String ModeloVp;
+    String CombustibleVp;
+    String CilindrosVp;
+    String ColorVp;
+    String UsoVp;
+    String ProcedenciaVp;
+    String PuertasVp;
+    String NMotorVp;
+    String RepuveVp;
+    String FolioSCTVp;
+    String OficinaExpVp;
+    String PropietarioVp;
+    String RFCVp;
+    String DireccionVp;
+    String ColoniaVp;
+    String LocalidadVp;
+    String UltimaRevalidacionVp;
+    String EstatusVp;
+    String TelefonoVp;
+    String FechaVp;
+    String UrlVp;
+    String EmailVp;
+    String ObservacionesVp;
 
     public VehiculoPrivado() {
         // Required empty public constructor
@@ -43,12 +79,50 @@ public class VehiculoPrivado extends Fragment {
         View root = inflater.inflate(R.layout.fragment_vehiculo_privado, container, false);
         /************************************** ACCIONES DE LA VISTA **************************************/
         btnList = root.findViewById(R.id.btnListVP);
+        txtNoPlacaTC = root.findViewById(R.id.txtPlacaVp);
+        btnBuscarPlaca = root.findViewById(R.id.imgBuscarNoPlacaVp);
 
+        txtSerieVp = root.findViewById(R.id.txtSerieVp);
+        txtDistribuidorVp = root.findViewById(R.id.txtDistribuidorVp);
+        txtMarcaVp = root.findViewById(R.id.txtMarcaVp);
+        txtVersionVp = root.findViewById(R.id.txtVersionVp);
+        txtClaseVp = root.findViewById(R.id.txtClaseVp);
+        txtTipoVp = root.findViewById(R.id.txtTipoVp);
+        txtModeloVp = root.findViewById(R.id.txtModeloVp);
+        txtCombustibleVp = root.findViewById(R.id.txtCombustibleVp);
+        txtCilindrosVp = root.findViewById(R.id.txtCilindrosVp);
+        txtColorVp = root.findViewById(R.id.txtColorVp);
+        txtUsoVp = root.findViewById(R.id.txtUsoVp);
+        txtProcedenciaVp = root.findViewById(R.id.txtProcedenciaVp);
+        txtPuertasVp = root.findViewById(R.id.txtPuertasVp);
+        txtNMotorVp = root.findViewById(R.id.txtNMotorVp);
+        txtRepuveVp = root.findViewById(R.id.txtRepuveVp);
+        txtFolioSCTVp = root.findViewById(R.id.txtFolioSCTVp);
+        txtOficinaExpVp = root.findViewById(R.id.txtOficinaExpVp);
+        txtPropietarioVp = root.findViewById(R.id.txtPropietarioVp);
+        txtRFCVp = root.findViewById(R.id.txtRFCVp);
+        txtDireccionVp = root.findViewById(R.id.txtDireccionVp);
+        txtColoniaVp = root.findViewById(R.id.txtColoniaVp);
+        txtLocalidadVp = root.findViewById(R.id.txtLocalidadVp);
+        txtUltimaRevalidacionVp = root.findViewById(R.id.txtUltimaRevalidacionVp);
+        txtEstatusVp = root.findViewById(R.id.txtEstatusVp);
+        txtTelefonoVp = root.findViewById(R.id.txtTelefonoVp);
+        txtFechaVp = root.findViewById(R.id.txtFechaVp);
+        txtUrlVp = root.findViewById(R.id.txtUrlVp);
+        txtEmailVp = root.findViewById(R.id.txtEmailVp);
+        txtObservacionesVp = root.findViewById(R.id.txtObservacionesVp);
 
-
-
-
-
+        btnBuscarPlaca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(txtNoPlacaTC.getText().toString().isEmpty()){
+                    Toast.makeText(getContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
+                    getPlacaParticularBJ();
+                }
+            }
+        });
         return  root;
     }
 
@@ -56,11 +130,11 @@ public class VehiculoPrivado extends Fragment {
     }
 
     /******************GET A BAJA CALIFORNIA***********************************/
-    public void getPlacaBJ() {
+    public void getPlacaParticularBJ() {
         noPlacaTC = txtNoPlacaTC.getText().toString();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/TarjetaCirculacion?noPlacaToken="+noPlacaTC)
+                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?noPlacaToken="+noPlacaTC)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -81,7 +155,7 @@ public class VehiculoPrivado extends Fragment {
                             try {
                                 respuestaJson = "null";
                                 if(myResponse.equals(respuestaJson)){
-                                    Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
                                 }else{
                                     JSONObject jObj = null;
                                     String resObj = myResponse;
@@ -89,70 +163,61 @@ public class VehiculoPrivado extends Fragment {
                                     resObj = resObj.replace("]"," ");
 
                                     jObj = new JSONObject(""+resObj+"");
-                                    noSerieTC = jObj.getString("serie");
-                                    marca = jObj.getString("marca");
-                                    subMarca = jObj.getString("version");
-                                    modelo = jObj.getString("modelo");
-                                    noMotorTC = jObj.getString("numMotor");
-                                    nombreTC = jObj.getString("propietario");
-                                    txtNoSerieTC.setText(noSerieTC);
-                                    txtMarca.setText(marca);
-                                    txtSubmarca.setText(subMarca);
-                                    txtModelo.setText(modelo);
-                                    txtNoMotorTC.setText(noMotorTC);
-                                    txtNombreTC.setText(nombreTC);
+                                    SerieVp = jObj.getString("serie");
+                                    DistribuidorVp = jObj.getString("distribuidor");
+                                    MarcaVp = jObj.getString("marca");
+                                    VersionVp = jObj.getString("version");
+                                    ClaseVp = jObj.getString("clase");
+                                    TipoVp = jObj.getString("tipo");
+                                    ModeloVp = jObj.getString("modelo");
+                                    CombustibleVp = jObj.getString("combustible");
+                                    CilindrosVp = jObj.getString("cilindros");
+                                    ColorVp = jObj.getString("color");
+                                    UsoVp = jObj.getString("uso");
+                                    ProcedenciaVp = jObj.getString("procedencia");
+                                    PuertasVp = jObj.getString("puertas");
+                                    NMotorVp = jObj.getString("numMotor");
+                                    RepuveVp = jObj.getString("repuve");
+                                    FolioSCTVp = jObj.getString("folioSct");
+                                    OficinaExpVp = jObj.getString("oficinaExpedidora");
+                                    PropietarioVp = jObj.getString("propietario");
+                                    RFCVp = jObj.getString("rfc");
+                                    DireccionVp = jObj.getString("direccion");
+                                    ColoniaVp = jObj.getString("colonia");
+                                    LocalidadVp = jObj.getString("localidad");
+                                    UltimaRevalidacionVp = jObj.getString("ultimaRevalidacion");
+                                    EstatusVp = jObj.getString("estatus");
+                                    TelefonoVp = jObj.getString("telefono");
+                                    FechaVp = jObj.getString("fechaVencimiento");
 
-                                   /* noTarjetaTC = jObj.getString("NoTarjeta");
-                                    noSerieTC = jObj.getString("NoSerie");
-                                    nombreTC = jObj.getString("NombreP");
-                                    aPaternoTC = jObj.getString("ApellidoPP");
-                                    aMaternoTC = jObj.getString("ApellidoMP");
-                                    nombreR = jObj.getString("NombreU");
-                                    aPaternoR = jObj.getString("ApellidoPU");
-                                    aMaternoR = jObj.getString("ApellidoMU");
-                                    noMotorTC = jObj.getString("NoMotor");
-                                    marca = jObj.getString("Marca");
-                                    subMarca = jObj.getString("SubMarca");
-                                    modelo = jObj.getString("Modelo");
-                                    color = jObj.getString("Color");
-                                    municipio = jObj.getString("Municipio");
-                                    localidad = jObj.getString("Localidad");
-                                    resOrigen = jObj.getString("Origen");
-                                    resServicio = jObj.getString("TipoServicio");
-                                    resObservaciones = jObj.getString("Observaciones");
-                                    txtNoTarjetaTC.setText(noTarjetaTC);
-                                    txtApaternoTC.setText(aPaternoTC);
-                                    txtAmaternoTC.setText(aMaternoTC);
-                                    txtNombreR.setText(nombreR);
-                                    txtApaternoR.setText(aPaternoR);
-                                    txtAmaternoR.setText(aMaternoR);
-                                    txtColor.setText(color);
-                                    txtMunicipio.setText(municipio);
-                                    txtLocalidad.setText(localidad);
-                                    origen = "Nacional";
-                                    servicio = "Privado";
-                                    observaciones = "null";
-                                    if(resOrigen.equals(origen)){
-                                        rNacional = (RadioButton)radioNacionalidadTC.getChildAt(0);
-                                        rNacional.setChecked(true);
-                                    }else {
-                                        rExtranjero = (RadioButton)radioNacionalidadTC.getChildAt(1);
-                                        rExtranjero.setChecked(true);
-                                    }*/
-                                    /*if(resServicio.equals(servicio)){
-                                        spinTipoServicio.setSelection(((ArrayAdapter<String>)spinTipoServicio.getAdapter()).getPosition("Privado"));
-                                    }else{
-                                        spinTipoServicio.setSelection(((ArrayAdapter<String>)spinTipoServicio.getAdapter()).getPosition("Publico"));
-                                    }*/
-                                    /*if(resObservaciones.equals(observaciones)){
-                                        txtObservaciones.setText("SIN OBSERVACIONES");
-                                    }else{
-                                        resObservaciones = jObj.getString("Observaciones");
-                                        txtObservaciones.setText(resObservaciones);
-                                    }*/
+                                    txtSerieVp.setText(SerieVp);
+                                    txtDistribuidorVp.setText(DistribuidorVp);
+                                    txtMarcaVp.setText(MarcaVp);
+                                    txtVersionVp.setText(VersionVp);
+                                    txtClaseVp.setText(ClaseVp);
+                                    txtTipoVp.setText(TipoVp);
+                                    txtModeloVp.setText(ModeloVp);
+                                    txtCombustibleVp.setText(CombustibleVp);
+                                    txtCilindrosVp.setText(CilindrosVp);
+                                    txtColorVp.setText(ColorVp);
+                                    txtUsoVp.setText(UsoVp);
+                                    txtProcedenciaVp.setText(ProcedenciaVp);
+                                    txtPuertasVp.setText(PuertasVp);
+                                    txtNMotorVp.setText(NMotorVp);
+                                    txtRepuveVp.setText(RepuveVp);
+                                    txtFolioSCTVp.setText(FolioSCTVp);
+                                    txtOficinaExpVp.setText(OficinaExpVp);
+                                    txtPropietarioVp.setText(PropietarioVp);
+                                    txtRFCVp.setText(RFCVp);
+                                    txtDireccionVp.setText(DireccionVp);
+                                    txtColoniaVp.setText(ColoniaVp);
+                                    txtLocalidadVp.setText(LocalidadVp);
+                                    txtUltimaRevalidacionVp.setText(UltimaRevalidacionVp);
+                                    txtEstatusVp.setText(EstatusVp);
+                                    txtTelefonoVp.setText(TelefonoVp);
+                                    txtFechaVp.setText(FechaVp);
                                     Log.i("HERE", ""+jObj);
                                 }
-
                             }catch(JSONException e){
                                 e.printStackTrace();
                             }
