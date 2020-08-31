@@ -38,35 +38,9 @@ public class VehiculoPrivado extends Fragment {
     EditText txtUsoVp,txtProcedenciaVp,txtPuertasVp,txtNMotorVp,txtRepuveVp,txtFolioSCTVp,txtOficinaExpVp,txtPropietarioVp,txtRFCVp,txtDireccionVp;
     EditText txtColoniaVp,txtLocalidadVp,txtUltimaRevalidacionVp,txtEstatusVp,txtTelefonoVp,txtFechaVp,txtUrlVp,txtEmailVp,txtObservacionesVp;
     String noPlacaTC,respuestaJson;
-    String SerieVp;
-    String DistribuidorVp;
-    String MarcaVp;
-    String VersionVp;
-    String ClaseVp;
-    String TipoVp;
-    String ModeloVp;
-    String CombustibleVp;
-    String CilindrosVp;
-    String ColorVp;
-    String UsoVp;
-    String ProcedenciaVp;
-    String PuertasVp;
-    String NMotorVp;
-    String RepuveVp;
-    String FolioSCTVp;
-    String OficinaExpVp;
-    String PropietarioVp;
-    String RFCVp;
-    String DireccionVp;
-    String ColoniaVp;
-    String LocalidadVp;
-    String UltimaRevalidacionVp;
-    String EstatusVp;
-    String TelefonoVp;
-    String FechaVp;
-    String UrlVp;
-    String EmailVp;
-    String ObservacionesVp;
+    String SerieVp,DistribuidorVp,MarcaVp,VersionVp,ClaseVp,TipoVp,ModeloVp,CombustibleVp,CilindrosVp,ColorVp;
+    String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
+    String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
 
     public VehiculoPrivado() {
         // Required empty public constructor

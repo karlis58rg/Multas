@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import mx.ssg.multas.SqLite.DataHelper;
 
 public class TarjetasConductor extends AppCompatActivity {
-    private ImageView btnList,btnLicenciaC,btnTarjetaC;
+    private ImageView btnList,btnBuscarSerie,btnBuscarPlacaParticularAndPublico;
     private LinearLayout btnReglamentoTC,btnLugaresPagoTC,btnContactoTC,btnTabuladorTC;
 
     @Override
@@ -23,8 +23,8 @@ public class TarjetasConductor extends AppCompatActivity {
         setContentView(R.layout.activity_tarjetas_conductor);
         ListTabulador();
 
-        btnLicenciaC = findViewById(R.id.imgLicenciaConducir);
-        btnTarjetaC = findViewById(R.id.imgTarjetaCirculacon);
+        btnBuscarSerie = findViewById(R.id.imgBuscarNoSerieCIV);
+        btnBuscarPlacaParticularAndPublico = findViewById(R.id.imgBuscarNoPlacaCIV);
 
         btnList = findViewById(R.id.btnListTarjetas);
         btnReglamentoTC = findViewById(R.id.lyInicio);
@@ -41,7 +41,7 @@ public class TarjetasConductor extends AppCompatActivity {
             }
         });
 
-        btnLicenciaC.setOnClickListener(new View.OnClickListener() {
+        btnBuscarSerie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, LicenciaConducir.class);
@@ -50,7 +50,7 @@ public class TarjetasConductor extends AppCompatActivity {
             }
         });
 
-        btnTarjetaC.setOnClickListener(new View.OnClickListener() {
+        btnBuscarPlacaParticularAndPublico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, TarjetaCirculacion.class);
