@@ -44,8 +44,8 @@ import okhttp3.Response;
 public class LicenciaConducir extends AppCompatActivity {
     ImageView btnMenuL,btnQrL,btnBuscarL,btnTarjetaL,btnInfraccionL;
     Button btnGuardarLC;
-    EditText txtLicencia,txtNombre,txtApaterno,txtAmaterno,txtTipocalle,txtCalleLC,txtNumeroCalle,txtColoniaLC,txtCP,txtMunicipioLC,txtEstadoLC;
-    EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
+    public static EditText txtLicencia,txtNombre,txtApaterno,txtAmaterno,txtTipocalle,txtCalleLC,txtNumeroCalle,txtColoniaLC,txtCP,txtMunicipioLC,txtEstadoLC;
+    public static EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
     String Tag = "LICENCIA CONDUCIR";
     String licencia,nombre,apaterno,amaterno,Tipocalle,CalleLC,NumeroCalle,ColoniaLC,CP,MunicipioLC,EstadoLC,FechaExLC,respuestaJson;
@@ -106,32 +106,44 @@ public class LicenciaConducir extends AppCompatActivity {
         btnContactos = findViewById(R.id.lyContactoL);
         btnTabulador = findViewById(R.id.lyFavoritosL);
 
-       /* date=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                txtValidez.setText(+dayOfMonth+ "-" +month+ "-" +year);
+        Intent i = getIntent();
+        apaterno = i.getStringExtra("apaterno");
+        amaterno = i.getStringExtra("amaterno");
+        nombre = i.getStringExtra("nombre");
+        Tipocalle = i.getStringExtra("Tipocalle");
+        CalleLC = i.getStringExtra("CalleLC");
+        NumeroCalle = i.getStringExtra("NumeroCalle");
+        ColoniaLC = i.getStringExtra("ColoniaLC");
+        CP = i.getStringExtra("CP");
+        MunicipioLC = i.getStringExtra("MunicipioLC");
+        EstadoLC = i.getStringExtra("EstadoLC");
+        FechaExLC = i.getStringExtra("FechaExLC");
+        FechaVenLC = i.getStringExtra("FechaVenLC");
+        TipoVigLC = i.getStringExtra("TipoVigLC");
+        TipoLic = i.getStringExtra("TipoLic");
+        RFCLC = i.getStringExtra("RFCLC");
+        HomoLC = i.getStringExtra("HomoLC");
+        GrupoSanguiLC = i.getStringExtra("GrupoSanguiLC");
+        RequeriemientosEspLC = i.getStringExtra("RequeriemientosEspLC");
 
-
-            }};*/
-
-
-        /*txtValidez.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-
-                DatePickerDialog dialog=new DatePickerDialog(LicenciaConducir.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        date,day,month,year);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
-
-            }
-        });*/
+        txtApaterno.setText(apaterno);
+        txtAmaterno.setText(amaterno);
+        txtNombre.setText(nombre);
+        txtTipocalle.setText(Tipocalle);
+        txtCalleLC.setText(CalleLC);
+        txtNumeroCalle.setText(NumeroCalle);
+        txtColoniaLC.setText(ColoniaLC);
+        txtCP.setText(CP);
+        txtMunicipioLC.setText(MunicipioLC);
+        txtEstadoLC.setText(EstadoLC);
+        txtFechaExLC.setText(FechaExLC);
+        txtFechaVenLC.setText(FechaVenLC);
+        txtTipoVigLC.setText(TipoVigLC);
+        txtTipoLic.setText(TipoLic);
+        txtRFCLC.setText(RFCLC);
+        txtHomoLC.setText(HomoLC);
+        txtGrupoSanguiLC.setText(GrupoSanguiLC);
+        txtRequeriemientosEspLC.setText(RequeriemientosEspLC);
 
         btnMenuL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,34 +234,8 @@ public class LicenciaConducir extends AppCompatActivity {
                 finish();
             }
         });
-
-       /* radioNacionalidad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioMexicanaL) {
-                    resNacionalidad = "Mexicana";
-                } else if (checkedId == R.id.radioExtrangeraL) {
-                    resNacionalidad = "Extranjera";
-                }
-            }
-        });*/
     }
 
-  /*  @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if(result != null)
-            if(result.getContents() != null){
-                lblResultScaner.setText(result.getContents());
-                ResultQR = lblResultScaner.toString();
-                Toast.makeText(this, "QR CON INFORMACIÓN", Toast.LENGTH_SHORT).show();
-                Log.i(Tag, ResultQR);
-            }else{
-                ResultQR = "QR SIN INFORMACIÓN";
-                Toast.makeText(this, ResultQR, Toast.LENGTH_SHORT).show();
-            }
-    }*/
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {
@@ -341,25 +327,6 @@ public class LicenciaConducir extends AppCompatActivity {
                                     HomoLC = jObj.getString("homo");
                                     GrupoSanguiLC = jObj.getString("grupoSanguineo");
                                     RequeriemientosEspLC = jObj.getString("requerimientosEspeciales");
-
-                                    txtApaterno.setText(apaterno);
-                                    txtAmaterno.setText(amaterno);
-                                    txtNombre.setText(nombre);
-                                    txtTipocalle.setText(Tipocalle);
-                                    txtCalleLC.setText(CalleLC);
-                                    txtNumeroCalle.setText(NumeroCalle);
-                                    txtColoniaLC.setText(ColoniaLC);
-                                    txtCP.setText(CP);
-                                    txtMunicipioLC.setText(MunicipioLC);
-                                    txtEstadoLC.setText(EstadoLC);
-                                    txtFechaExLC.setText(FechaExLC);
-                                    txtFechaVenLC.setText(FechaVenLC);
-                                    txtTipoVigLC.setText(TipoVigLC);
-                                    txtTipoLic.setText(TipoLic);
-                                    txtRFCLC.setText(RFCLC);
-                                    txtHomoLC.setText(HomoLC);
-                                    txtGrupoSanguiLC.setText(GrupoSanguiLC);
-                                    txtRequeriemientosEspLC.setText(RequeriemientosEspLC);
                                     Log.i("HERE", ""+jObj);
                                 }
 

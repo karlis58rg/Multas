@@ -1,9 +1,2048 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".TransportePrivado">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:orientation="vertical">
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.88">
+            <LinearLayout
+                android:id="@+id/content"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:orientation="vertical">
+                <!--HEADER-->
+                <LinearLayout
+                    android:id="@+id/lySearch"
+                    android:background="@color/backgroundLogoCafe"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.08"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <!--IMAGEN1 HEADER-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.15"
+                        android:gravity="center"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/btnListVP"
+                            android:layout_width="35dp"
+                            android:src="@drawable/icn_list_white"
+                            android:layout_height="35dp" />
+                    </LinearLayout>
+                    <!--IMAGEN2 HEADER-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/imgLogoContacto"
+                            android:layout_width="match_parent"
+                            android:src="@drawable/icn_logo_login"
+                            android:layout_height="48dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <!--TITLE-->
+                <LinearLayout
+                    android:id="@+id/contentWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.15"
+                    android:orientation="horizontal">
+                    <!--IMAGEN 1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/ingTarjetaCirculacion"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:layout_weight="0.12">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/ic_tarjeta"/>
+                    </LinearLayout>
+                    <!--TITULO IMAGEN1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/lblVehiculoP"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.25">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.4"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:textColorHint="@color/hint"
+                            android:text="Vehículo Particular"/>
+                    </LinearLayout>
+                    <!--IMAGEN2 TITLE-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.12">
+                        <ImageView
+                            android:id="@+id/imgQrTarjetaCirculacion"
+                            android:layout_width="60dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/icn_qr"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.79">
+
+                    <!--LINEAR BODY-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <!--REGISTRO 1-->
+                        <LinearLayout
+                            android:id="@+id/contentBuscar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 1-->
+                            <LinearLayout
+                                android:id="@+id/lblPlacaVp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Placa:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 1-->
+                            <LinearLayout
+                                android:id="@+id/lyPlacaVp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtPlacaVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="8"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 1-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <ImageView
+                                    android:id="@+id/imgBuscarNoPlacaVp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icn_buscar" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 2-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosSerie"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/lblSerie"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Serie:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/lySerie"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtSerieVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="25" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 2-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar2L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1"></LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 3-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosDistribuidor"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lblDistribuidor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Distribuidor:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/lyDistribuidor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtDistribuidorVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="25" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 3-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar3L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 4-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosMarca"
+                            android:layout_width="match_parent"
+                            android:layout_height="59dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/lblMarca"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text=" Marca:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/lyMarca"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtMarcaVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:gravity="center"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="25" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 4-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar4L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 5-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosVersion"
+                            android:layout_width="match_parent"
+                            android:layout_height="57dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 5-->
+                            <LinearLayout
+                                android:id="@+id/lblVersión"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Versión:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 5-->
+                            <LinearLayout
+                                android:id="@+id/lyVersion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtVersionVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 5-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar5L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1"></LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 6-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosClase"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 6-->
+                            <LinearLayout
+                                android:id="@+id/lblClase"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Clase:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 6-->
+                            <LinearLayout
+                                android:id="@+id/lyClase"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtClaseVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 6-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar6L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 7-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosTipove"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 7-->
+                            <LinearLayout
+                                android:id="@+id/lblTipove"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Tipo:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 7-->
+                            <LinearLayout
+                                android:id="@+id/lyTipove"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtTipoVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 7-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar7L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 8-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosModelo"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 8-->
+                            <LinearLayout
+                                android:id="@+id/lblModelo"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Modelo:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 8-->
+                            <LinearLayout
+                                android:id="@+id/lyModelo"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtModeloVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 8-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar8L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 9-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosCombustible"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 9-->
+                            <LinearLayout
+                                android:id="@+id/lblCombustible"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Combustible:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 9-->
+                            <LinearLayout
+                                android:id="@+id/lyCombustible"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtCombustibleVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 9-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar9L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 10-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosCilindros"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 10-->
+                            <LinearLayout
+                                android:id="@+id/lblCilindros"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Cilindros:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 10-->
+                            <LinearLayout
+                                android:id="@+id/lyCilindros"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtCilindrosVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 10-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar10L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 11-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 11-->
+                            <LinearLayout
+                                android:id="@+id/lblColor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Color:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 11-->
+                            <LinearLayout
+                                android:id="@+id/lyColor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtColorVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 11-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar11L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 12-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosUso"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 12-->
+                            <LinearLayout
+                                android:id="@+id/lblUso"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Uso:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 12-->
+                            <LinearLayout
+                                android:id="@+id/lyUso"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtUsoVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 12-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar12L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 13-->
+
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosProcedencia"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 13-->
+                            <LinearLayout
+                                android:id="@+id/lblProcedencia"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Procedencia:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 13-->
+                            <LinearLayout
+                                android:id="@+id/lyProcedencia"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtProcedenciaVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 13-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar13L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 14-->
+
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosPuertas"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 14-->
+                            <LinearLayout
+                                android:id="@+id/lblPuertas"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Puertas:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 14-->
+                            <LinearLayout
+                                android:id="@+id/lyPuertas"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtPuertasVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 14-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar14L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 15-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosNMotor"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 15-->
+                            <LinearLayout
+                                android:id="@+id/lblNMotor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="N° Motor:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 15-->
+                            <LinearLayout
+                                android:id="@+id/lyNMotor"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtNMotorVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 15-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar15L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 16-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosRepuve"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 16-->
+                            <LinearLayout
+                                android:id="@+id/lblRepuve"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Repuve:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 16-->
+                            <LinearLayout
+                                android:id="@+id/lyRepuve"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtRepuveVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 16-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar16L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 17-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosFolioSCT"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 17-->
+                            <LinearLayout
+                                android:id="@+id/lblFolioSCT"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="FolioSCT:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 17-->
+                            <LinearLayout
+                                android:id="@+id/lyFolioSCT"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtFolioSCTVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 17-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar17L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 18-->
+
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosOficinaExpedidora"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 18-->
+                            <LinearLayout
+                                android:id="@+id/lblOficinaExp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Oficina Expedidora:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 18-->
+                            <LinearLayout
+                                android:id="@+id/lyOficinaExp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtOficinaExpVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 18-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar18L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 19-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosPropietario"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 19-->
+                            <LinearLayout
+                                android:id="@+id/lblPropietario"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Propietario:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 19-->
+                            <LinearLayout
+                                android:id="@+id/lyPropietario"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtPropietarioVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 19-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar19L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 20-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosRFCv"
+                            android:layout_width="match_parent"
+                            android:layout_height="61dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 20-->
+                            <LinearLayout
+                                android:id="@+id/lblRFCv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:gravity="center|left"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="RFC:"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--TXT REGISTRO 20-->
+                            <LinearLayout
+                                android:id="@+id/lyRFCv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.20"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                                <EditText
+                                    android:id="@+id/txtRFCVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:focusable="false"
+                                    android:gravity="center"
+                                    android:inputType="date" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 20-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar20L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--REGISTRO 21-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosDireccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 21-->
+                            <LinearLayout
+                                android:id="@+id/lblDireccion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Dirección:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 21-->
+                            <LinearLayout
+                                android:id="@+id/lyDireccion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtDireccionVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 21-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar21L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 22-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosColoniav"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 22-->
+                            <LinearLayout
+                                android:id="@+id/lblColoniav"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Colonia:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 22-->
+                            <LinearLayout
+                                android:id="@+id/lyColoniav"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtColoniaVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 22-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar22L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 23-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosLocalidad"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 23-->
+                            <LinearLayout
+                                android:id="@+id/lblLocalidadv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Localidad:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 23-->
+                            <LinearLayout
+                                android:id="@+id/lyLocalidadv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtLocalidadVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 23-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar23L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 24-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosUltimaRevalidacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 24-->
+                            <LinearLayout
+                                android:id="@+id/lblUltimaRevalidacion"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Ultima Revalidación:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 24-->
+                            <LinearLayout
+                                android:id="@+id/lyUltimaRevalidación"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtUltimaRevalidacionVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 24-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar24L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <!--REGISTRO 25-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosEstatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 25-->
+                            <LinearLayout
+                                android:id="@+id/lblEstatus"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Estatus:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 25-->
+                            <LinearLayout
+                                android:id="@+id/lyEstatus"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtEstatusVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 25-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar25L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 26-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosTelefono"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 26-->
+                            <LinearLayout
+                                android:id="@+id/lblTelefono"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Telefono:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 26-->
+                            <LinearLayout
+                                android:id="@+id/lyTelefono"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtTelefonoVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 26-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar26L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 27-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosFechaVV"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 27-->
+                            <LinearLayout
+                                android:id="@+id/lblFechaVV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Fecha Vencimiento:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 27-->
+                            <LinearLayout
+                                android:id="@+id/lyFechaVV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtFechaVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 27-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar27L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 28-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosUrl"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 28-->
+                            <LinearLayout
+                                android:id="@+id/lblUrl"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Url:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 28-->
+                            <LinearLayout
+                                android:id="@+id/lyUrl"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtUrlVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 28-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar28L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!--REGISTRO 29-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosEmailv"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 29-->
+                            <LinearLayout
+                                android:id="@+id/lblEmailv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Email:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 29-->
+                            <LinearLayout
+                                android:id="@+id/lyEmailv"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtEmailVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 29-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar29L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <!--REGISTRO 30-->
+
+                        <LinearLayout
+                            android:id="@+id/contentDatosObservacionesV"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--TITULO REGISTRO 30-->
+                            <LinearLayout
+                                android:id="@+id/lblObservacionesV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/hint"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Observaciones:"/>
+                            </LinearLayout>
+                            <!--TXT REGISTRO 30-->
+                            <LinearLayout
+                                android:id="@+id/lyObcervacionesV"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <EditText
+                                    android:id="@+id/txtObservacionesVp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="100"
+                                    android:gravity="top|left"/>
+                            </LinearLayout>
+                            <!--IMG BUSCAR REGISTRO 30-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscar30L"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <!--REGISTRO -->
+                        <LinearLayout
+                            android:id="@+id/contentGuardarDatosL"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <!--IMAGEN 1 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:layout_weight="0.12">
+                                <ImageView
+                                    android:id="@+id/imgLicenciaConducir"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/ic_tarjeta"/>
+                            </LinearLayout>
+                            <!--BOTTON FOODER-->
+                            <LinearLayout
+                                android:id="@+id/lblGuardarL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:layout_weight="0.25">
+                                <Button
+                                    android:id="@+id/imgGuardarVp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.6"
+                                    android:text="Guardar"
+                                    android:textColor="@color/background"
+                                    android:background="@drawable/boton_redondo"/>
+                            </LinearLayout>
+                            <!--IMAGEN2 FOODER-->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:layout_weight="0.12">
+                                <ImageView
+                                    android:id="@+id/imgTerminalLC"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/icn_terminal"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--LINK QR-->
+                        <LinearLayout
+                            android:id="@+id/contentDatosQRL"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+                            <!--QR-->
+                            <LinearLayout
+                                android:id="@+id/lblQRL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center|left"
+                                android:weightSum="1"
+                                android:layout_weight="0.02"></LinearLayout>
+                            <!--LBL QR-->
+                            <LinearLayout
+                                android:id="@+id/lyQrL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:weightSum="1"
+                                android:background="@drawable/drawable_pressed"
+                                android:layout_weight="0.20">
+                                <TextView
+                                    android:id="@+id/linkQrL"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Qr"
+                                    android:textColor="@color/hint" />
+                            </LinearLayout>
+                            <!--IMG BUSCAR QR-->
+                            <LinearLayout
+                                android:id="@+id/imgBuscarQrL"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.03"
+                                android:background="@drawable/drawable_pressed"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </ScrollView>
+            </LinearLayout>
+
+
+
+        </androidx.drawerlayout.widget.DrawerLayout>
+        <LinearLayout
+            android:id="@+id/menu"
+            android:background="@color/backgroundBotones"
+            android:layout_width="match_parent"
+            android:layout_weight="0.12"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/lyInicio1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_reglamento"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/white"
+                    android:text="Reglamento"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyCategoria1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_lugares_pago"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Lugres de pago"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyContacto1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_telefono"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Contactos"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lyFavoritos1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:weightSum="1"
+                android:background="@drawable/drawable_pressed"
+                android:layout_weight="0.25">
+
+                <ImageView
+                    android:layout_width="31.3dp"
+                    android:layout_height="29.3dp"
+                    android:src="@drawable/icn_tabulador"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:textSize="12dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:text="Tabulador"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_miadres"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/background"
+        android:visibility="gone"/>
+
+</FrameLayout>

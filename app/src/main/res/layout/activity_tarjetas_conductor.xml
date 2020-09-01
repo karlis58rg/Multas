@@ -52,180 +52,173 @@
                         android:layout_height="48dp"/>
                 </LinearLayout>
             </LinearLayout>
-
-            <!--TITLE-->
+            <!--BODY TO DRAW -->
             <LinearLayout
-                android:id="@+id/contentConsultaInfo"
+                android:id="@+id/contentWebView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.15"
-                android:orientation="horizontal">
-                <!--IMAGEN 1 TITLE-->
+                android:layout_weight="0.92"
+                android:orientation="vertical">
+                <!-- LICENCIA DE CONDUCIR -->
+                <ImageView
+                    android:id="@+id/imglICenciaCIV"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    app:srcCompat="@drawable/ic_licencia" />
+                <!-- CAMPOS A BUSCAR DE LICENCIA DE CONDUCIR -->
                 <LinearLayout
-                    android:id="@+id/ingTarjetaCirculacion"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:layout_weight="0.12">
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/ic_tarjeta"/>
-                </LinearLayout>
-                <!--TITULO IMAGEN1 TITLE-->
-                <LinearLayout
-                    android:id="@+id/lblConsultaV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.25">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.4"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
+                    android:id="@+id/contentConsultaIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <!--DATOS DENTRO DEL CUADRO -->
+                    <LinearLayout
+                        android:id="@+id/lblNoSerieCIV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|right"
+                        android:weightSum="1"
+                        android:layout_weight="0.1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No Serie:"
+                            android:textColor="@color/hint" />
+                    </LinearLayout>
+                    <!--TITULO IMAGEN1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/lblConsultaIV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
                         android:gravity="center"
-                        android:textColorHint="@color/hint"
-                        android:text="Consulta de información\n vehicular"/>
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.15">
+                        <EditText
+                            android:id="@+id/txtNoSerieCIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:inputType="number" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lblBuscaCIV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|left"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.03">
+                        <ImageView
+                            android:id="@+id/imgBuscarNoSerieCIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icn_buscar" />
+                    </LinearLayout>
+                    <!--IMAGEN3 TITLE-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|left"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.05">
+                        <ImageView
+                            android:id="@+id/imgBuscarNoSerieXqrCIV"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icn_qr" />
+                    </LinearLayout>
                 </LinearLayout>
-                <!--IMAGEN2 TITLE-->
+
+                <!--TARJETA DE CIRCULACIÓN -->
+                <ImageView
+                    android:id="@+id/imgTarjetaCirculacon"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    app:srcCompat="@drawable/ic_tarjeta" />
+                <!-- CAMPOS A BUSCAR DE TARJETA DE CIRCULACIÓN-->
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.12">
-                    <ImageView
-                        android:id="@+id/imgQrTarjetaCirculacion"
-                        android:layout_width="60dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/icn_qr"/>
+                    android:id="@+id/contentConsultaIVTC"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <!--DATOS DENTRO DEL CUADRO -->
+                    <LinearLayout
+                        android:id="@+id/lblPlacaCIV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|right"
+                        android:weightSum="1"
+                        android:layout_weight="0.1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Placa:"
+                            android:textColor="@color/hint" />
+                    </LinearLayout>
+                    <!--TITULO IMAGEN1 TITLE-->
+                    <LinearLayout
+                        android:id="@+id/lblConsultaIVTC"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.15">
+                        <EditText
+                            android:id="@+id/txtPlacaCIV"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:inputType="number" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lblBuscaCIVTC"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|left"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.03">
+                        <ImageView
+                            android:id="@+id/imgBuscarPlacaCIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icn_buscar" />
+                    </LinearLayout>
+                    <!--IMAGEN3 TITLE-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center|left"
+                        android:weightSum="1"
+                        android:background="@drawable/drawable_pressed"
+                        android:layout_weight="0.05">
+                        <ImageView
+                            android:id="@+id/imgBuscarPlacaXqrCIV"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icn_qr" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/contentConsultaIV"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.15"
-                android:orientation="horizontal">
-                <!--IMAGEN 1 TITLE-->
-                <LinearLayout
-                    android:id="@+id/lblNoSerieCIV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:layout_weight="0.12">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="No Serie:"
-                        android:textColor="@color/hint" />
-                </LinearLayout>
-                <!--TITULO IMAGEN1 TITLE-->
-                <LinearLayout
-                    android:id="@+id/lblConsultaIV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.25">
-                    <EditText
-                        android:id="@+id/txtNoSerieCIV"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:imeOptions="actionNext"
-                        android:inputType="number" />
-                </LinearLayout>
-                <!--IMAGEN2 TITLE-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.12">
-                    <ImageView
-                        android:id="@+id/imgBuscarNoSerieCIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icn_buscar" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/contentConsultaInfoPlaca"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.15"
-                android:orientation="horizontal">
-                <!--IMAGEN 1 TITLE-->
-                <LinearLayout
-                    android:id="@+id/lblPlacaCIV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:layout_weight="0.12">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Placa:"
-                        android:textColor="@color/hint" />
-                </LinearLayout>
-                <!--TITULO IMAGEN1 TITLE-->
-                <LinearLayout
-                    android:id="@+id/lblConsultaPlacaCIV"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.25">
-                    <EditText
-                        android:id="@+id/txtPlacaCIV"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:imeOptions="actionNext"
-                        android:inputType="number" />
-                </LinearLayout>
-                <!--IMAGEN2 TITLE-->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:background="@drawable/drawable_pressed"
-                    android:layout_weight="0.12">
-                    <ImageView
-                        android:id="@+id/imgBuscarNoPlacaCIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icn_buscar" />
-                </LinearLayout>
-            </LinearLayout>
-
-
         </LinearLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 

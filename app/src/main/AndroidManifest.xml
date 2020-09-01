@@ -20,17 +20,16 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".TransportePrivado"></activity>
         <activity android:name=".TransportePublico" />
-        <activity android:name=".Vehiculos">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".Mapa" />
         <activity android:name=".NetPay" />
         <activity android:name=".Infraccion" />
-        <activity android:name=".Splash" />
+        <activity android:name=".Splash">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Tabulador"
             android:screenOrientation="portrait" />

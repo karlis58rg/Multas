@@ -1,21 +1,44 @@
 package mx.ssg.multas;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import mx.ssg.multas.SqLite.DataHelper;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class TarjetasConductor extends AppCompatActivity {
-    private ImageView btnList,btnBuscarSerie,btnBuscarPlacaParticularAndPublico;
-    private LinearLayout btnReglamentoTC,btnLugaresPagoTC,btnContactoTC,btnTabuladorTC;
+    ImageView btnList,btnBuscarSerie,btnBuscarPlaca,qrSerie,qrPlaca;
+    EditText txtNoSerie,txtPlaca;
+    LinearLayout btnReglamentoTC,btnLugaresPagoTC,btnContactoTC,btnTabuladorTC;
+    String resultadoQrSerie,serie,resultadoQrPlaca,respuestaJson;
+    String jObjResp;
+    String nombre,apaterno,amaterno,Tipocalle,CalleLC,NumeroCalle,ColoniaLC,CP,MunicipioLC,EstadoLC,FechaExLC;
+    String FechaVenLC,TipoVigLC,TipoLic,RFCLC,HomoLC,GrupoSanguiLC,RequeriemientosEspLC,EmailLC,ObservacionesLC;
+    String Tag = "TarjetasConductor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +46,13 @@ public class TarjetasConductor extends AppCompatActivity {
         setContentView(R.layout.activity_tarjetas_conductor);
         ListTabulador();
 
+        txtNoSerie = findViewById(R.id.txtNoSerieCIV);
+        txtPlaca = findViewById(R.id.txtPlacaCIV);
         btnBuscarSerie = findViewById(R.id.imgBuscarNoSerieCIV);
-        btnBuscarPlacaParticularAndPublico = findViewById(R.id.imgBuscarNoPlacaCIV);
+        btnBuscarPlaca = findViewById(R.id.imgBuscarPlacaCIV);
+        qrSerie = findViewById(R.id.imgBuscarNoSerieXqrCIV);
+        qrPlaca =findViewById(R.id.imgBuscarPlacaXqrCIV);
+
 
         btnList = findViewById(R.id.btnListTarjetas);
         btnReglamentoTC = findViewById(R.id.lyInicio);
@@ -44,19 +72,37 @@ public class TarjetasConductor extends AppCompatActivity {
         btnBuscarSerie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TarjetasConductor.this, LicenciaConducir.class);
-                startActivity(i);
-                finish();
+                if(txtNoSerie.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(),"EL No. DE SERIE ES NECESARIO",Toast.LENGTH_SHORT).show();
+                }else{
+                    serie = txtNoSerie.getText().toString();
+                    Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
+                    getUsuaioLicencia();
+                }
+
             }
         });
 
-        btnBuscarPlacaParticularAndPublico.setOnClickListener(new View.OnClickListener() {
+        btnBuscarPlaca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TarjetasConductor.this, TarjetaCirculacion.class);
                 startActivity(i);
                 finish();
+            }
+        });
 
+        qrSerie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new IntentIntegrator(TarjetasConductor.this).initiateScan();
+            }
+        });
+
+        qrPlaca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new IntentIntegrator(TarjetasConductor.this).initiateScan();
             }
         });
 
@@ -98,6 +144,120 @@ public class TarjetasConductor extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result != null)
+            if(result.getContents() != null){
+                resultadoQrSerie = result.getContents();
+                Log.i(Tag, resultadoQrSerie);
+                String[] textElements = resultadoQrSerie.split(",");
+                serie = textElements[4];
+                Log.i(Tag, serie);
+                txtNoSerie.setText(serie);
+            }else{
+                resultadoQrSerie = "QR SIN INFORMACIÓN";
+                Toast.makeText(this, resultadoQrSerie, Toast.LENGTH_SHORT).show();
+            }
+    }
+
+    /********************************************************************************************************************/
+    /******************GET A LA BD***********************************/
+    public void getUsuaioLicencia() {
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?noLicencia="+serie)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+                    TarjetasConductor.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                respuestaJson = "null";
+                                if(myResponse.equals(respuestaJson)){
+                                    Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    JSONObject jObj = null;
+                                    String resObj = myResponse;
+                                    resObj = resObj.replace("["," ");
+                                    resObj = resObj.replace("]"," ");
+
+                                    jObj = new JSONObject(""+resObj+"");
+                                    jObjResp = " ";
+                                    if(jObj.equals(jObjResp)){
+                                        Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        apaterno = jObj.getString("paterno");
+                                        amaterno = jObj.getString("materno");
+                                        nombre = jObj.getString("nombre");
+                                        Tipocalle = jObj.getString("tipoCalle");
+                                        CalleLC = jObj.getString("calle");
+                                        NumeroCalle = jObj.getString("numero");
+                                        ColoniaLC = jObj.getString("colonia");
+                                        CP = jObj.getString("cp");
+                                        MunicipioLC = jObj.getString("municipio");
+                                        EstadoLC = jObj.getString("estado");
+                                        FechaExLC = jObj.getString("fechaExp");
+                                        FechaVenLC = jObj.getString("fechaVenc");
+                                        TipoVigLC = jObj.getString("tipoVigencia");
+                                        TipoLic = jObj.getString("tipoLic");
+                                        RFCLC = jObj.getString("rfc");
+                                        HomoLC = jObj.getString("homo");
+                                        GrupoSanguiLC = jObj.getString("grupoSanguineo");
+                                        RequeriemientosEspLC = jObj.getString("requerimientosEspeciales");
+
+                                        Intent i = new Intent(TarjetasConductor.this,LicenciaConducir.class);
+                                        i.putExtra("apaterno",apaterno);
+                                        i.putExtra("amaterno",amaterno);
+                                        i.putExtra("nombre",nombre);
+                                        i.putExtra("Tipocalle",Tipocalle);
+                                        i.putExtra("CalleLC",CalleLC);
+                                        i.putExtra("NumeroCalle",NumeroCalle);
+                                        i.putExtra("ColoniaLC",ColoniaLC);
+                                        i.putExtra("CP",CP);
+                                        i.putExtra("MunicipioLC",MunicipioLC);
+                                        i.putExtra("EstadoLC",EstadoLC);
+                                        i.putExtra("FechaExLC",FechaExLC);
+                                        i.putExtra("FechaVenLC",FechaVenLC);
+                                        i.putExtra("TipoVigLC",TipoVigLC);
+                                        i.putExtra("TipoLic",TipoLic);
+                                        i.putExtra("RFCLC",RFCLC);
+                                        i.putExtra("HomoLC",HomoLC);
+                                        i.putExtra("GrupoSanguiLC",GrupoSanguiLC);
+                                        i.putExtra("RequeriemientosEspLC",RequeriemientosEspLC);
+                                        startActivity(i);
+                                        finish();
+                                    }
+
+                                    Log.i("HERE", ""+jObj);
+                                }
+
+                            }catch(JSONException e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+            }
+
+        });
+    }
+
 
     private void ListTabulador() {
         DataHelper dataHelper = new DataHelper(this);
