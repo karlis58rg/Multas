@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".TransporteGeneral">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -90,7 +94,7 @@
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColorHint="@color/hint"
-                        android:text="Vehículo General"/>
+                        android:text="Vehículo"/>
                 </LinearLayout>
                 <!--IMAGEN2 TITLE-->
                 <LinearLayout
@@ -170,12 +174,6 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             android:weightSum="1">
-
-                            <ImageView
-                                android:id="@+id/imgBuscarNoPlaca"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icn_buscar" />
                         </LinearLayout>
                     </LinearLayout>
                     <!--REGISTRO 2-->
@@ -1308,7 +1306,7 @@
                             android:weightSum="1">
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <!--REGISTRO -->
                     <LinearLayout
                         android:id="@+id/contentGuardarDatosL"
@@ -1528,17 +1526,16 @@
         </LinearLayout>
 
 
-  </LinearLayout>
- <TextView
-android:id="@+id/tv_miadres"
-android:layout_width="match_parent"
-android:layout_height="65dp"
-android:layout_alignParentStart="true"
-android:layout_alignParentEnd="true"
-android:layout_alignParentLeft="true"
-android:layout_alignParentRight="true"
-android:background="@color/background"
-android:visibility="gone"/>
-
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_miadres"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/background"
+        android:visibility="gone"/>
 
 </LinearLayout>

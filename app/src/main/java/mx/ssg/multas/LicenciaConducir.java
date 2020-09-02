@@ -73,7 +73,7 @@ public class LicenciaConducir extends AppCompatActivity {
         btnQrL = findViewById(R.id.imgQrLicenciaConducir);
         btnBuscarL = findViewById(R.id.imgBuscarLicencia);
         btnTarjetaL = findViewById(R.id.imgTCLicencia);
-        btnGuardarLC = findViewById(R.id.imgGuardarL);
+        btnGuardarLC = findViewById(R.id.imgGuardarLC);
         btnInfraccionL = findViewById(R.id.imgTerminalLC);
 
         txtLicencia = findViewById(R.id.txtNoLicencia);
@@ -107,6 +107,7 @@ public class LicenciaConducir extends AppCompatActivity {
         btnTabulador = findViewById(R.id.lyFavoritosL);
 
         Intent i = getIntent();
+        licencia = i.getStringExtra("serie");
         apaterno = i.getStringExtra("apaterno");
         amaterno = i.getStringExtra("amaterno");
         nombre = i.getStringExtra("nombre");
@@ -170,7 +171,6 @@ public class LicenciaConducir extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     getUsuaioL();
                 }
-
             }
         });
 
@@ -186,12 +186,8 @@ public class LicenciaConducir extends AppCompatActivity {
         btnGuardarLC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtObservacionesLC.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    getExistRegistro();
-                }
+                Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
+                insertRegistroLicencia();
             }
         });
         btnInfraccionL.setOnClickListener(new View.OnClickListener() {
@@ -265,7 +261,7 @@ public class LicenciaConducir extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }else{
-                        //insertRegistroLicencia();
+                        insertRegistroLicencia();
                     }
                     Log.i("HERE", resp);
                 }
@@ -329,7 +325,6 @@ public class LicenciaConducir extends AppCompatActivity {
                                     RequeriemientosEspLC = jObj.getString("requerimientosEspeciales");
                                     Log.i("HERE", ""+jObj);
                                 }
-
                             }catch(JSONException e){
                                 e.printStackTrace();
                             }
@@ -343,38 +338,37 @@ public class LicenciaConducir extends AppCompatActivity {
     }
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
-   /* private void insertRegistroLicencia() {
+    private void insertRegistroLicencia() {
         cargarDatos();
-        nombre = txtNombre.getText().toString().toUpperCase();
-        apaterno = txtApaterno.getText().toString().toUpperCase();
-        amaterno = txtAmaterno.getText().toString().toUpperCase();
-        fNacimiento = txtFNacimiento.getText().toString();
-        direccion = txtDireccion.getText().toString().toUpperCase();
-        sangre = txtSangre.getText().toString();
-        validez = txtValidez.getText().toString();
-        licencia = txtLicencia.getText().toString();
-        clase = txtClase.getText().toString().toUpperCase();
-        observaciones = txtObservaciones.getText().toString().toUpperCase();
-
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("IdInfraccion", cargarInfoRandom)
-                .add("NombreL", nombre)
+                .add("NoLicencia", licencia )
                 .add("ApellidoPL", apaterno)
                 .add("ApellidoML", amaterno)
-                .add("FechaNacimiento", fNacimiento)
-                .add("Direccion", direccion)
-                .add("Nacionalidad", resNacionalidad)
-                .add("Sangre", sangre)
-                .add("Validez", validez)
-                .add("NoLicencia", licencia)
-                .add("Clase", clase)
-                .add("Observaciones", observaciones)
-                //.add("Qr", ResultQR)
+                .add("NombreL", nombre)
+                .add("TipoCalle", Tipocalle)
+                .add("Calle", CalleLC)
+                .add("Numero", NumeroCalle)
+                .add("Colonia", ColoniaLC)
+                .add("Cp", CP)
+                .add("Municipio", MunicipioLC)
+                .add("Estado", EstadoLC)
+                .add("FechaExpedicion",FechaExLC)
+                .add("FechaVencimiento", FechaVenLC)
+                .add("TipoVigencia", TipoVigLC)
+                .add("TipoLecencia", TipoLic)
+                .add("Rfc", RFCLC)
+                .add("Homo", HomoLC)
+                .add("GrupoSanguineo", GrupoSanguiLC)
+                .add("RequerimientosEspeciales", RequeriemientosEspLC)
+                .add("Email", "Demo")
+                .add("Observaciones", "Demo")
+                .add("Url", "Demo")
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir/")
+                .url("http://187.174.102.142/AppTransito/api/Licencia/")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -394,24 +388,12 @@ public class LicenciaConducir extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(getApplicationContext(), "REGISTRO ENVIADO CON EXITO", Toast.LENGTH_SHORT).show();
-                            txtNombre.setText("");
-                            txtApaterno.setText("");
-                            txtAmaterno.setText("");
-                            txtFNacimiento.setText("");
-                            txtDireccion.setText("");
-                            radioNacionalidad.clearCheck();
-                            txtSangre.setText("");
-                            txtValidez.setText("");
-                            txtLicencia.setText("");
-                            txtClase.setText("");
-                            txtObservaciones.setText("");
-                            lblResultScaner.setText("");
                         }
                     });
                 }
             }
         });
-    }*/
+    }
 
     public void Random() {
         Random random = new Random();

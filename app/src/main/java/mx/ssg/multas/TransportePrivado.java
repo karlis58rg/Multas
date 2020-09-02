@@ -119,6 +119,7 @@ public class TransportePrivado extends AppCompatActivity {
                                     resObj = resObj.replace("]"," ");
 
                                     jObj = new JSONObject(""+resObj+"");
+
                                     SerieVp = jObj.getString("serie");
                                     DistribuidorVp = jObj.getString("distribuidor");
                                     MarcaVp = jObj.getString("marca");
