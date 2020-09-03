@@ -27,7 +27,7 @@ import mx.ssg.multas.utils.KeyboardUtils;
 public class ViewPDFController extends BaseController implements View.OnClickListener {
 
     final String viewerPath = "file:///android_asset/pdfjs/web/viewer.html?file=";
-    final String pdfPath = "file:///android_asset/reglamento_la_paz.pdf";
+    final String pdfPath = "file:///android_asset/reglamento_tijuana.pdf";
     final String zoomPageWidth = "#zoom=page-width";
 
     public static WebView mWebView;

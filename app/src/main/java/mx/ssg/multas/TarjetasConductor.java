@@ -22,6 +22,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import mx.ssg.multas.SqLite.DataHelper;
 import okhttp3.Call;
@@ -47,7 +49,7 @@ public class TarjetasConductor extends AppCompatActivity {
     String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
     String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
     String Tag = "TarjetasConductor";
-    int bandera = 0;
+    int countResultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,6 @@ public class TarjetasConductor extends AppCompatActivity {
         btnBuscarPlaca = findViewById(R.id.imgBuscarPlacaCIV);
         qrSerie = findViewById(R.id.imgBuscarNoSerieXqrCIV);
         qrPlaca =findViewById(R.id.imgBuscarPlacaXqrCIV);
-
 
         btnList = findViewById(R.id.btnListTarjetas);
         btnReglamentoTC = findViewById(R.id.lyInicio);
@@ -84,7 +85,6 @@ public class TarjetasConductor extends AppCompatActivity {
                 if(txtNoSerie.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"EL No. DE SERIE ES NECESARIO",Toast.LENGTH_SHORT).show();
                 }else{
-                    bandera = 1;
                     serie = txtNoSerie.getText().toString();
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
                     getUsuaioLicencia();
@@ -98,7 +98,6 @@ public class TarjetasConductor extends AppCompatActivity {
                 if(txtPlaca.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"EL No. DE SERIE ES NECESARIO",Toast.LENGTH_SHORT).show();
                 }else{
-                    bandera = 2;
                     placa = txtPlaca.getText().toString();
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
                     getUsuaioPlaca();
@@ -165,12 +164,20 @@ public class TarjetasConductor extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(result != null)
             if(result.getContents() != null){
-                    resultadoQrSerie = result.getContents();
-                    Log.i(Tag, resultadoQrSerie);
-                    String[] textElements = resultadoQrSerie.split(",");
-                    serie = textElements[4];
-                    Log.i(Tag, serie);
-                    txtNoSerie.setText(serie);
+                    resultadoQr = result.getContents();
+                    Log.i(Tag, resultadoQr);
+                    String[] textElements = resultadoQr.split(",");
+                    List<String> qrlList = Arrays.asList(textElements);
+                    countResultado = qrlList.size();
+                    if(countResultado == 8){
+                        serie = textElements[4];
+                        Log.i(Tag, serie);
+                        txtNoSerie.setText(serie);
+                    }else{
+                        placa = textElements[8];
+                        Log.i(Tag, placa);
+                        txtPlaca.setText(placa);
+                    }
             }
     }
 
@@ -211,6 +218,9 @@ public class TarjetasConductor extends AppCompatActivity {
                                     jObjResp = " ";
                                     if(jObj.equals(jObjResp)){
                                         Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(TarjetasConductor.this,LicenciaConducir.class);
+                                        startActivity(i);
+                                        finish();
                                     }else{
                                         apaterno = jObj.getString("paterno");
                                         amaterno = jObj.getString("materno");

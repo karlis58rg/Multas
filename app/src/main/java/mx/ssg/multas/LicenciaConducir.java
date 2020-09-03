@@ -42,7 +42,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LicenciaConducir extends AppCompatActivity {
-    ImageView btnMenuL,btnQrL,btnBuscarL,btnTarjetaL,btnInfraccionL;
+    ImageView btnMenuL,btnTarjetaL,btnInfraccionL;
     Button btnGuardarLC;
     public static EditText txtLicencia,txtNombre,txtApaterno,txtAmaterno,txtTipocalle,txtCalleLC,txtNumeroCalle,txtColoniaLC,txtCP,txtMunicipioLC,txtEstadoLC;
     public static EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
@@ -70,7 +70,6 @@ public class LicenciaConducir extends AppCompatActivity {
         }
 
         btnMenuL = findViewById(R.id.btnListL);
-        btnBuscarL = findViewById(R.id.imgBuscarLicencia);
         btnTarjetaL = findViewById(R.id.imgTCLicencia);
         btnGuardarLC = findViewById(R.id.imgGuardarLC);
         btnInfraccionL = findViewById(R.id.imgTerminalLC);
@@ -151,25 +150,6 @@ public class LicenciaConducir extends AppCompatActivity {
                 Intent i = new Intent(LicenciaConducir.this,Reglamento.class);
                 startActivity(i);
                 finish();
-            }
-        });
-
-        btnQrL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new IntentIntegrator(LicenciaConducir.this).initiateScan();
-            }
-        });
-
-        btnBuscarL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(txtLicencia.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"EL NÚMERO DE LICENCIA ES NECESARIO",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    getUsuaioL();
-                }
             }
         });
 

@@ -125,8 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:orientation="horizontal">
                         <!--TITULO REGISTRO 1-->
                         <LinearLayout
                             android:id="@+id/lblNoLicencia"
@@ -170,12 +169,6 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             android:weightSum="1">
-
-                            <ImageView
-                                android:id="@+id/imgBuscarLicencia"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icn_buscar" />
                         </LinearLayout>
                     </LinearLayout>
                     <!--REGISTRO 2-->
@@ -1235,9 +1228,7 @@
                                 android:id="@+id/txtEmailLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 20-->
                         <LinearLayout
