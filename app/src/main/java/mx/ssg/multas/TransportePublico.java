@@ -2,12 +2,14 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -29,6 +31,7 @@ public class TransportePublico extends AppCompatActivity {
     String Placa,Economico,EstatusActual,FechaExTp,FechaVigTp,Propietario,TenedorUsuario,OficinaExpedTp,DelegacionTp,NRepuveTp,MarcaTp,LineaTp,VersionTp,ClaseTipoTp,ColorTp,ModeloTp;
     String PuertasTp,CilindrosTp,CombustibleTp,CapacidadTp,AgrupacionTp,NSerieTp,RegistroPropTp,RutaSitioTp,PermisionarioTp,NMotorTp,UsoTp,ObservacionesTp;
     String FolioSCTTp,UrlTp,EmailTp,NotasTp,respuestaJson;
+    private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
 
     ImageView btnBuscarPlaca;
 
@@ -70,7 +73,46 @@ public class TransportePublico extends AppCompatActivity {
         txtEmailTp = findViewById(R.id.txtEmailTp);
         txtNotasTp = findViewById(R.id.txtNotasTp);
 
+        btnReglamento = findViewById(R.id.lyInicio2);
+        btnLugaresPago = findViewById(R.id.lyCategoria2);
+        btnContactos = findViewById(R.id.lyContacto2);
+        btnTabulador = findViewById(R.id.lyFavoritos2);
+
         btnBuscarPlaca = findViewById(R.id.imgBuscarNoPlacaTP);
+
+
+        btnReglamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePublico.this, ViewPDFController.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btnLugaresPago.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePublico.this, LugaresDePago.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btnContactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePublico.this, Contactos.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        btnTabulador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePublico.this, Tabulador.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btnBuscarPlaca.setOnClickListener(new View.OnClickListener() {
             @Override

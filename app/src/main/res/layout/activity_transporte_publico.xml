@@ -111,11 +111,7 @@
                         android:weightSum="1"
                         android:background="@drawable/drawable_pressed"
                         android:layout_weight="0.12">
-                        <ImageView
-                            android:id="@+id/imgQrTarjetaCirculacion"
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/icn_qr"/>
+
                     </LinearLayout>
                 </LinearLayout>
                 <ScrollView
@@ -2046,7 +2042,7 @@
             android:weightSum="1">
 
             <LinearLayout
-                android:id="@+id/lyInicio1"
+                android:id="@+id/lyInicio2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -2071,7 +2067,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lyCategoria1"
+                android:id="@+id/lyCategoria2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -2092,12 +2088,12 @@
                     android:textSize="12dp"
                     android:gravity="center"
                     android:textColor="@android:color/white"
-                    android:text="Lugres de pago"/>
+                    android:text="Lugares de pago"/>
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lyContacto1"
+                android:id="@+id/lyContacto2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -2121,7 +2117,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lyFavoritos1"
+                android:id="@+id/lyFavoritos2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"

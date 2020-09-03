@@ -70,7 +70,6 @@ public class LicenciaConducir extends AppCompatActivity {
         }
 
         btnMenuL = findViewById(R.id.btnListL);
-        btnQrL = findViewById(R.id.imgQrLicenciaConducir);
         btnBuscarL = findViewById(R.id.imgBuscarLicencia);
         btnTarjetaL = findViewById(R.id.imgTCLicencia);
         btnGuardarLC = findViewById(R.id.imgGuardarLC);
