@@ -160,7 +160,9 @@
                                 android:layout_height="50dp"
                                 android:gravity="center"
                                 android:imeOptions="actionNext"
-                                android:inputType="number" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="8" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 1-->
                         <LinearLayout
@@ -211,10 +213,11 @@
                                 android:id="@+id/txtNSerieVG"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"
                                 android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:maxLength="25" />
+                                android:imeOptions="actionNext" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 2-->
                         <LinearLayout
@@ -266,10 +269,11 @@
                                 android:id="@+id/txtMarcaVG"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"
                                 android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:maxLength="25" />
+                                android:imeOptions="actionNext"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 3-->
                         <LinearLayout
@@ -323,10 +327,11 @@
                                 android:id="@+id/txtVersionVG"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:digits="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ >"
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"
                                 android:gravity="center"
-                                android:imeOptions="actionNext"
-                                android:maxLength="25" />
+                                android:imeOptions="actionNext" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 4-->
                         <LinearLayout
@@ -382,7 +387,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 5-->
                         <LinearLayout
@@ -436,7 +443,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"  />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 6-->
                         <LinearLayout
@@ -492,7 +501,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 7-->
                         <LinearLayout
@@ -548,7 +559,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"  />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 8-->
                         <LinearLayout
@@ -605,7 +618,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 9-->
                         <LinearLayout
@@ -662,7 +677,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"  />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 10-->
                         <LinearLayout
@@ -718,7 +735,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 11-->
                         <LinearLayout
@@ -775,7 +794,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"  />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 12-->
                         <LinearLayout
@@ -833,7 +854,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"  />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 13-->
                         <LinearLayout
@@ -891,7 +914,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 14-->
                         <LinearLayout
@@ -948,7 +973,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 15-->
                         <LinearLayout
@@ -1005,7 +1032,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 16-->
                         <LinearLayout
@@ -1062,7 +1091,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 17-->
                         <LinearLayout
@@ -1120,7 +1151,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 18-->
                         <LinearLayout
@@ -1177,7 +1210,8 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 19-->
                         <LinearLayout
@@ -1233,7 +1267,9 @@
                                 android:layout_height="50dp"
                                 android:focusable="false"
                                 android:gravity="center"
-                                android:inputType="date" />
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                android:inputType="textCapCharacters"
+                                android:maxLength="35" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 20-->
                         <LinearLayout
@@ -1286,8 +1322,9 @@
                                 android:id="@+id/txtEmailVG"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:inputType="textMultiLine"
-                                android:maxLength="100"
+                                android:inputType="textEmailAddress"
+                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}"
+                                android:maxLength="35"
                                 android:gravity="top|left"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 21-->
