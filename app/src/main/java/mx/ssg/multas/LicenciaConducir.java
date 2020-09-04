@@ -48,8 +48,8 @@ public class LicenciaConducir extends AppCompatActivity {
     public static EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
     String Tag = "LICENCIA CONDUCIR";
-    String licencia,nombre,apaterno,amaterno,Tipocalle,CalleLC,NumeroCalle,ColoniaLC,CP,MunicipioLC,EstadoLC,FechaExLC,respuestaJson;
-    String FechaVenLC,TipoVigLC,TipoLic,RFCLC,HomoLC,GrupoSanguiLC,RequeriemientosEspLC,EmailLC,ObservacionesLC;
+    String licencia = " " ,nombre = " " ,apaterno = " " ,amaterno = " " ,Tipocalle = " " ,CalleLC = " " ,NumeroCalle = " " ,ColoniaLC = " " ,CP,MunicipioLC = " " ,EstadoLC = " " ,FechaExLC = " " ,respuestaJson;
+    String FechaVenLC = " " ,TipoVigLC = " " ,TipoLic = " " ,RFCLC = " " ,HomoLC = " " ,GrupoSanguiLC = " " ,RequeriemientosEspLC = " " ,EmailLC = " " ,ObservacionesLC = " ";
     private  DatePickerDialog.OnDateSetListener dateSetListener,date;
     Calendar calendar = Calendar.getInstance();
     SharedPreferences share;
@@ -125,6 +125,7 @@ public class LicenciaConducir extends AppCompatActivity {
         GrupoSanguiLC = i.getStringExtra("GrupoSanguiLC");
         RequeriemientosEspLC = i.getStringExtra("RequeriemientosEspLC");
 
+        txtLicencia.setText(licencia);
         txtApaterno.setText(apaterno);
         txtAmaterno.setText(amaterno);
         txtNombre.setText(nombre);
@@ -166,7 +167,7 @@ public class LicenciaConducir extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                insertRegistroLicencia();
+                getExistRegistro();
             }
         });
         btnInfraccionL.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +218,7 @@ public class LicenciaConducir extends AppCompatActivity {
         cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarInfoRandom)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -249,76 +250,31 @@ public class LicenciaConducir extends AppCompatActivity {
         });
     }
 
-    /********************************************************************************************************************/
-    /******************GET A LA BD***********************************/
-    public void getUsuaioL() {
-        licencia = txtLicencia.getText().toString();
-        final OkHttpClient client = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?noLicencia="+licencia)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Looper.prepare();
-                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
-                Looper.loop();
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final String myResponse = response.body().string();
-                    LicenciaConducir.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                respuestaJson = "null";
-                                if(myResponse.equals(respuestaJson)){
-                                    Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
-                                }else{
-                                    JSONObject jObj = null;
-                                    String resObj = myResponse;
-                                    resObj = resObj.replace("["," ");
-                                    resObj = resObj.replace("]"," ");
-
-                                    jObj = new JSONObject(""+resObj+"");
-                                    apaterno = jObj.getString("paterno");
-                                    amaterno = jObj.getString("materno");
-                                    nombre = jObj.getString("nombre");
-                                    Tipocalle = jObj.getString("tipoCalle");
-                                    CalleLC = jObj.getString("calle");
-                                    NumeroCalle = jObj.getString("numero");
-                                    ColoniaLC = jObj.getString("colonia");
-                                    CP = jObj.getString("cp");
-                                    MunicipioLC = jObj.getString("municipio");
-                                    EstadoLC = jObj.getString("estado");
-                                    FechaExLC = jObj.getString("fechaExp");
-                                    FechaVenLC = jObj.getString("fechaVenc");
-                                    TipoVigLC = jObj.getString("tipoVigencia");
-                                    TipoLic = jObj.getString("tipoLic");
-                                    RFCLC = jObj.getString("rfc");
-                                    HomoLC = jObj.getString("homo");
-                                    GrupoSanguiLC = jObj.getString("grupoSanguineo");
-                                    RequeriemientosEspLC = jObj.getString("requerimientosEspeciales");
-                                    Log.i("HERE", ""+jObj);
-                                }
-                            }catch(JSONException e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                    });
-                }
-            }
-
-        });
-    }
-
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistroLicencia() {
         cargarDatos();
+        licencia = txtLicencia.getText().toString();
+        apaterno = txtApaterno.getText().toString();
+        amaterno = txtAmaterno.getText().toString();
+        nombre = txtNombre.getText().toString();
+        Tipocalle = txtTipocalle.getText().toString();
+        CalleLC = txtCalleLC.getText().toString();
+        NumeroCalle = txtNumeroCalle.getText().toString();
+        ColoniaLC = txtColoniaLC.getText().toString();
+        CP = txtCP.getText().toString();
+        MunicipioLC = txtMunicipioLC.getText().toString();
+        EstadoLC = txtEstadoLC.getText().toString();
+        FechaExLC = txtFechaExLC.getText().toString();
+        FechaVenLC = txtFechaVenLC.getText().toString();
+        TipoVigLC = txtTipoVigLC.getText().toString();
+        TipoLic = txtTipoLic.getText().toString();
+        RFCLC = txtRFCLC.getText().toString();
+        HomoLC = txtHomoLC.getText().toString();
+        GrupoSanguiLC = txtGrupoSanguiLC.getText().toString();
+        RequeriemientosEspLC = txtRequeriemientosEspLC.getText().toString();
+        EmailLC = txtEmailLC.getText().toString();
+        ObservacionesLC = txtObservacionesLC.getText().toString();
+
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("IdInfraccion", cargarInfoRandom)
@@ -341,9 +297,8 @@ public class LicenciaConducir extends AppCompatActivity {
                 .add("Homo", HomoLC)
                 .add("GrupoSanguineo", GrupoSanguiLC)
                 .add("RequerimientosEspeciales", RequeriemientosEspLC)
-                .add("Email", "Demo")
-                .add("Observaciones", "Demo")
-                .add("Url", "Demo")
+                .add("Email", EmailLC)
+                .add("Observaciones", ObservacionesLC)
                 .build();
 
         Request request = new Request.Builder()
@@ -367,6 +322,27 @@ public class LicenciaConducir extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(getApplicationContext(), "REGISTRO ENVIADO CON EXITO", Toast.LENGTH_SHORT).show();
+                            txtLicencia.setText("");
+                            txtApaterno.setText("");
+                            txtAmaterno.setText("");
+                            txtNombre.setText("");
+                            txtTipocalle.setText("");
+                            txtCalleLC.setText("");
+                            txtNumeroCalle.setText("");
+                            txtColoniaLC.setText("");
+                            txtCP.setText("");
+                            txtMunicipioLC.setText("");
+                            txtEstadoLC.setText("");
+                            txtFechaExLC.setText("");
+                            txtFechaVenLC.setText("");
+                            txtTipoVigLC.setText("");
+                            txtTipoLic.setText("");
+                            txtRFCLC.setText("");
+                            txtHomoLC.setText("");
+                            txtGrupoSanguiLC.setText("");
+                            txtRequeriemientosEspLC.setText("");
+                            txtEmailLC.setText("");
+                            txtObservacionesLC.setText("");
                         }
                     });
                 }
@@ -376,14 +352,15 @@ public class LicenciaConducir extends AppCompatActivity {
 
     public void Random() {
         Random random = new Random();
-        numberRandom = random.nextInt(9000) * 99;
+        numberRandom = random.nextInt(90000) * 99;
         codigoVerifi = String.valueOf(numberRandom);
+        System.out.println(codigoVerifi);
         guardarRandom();
     }
     private void guardarRandom() {
         share = getSharedPreferences("main", MODE_PRIVATE);
         editor = share.edit();
-        editor.putString("RANDOM", codigoVerifi);
+        editor.putString("RANDOM","20"+codigoVerifi);
         editor.commit();
     }
     public void cargarDatos() {

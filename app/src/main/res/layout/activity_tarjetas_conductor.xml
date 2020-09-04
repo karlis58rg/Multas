@@ -65,8 +65,8 @@
                     android:layout_width="150dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="100dp"
-                    app:srcCompat="@drawable/ic_licencia" />
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/ic_licenciaconducir" />
                 <!-- CAMPOS A BUSCAR DE LICENCIA DE CONDUCIR -->
                 <LinearLayout
                     android:id="@+id/contentConsultaIV"
@@ -99,13 +99,14 @@
                         android:weightSum="1"
                         android:background="@drawable/drawable_pressed"
                         android:layout_weight="0.15">
+
                         <EditText
                             android:id="@+id/txtNoSerieCIV"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="textCapCharacters" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lblBuscaCIV"
@@ -118,8 +119,8 @@
                         android:layout_weight="0.03">
                         <ImageView
                             android:id="@+id/imgBuscarNoSerieCIV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/icn_buscar" />
                     </LinearLayout>
                     <!--IMAGEN3 TITLE-->
@@ -146,7 +147,7 @@
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="60dp"
-                    app:srcCompat="@drawable/ic_tarjeta" />
+                    app:srcCompat="@drawable/ic_tarjetacirculacion" />
                 <!-- CAMPOS A BUSCAR DE TARJETA DE CIRCULACIÓN-->
                 <LinearLayout
                     android:id="@+id/contentConsultaIVTC"
@@ -179,13 +180,14 @@
                         android:weightSum="1"
                         android:background="@drawable/drawable_pressed"
                         android:layout_weight="0.15">
+
                         <EditText
                             android:id="@+id/txtPlacaCIV"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="textCapCharacters" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lblBuscaCIVTC"
@@ -198,8 +200,8 @@
                         android:layout_weight="0.03">
                         <ImageView
                             android:id="@+id/imgBuscarPlacaCIV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/icn_buscar" />
                     </LinearLayout>
                     <!--IMAGEN3 TITLE-->

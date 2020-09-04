@@ -96,7 +96,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     String cargarInfoUsuario, cargarInfoRandom;
     String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson,resGarantia, resGarantiaPlaca, resGarantiaVehiculo, resGarantiaTCirculacion, resGarantiaLconducir;
     int monto = 0;
-    int salarioMinimo = 120;
+    int salarioMinimo = 86;
     int sumaSalarios = 0;
     int restaSalarios = 0;
     int varSalarios = 0;
