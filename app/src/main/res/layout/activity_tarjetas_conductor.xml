@@ -105,7 +105,8 @@
                             android:layout_height="50dp"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:inputType="textCapCharacters"
+                            android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lblBuscaCIV"

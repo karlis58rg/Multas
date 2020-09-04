@@ -165,7 +165,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="8" />
                             </LinearLayout>
@@ -224,7 +224,7 @@
                                     android:id="@+id/txtEconomico"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="center"
@@ -282,7 +282,7 @@
                                     android:layout_height="50dp"
                                     android:gravity="center"
                                     android:imeOptions="actionNext"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"  />
                             </LinearLayout>
@@ -338,8 +338,7 @@
                                     android:id="@+id/txtFechaExTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
-                                    android:inputType="textCapCharacters"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:maxLength="10"
                                     android:gravity="center"
                                     android:imeOptions="actionNext" />
@@ -396,10 +395,8 @@
                                     android:id="@+id/txtFechaVigTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
-                                    android:inputType="textCapCharacters"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:maxLength="10" />
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 5-->
@@ -452,9 +449,8 @@
                                     android:id="@+id/txtPropietario"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -509,9 +505,8 @@
                                     android:id="@+id/txtTenedorUsuario"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -566,9 +561,8 @@
                                     android:id="@+id/txtOficinaExpedTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -625,9 +619,8 @@
                                     android:id="@+id/txtDelegacionTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -683,9 +676,8 @@
                                     android:id="@+id/txtNRepuveTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -742,9 +734,8 @@
                                     android:id="@+id/txtMarcaTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -801,9 +792,8 @@
                                     android:id="@+id/txtLineaTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -859,9 +849,8 @@
                                     android:id="@+id/txtVersionTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -918,9 +907,8 @@
                                     android:id="@+id/txtClaseTipoTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -978,9 +966,8 @@
                                     android:id="@+id/txtColorTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -1038,9 +1025,8 @@
                                     android:id="@+id/txtModeloTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -1097,9 +1083,8 @@
                                     android:id="@+id/txtPuertasTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -1156,9 +1141,8 @@
                                     android:id="@+id/txtCilindrosTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -1215,9 +1199,8 @@
                                     android:id="@+id/txtCombustibleTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -1275,9 +1258,8 @@
                                     android:id="@+id/txtCapacidadTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"/>
                             </LinearLayout>
@@ -1334,9 +1316,8 @@
                                     android:id="@+id/txtAgrupacionTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -1392,9 +1373,8 @@
                                     android:id="@+id/txtNSerieTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
-                                    android:focusable="false"
                                     android:gravity="center"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35" />
                             </LinearLayout>
@@ -1449,7 +1429,7 @@
                                     android:id="@+id/txtRegistroPropTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1505,7 +1485,7 @@
                                     android:id="@+id/txtRutaSitioTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1561,7 +1541,7 @@
                                     android:id="@+id/txtPermisionarioTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1617,7 +1597,7 @@
                                     android:id="@+id/txtNMotorTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1674,7 +1654,7 @@
                                     android:id="@+id/txtUsoTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1730,7 +1710,7 @@
                                     android:id="@+id/txtObservacionesTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
                                     android:gravity="top|left"/>
                             </LinearLayout>
@@ -1785,7 +1765,7 @@
                                     android:id="@+id/txtFolioSCTTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1841,7 +1821,7 @@
                                     android:id="@+id/txtUrlTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
@@ -1898,7 +1878,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:inputType="textEmailAddress"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}"
                                     android:maxLength="35"
                                     android:gravity="top|left"/>
                             </LinearLayout>
@@ -1954,7 +1933,7 @@
                                     android:id="@+id/txtNotasTp"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789  !#$%'()*+,-./:;<=>?@[]^_`{|}~"
+                                    android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789"
                                     android:inputType="textCapCharacters"
                                     android:gravity="top|left"/>
                             </LinearLayout>

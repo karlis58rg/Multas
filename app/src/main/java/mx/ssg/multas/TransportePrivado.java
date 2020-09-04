@@ -2,11 +2,13 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,6 +38,7 @@ public class TransportePrivado extends AppCompatActivity {
     String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
     String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
+    private int dia,mes,año;
 
 
     @Override
@@ -125,6 +129,26 @@ public class TransportePrivado extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                     getPlacaParticularBJ();
                 }
+            }
+        });
+
+        ///////////// calendario para fechas en formulario///////////
+        txtFechaVp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia = c.get(Calendar.DAY_OF_MONTH);
+                mes = c.get(Calendar.MONTH);
+                año = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePrivado.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaVp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia, mes, año);
+                datePickerDialog.show();
             }
         });
     }

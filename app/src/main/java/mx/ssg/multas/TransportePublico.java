@@ -2,11 +2,13 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -32,7 +35,7 @@ public class TransportePublico extends AppCompatActivity {
     String PuertasTp,CilindrosTp,CombustibleTp,CapacidadTp,AgrupacionTp,NSerieTp,RegistroPropTp,RutaSitioTp,PermisionarioTp,NMotorTp,UsoTp,ObservacionesTp;
     String FolioSCTTp,UrlTp,EmailTp,NotasTp,respuestaJson;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
-
+    private int dia,mes,año,dia1,mes1,año1;
     ImageView btnBuscarPlaca;
 
     @Override
@@ -125,7 +128,47 @@ public class TransportePublico extends AppCompatActivity {
                 }
             }
         });
-    }
+
+
+        ///////////// calendario para fechas en formulario///////////
+        txtFechaExTp.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final Calendar c = Calendar.getInstance();
+            dia = c.get(Calendar.DAY_OF_MONTH);
+            mes = c.get(Calendar.MONTH);
+            año = c.get(Calendar.YEAR);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePublico.this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    txtFechaExTp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                }
+
+            }, dia, mes, año);
+            datePickerDialog.show();
+        }
+        });
+
+     txtFechaVigTp.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final Calendar c = Calendar.getInstance();
+            dia1 = c.get(Calendar.DAY_OF_MONTH);
+            mes1 = c.get(Calendar.MONTH);
+            año1 = c.get(Calendar.YEAR);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePublico.this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    txtFechaVigTp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                }
+
+            }, dia1, mes1, año1);
+            datePickerDialog.show();
+        }
+    });
+}
 
     /******************GET A BAJA CALIFORNIA***********************************/
     public void getPlacaTPBJ() {

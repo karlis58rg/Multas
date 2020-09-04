@@ -54,6 +54,7 @@ public class LicenciaConducir extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     SharedPreferences share;
     SharedPreferences.Editor editor;
+    private int dia,mes,año,dia1,mes1,año1;
     int numberRandom;
     public String codigoVerifi, cargarInfoRandom;
 
@@ -209,6 +210,47 @@ public class LicenciaConducir extends AppCompatActivity {
                 finish();
             }
         });
+
+
+   ///////////// calendario para fechas en formulario///////////
+        txtFechaExLC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia = c.get(Calendar.DAY_OF_MONTH);
+                mes = c.get(Calendar.MONTH);
+                año = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(LicenciaConducir.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaExLC.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia, mes, año);
+                datePickerDialog.show();
+            }
+        });
+
+        txtFechaVenLC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia1 = c.get(Calendar.DAY_OF_MONTH);
+                mes1 = c.get(Calendar.MONTH);
+                año1 = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(LicenciaConducir.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaVenLC.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia1, mes1, año1);
+                datePickerDialog.show();
+            }
+        });
+
     }
 
 
