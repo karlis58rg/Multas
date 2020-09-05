@@ -313,16 +313,14 @@ public class TarjetasConductor extends AppCompatActivity {
                                 }else{
                                     JSONObject jObj = null;
                                     String resObj = myResponse;
-                                    resObj = resObj.replace("["," ");
-                                    resObj = resObj.replace("]"," ");
-                                    //resObj = resObj.replace('"',' ');
-                                    //resObj = resObj.trim();
                                     System.out.println(resObj);
-                                    String valor = "SIN INFORMACION";
+                                    String valor = "[\"SIN INFORMACION\"]";
                                     if(resObj.equals(valor)){
                                         Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                                         getPlacaParticular();
                                     }else{
+                                        resObj = resObj.replace("["," ");
+                                        resObj = resObj.replace("]"," ");
                                         jObj = new JSONObject(""+resObj+"");
                                         Placa = jObj.getString("placa");
                                         Economico = jObj.getString("economico");
@@ -432,18 +430,16 @@ public class TarjetasConductor extends AppCompatActivity {
                                 }else{
                                     JSONObject jObj = null;
                                     String resObj = myResponse;
-                                    resObj = resObj.replace("["," ");
-                                    resObj = resObj.replace("]"," ");
-                                    resObj = resObj.replace('"',' ');
-                                    resObj = resObj.trim();
                                     System.out.println(resObj);
-                                    String valor = "SIN INFORMACION";
+                                    String valor = "[\"SIN INFORMACION\"]";
                                     if(resObj.equals(valor)){
                                         Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(TarjetasConductor.this,TransporteGeneral.class);
                                         startActivity(i);
                                         finish();
                                     }else{
+                                        resObj = resObj.replace("["," ");
+                                        resObj = resObj.replace("]"," ");
                                         jObj = new JSONObject(""+resObj+"");
                                         Placa = jObj.getString("placa");
                                         SerieVp = jObj.getString("serie");

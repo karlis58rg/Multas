@@ -77,6 +77,7 @@ public class NetPay extends AppCompatActivity {
     private ArrayList<String> resDescripcion;
     private ArrayList<String> resSalario;
     public String direccionInfraccion;
+    public String contrasenia;
     public int countResultado;
     public String nombre = " ";
     public String estado = " ";
@@ -116,6 +117,7 @@ public class NetPay extends AppCompatActivity {
         amount = 1.0;
         folio = i1.getStringExtra("FOLIO");
         direccionInfraccion = i1.getStringExtra("DIRECCION");
+        contrasenia = i1.getStringExtra("CONTRASENIA");
         String monto = Double.toString(amount);
         txtMonto.setText(monto);
         txtFolio.setText(folio);
@@ -372,7 +374,7 @@ public class NetPay extends AppCompatActivity {
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN:"+folio+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n");
+        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN: "+folio+"\n \n \n"+"CONTRASEÑA WEB: "+contrasenia+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n");
         unit2.setGravity(Gravity.CENTER);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit2);

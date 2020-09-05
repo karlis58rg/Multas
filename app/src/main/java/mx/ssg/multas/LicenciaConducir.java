@@ -316,7 +316,7 @@ public class LicenciaConducir extends AppCompatActivity {
         RequeriemientosEspLC = txtRequeriemientosEspLC.getText().toString();
         EmailLC = txtEmailLC.getText().toString();
         if(txtObservacionesLC.getText().toString().isEmpty()){
-            ObservacionesLC = "SIN OBSERVACIONES";
+            ObservacionesLC = "NINGUNA";
         }else{
             ObservacionesLC = txtObservacionesLC.getText().toString();
         }
@@ -403,6 +403,7 @@ public class LicenciaConducir extends AppCompatActivity {
         System.out.println(codigoVerifi);
         guardarRandom();
     }
+
     private void guardarRandom() {
         share = getSharedPreferences("main", MODE_PRIVATE);
         editor = share.edit();
