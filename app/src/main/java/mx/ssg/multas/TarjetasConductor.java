@@ -40,11 +40,14 @@ public class TarjetasConductor extends AppCompatActivity {
     LinearLayout btnReglamentoTC,btnLugaresPagoTC,btnContactoTC,btnTabuladorTC;
     String resultadoQrSerie,serie,resultadoQrPlaca,placa,resultadoQr,respuestaJson;
     String jObjResp,respJsonVehiculos;
+
     String nombre,apaterno,amaterno,Tipocalle,CalleLC,NumeroCalle,ColoniaLC,CP,MunicipioLC,EstadoLC,FechaExLC;
     String FechaVenLC,TipoVigLC,TipoLic,RFCLC,HomoLC,GrupoSanguiLC,RequeriemientosEspLC,EmailLC,ObservacionesLC;
-    String Economico,EstatusActual,FechaExTp,FechaVigTp,Propietario,TenedorUsuario,OficinaExpedTp,DelegacionTp,NRepuveTp,MarcaTp,LineaTp,VersionTp,ClaseTipoTp,ColorTp,ModeloTp;
+
+    String Placa,Economico,EstatusActual,FechaExTp,FechaVigTp,Propietario,TenedorUsuario,OficinaExpedTp,DelegacionTp,NRepuveTp,MarcaTp,LineaTp,VersionTp,ClaseTipoTp,ColorTp,ModeloTp;
     String PuertasTp,CilindrosTp,CombustibleTp,CapacidadTp,AgrupacionTp,NSerieTp,RegistroPropTp,RutaSitioTp,PermisionarioTp,NMotorTp,UsoTp,ObservacionesTp;
     String FolioSCTTp,UrlTp,EmailTp,NotasTp;
+
     String SerieVp,DistribuidorVp,MarcaVp,VersionVp,ClaseVp,TipoVp,ModeloVp,CombustibleVp,CilindrosVp,ColorVp;
     String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
     String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
@@ -100,7 +103,7 @@ public class TarjetasConductor extends AppCompatActivity {
                 }else{
                     placa = txtPlaca.getText().toString();
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
-                    getUsuaioPlaca();
+                    getPlacaPublica();
                 }
             }
         });
@@ -131,6 +134,7 @@ public class TarjetasConductor extends AppCompatActivity {
         btnLugaresPagoTC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(TarjetasConductor.this, LugaresDePago.class);
                 startActivity(i);
                 finish();
@@ -213,15 +217,15 @@ public class TarjetasConductor extends AppCompatActivity {
                                     String resObj = myResponse;
                                     resObj = resObj.replace("["," ");
                                     resObj = resObj.replace("]"," ");
-
-                                    jObj = new JSONObject(""+resObj+"");
-                                    jObjResp = " ";
-                                    if(jObj.equals(jObjResp)){
+                                    System.out.println(resObj);
+                                    String valor = "  ";
+                                    if(resObj.equals(valor)){
                                         Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(TarjetasConductor.this,LicenciaConducir.class);
                                         startActivity(i);
                                         finish();
                                     }else{
+                                        jObj = new JSONObject(""+resObj+"");
                                         apaterno = jObj.getString("paterno");
                                         amaterno = jObj.getString("materno");
                                         nombre = jObj.getString("nombre");
@@ -280,10 +284,11 @@ public class TarjetasConductor extends AppCompatActivity {
         });
     }
 
-    public void getUsuaioPlaca() {
+    /******************GET A LA BD***********************************/
+    public void getPlacaPublica() {
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/ConcentradoVehiculos?noPlacaToken="+placa)
+                .url("http://187.174.102.142/AppTransito/api/TransportePublico?noPlacaToken="+placa)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -310,131 +315,193 @@ public class TarjetasConductor extends AppCompatActivity {
                                     String resObj = myResponse;
                                     resObj = resObj.replace("["," ");
                                     resObj = resObj.replace("]"," ");
-
-                                    jObj = new JSONObject(""+resObj+"");
-                                    jObjResp = " ";
-                                    if(jObj.equals(jObjResp)){
-                                        Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                    //resObj = resObj.replace('"',' ');
+                                    //resObj = resObj.trim();
+                                    System.out.println(resObj);
+                                    String valor = "SIN INFORMACION";
+                                    if(resObj.equals(valor)){
+                                        Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
+                                        getPlacaParticular();
                                     }else{
+                                        jObj = new JSONObject(""+resObj+"");
+                                        Placa = jObj.getString("placa");
                                         Economico = jObj.getString("economico");
+                                        EstatusActual = jObj.getString("estatusActual");
+                                        FechaExTp = jObj.getString("fechaExpedicion");
+                                        FechaVigTp = jObj.getString("fechaVigencia");
+                                        Propietario = jObj.getString("propietario");
+                                        TenedorUsuario = jObj.getString("tenedorUsuario");
+                                        OficinaExpedTp = jObj.getString("oficinaExpedidora");
+                                        DelegacionTp = jObj.getString("delegacion");
+                                        NRepuveTp = jObj.getString("numeroRepuve");
+                                        MarcaTp = jObj.getString("marca");
+                                        LineaTp = jObj.getString("linea");
+                                        VersionTp = jObj.getString("version");
+                                        ClaseTipoTp = jObj.getString("claseTipo");
+                                        ColorTp = jObj.getString("color");
+                                        ModeloTp = jObj.getString("modelo");
+                                        PuertasTp = jObj.getString("puertas");
+                                        CilindrosTp = jObj.getString("cilindros");
+                                        CombustibleTp = jObj.getString("combustible");
+                                        CapacidadTp = jObj.getString("capacidad");
+                                        AgrupacionTp = jObj.getString("agrupacion");
+                                        NSerieTp = jObj.getString("serie");
+                                        RegistroPropTp = jObj.getString("registroPropiedad");
+                                        RutaSitioTp = jObj.getString("rutaSitio");
+                                        PermisionarioTp = jObj.getString("permisionario");
+                                        NMotorTp = jObj.getString("numMotor");
+                                        UsoTp = jObj.getString("uso");
+                                        ObservacionesTp = jObj.getString("observaciones");
+                                        FolioSCTTp = jObj.getString("folioSCT");
+
+                                        Intent i = new Intent(TarjetasConductor.this,TransportePublico.class);
+                                        i.putExtra("Placa",Placa);
+                                        i.putExtra("Economico",Economico);
+                                        i.putExtra("EstatusActual",EstatusActual);
+                                        i.putExtra("FechaExTp",FechaExTp);
+                                        i.putExtra("FechaVigTp",FechaVigTp);
+                                        i.putExtra("Propietario",Propietario);
+                                        i.putExtra("TenedorUsuario",TenedorUsuario);
+                                        i.putExtra("OficinaExpedTp",OficinaExpedTp);
+                                        i.putExtra("DelegacionTp",DelegacionTp);
+                                        i.putExtra("NRepuveTp",NRepuveTp);
+                                        i.putExtra("MarcaTp",MarcaTp);
+                                        i.putExtra("LineaTp",LineaTp);
+                                        i.putExtra("VersionTp",VersionTp);
+                                        i.putExtra("ClaseTipoTp",ClaseTipoTp);
+                                        i.putExtra("ColorTp",ColorTp);
+                                        i.putExtra("ModeloTp",ModeloTp);
+                                        i.putExtra("PuertasTp",PuertasTp);
+                                        i.putExtra("CilindrosTp",CilindrosTp);
+                                        i.putExtra("CombustibleTp",CombustibleTp);
+                                        i.putExtra("CapacidadTp",CapacidadTp);
+                                        i.putExtra("AgrupacionTp",AgrupacionTp);
+                                        i.putExtra("NSerieTp",NSerieTp);
+                                        i.putExtra("RegistroPropTp",RegistroPropTp);
+                                        i.putExtra("RutaSitioTp",RutaSitioTp);
+                                        i.putExtra("PermisionarioTp",PermisionarioTp);
+                                        i.putExtra("NMotorTp",NMotorTp);
+                                        i.putExtra("UsoTp",UsoTp);
+                                        i.putExtra("ObservacionesTp",ObservacionesTp);
+                                        i.putExtra("FolioSCTTp",FolioSCTTp);
+                                        startActivity(i);
+                                        finish();
+                                    }
+
+                                    Log.i("HERE", ""+jObj);
+                                }
+
+                            }catch(JSONException e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+            }
+
+        });
+    }
+
+    /******************GET A LA BD***********************************/
+    public void getPlacaParticular() {
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?noPlacaToken="+placa)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+                    TarjetasConductor.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                respuestaJson = "null";
+                                if(myResponse.equals(respuestaJson)){
+                                    Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    JSONObject jObj = null;
+                                    String resObj = myResponse;
+                                    resObj = resObj.replace("["," ");
+                                    resObj = resObj.replace("]"," ");
+                                    resObj = resObj.replace('"',' ');
+                                    resObj = resObj.trim();
+                                    System.out.println(resObj);
+                                    String valor = "SIN INFORMACION";
+                                    if(resObj.equals(valor)){
+                                        Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(TarjetasConductor.this,TransporteGeneral.class);
+                                        startActivity(i);
+                                        finish();
+                                    }else{
+                                        jObj = new JSONObject(""+resObj+"");
+                                        Placa = jObj.getString("placa");
                                         SerieVp = jObj.getString("serie");
-                                        if(Economico != null){
-                                            EstatusActual = jObj.getString("estatusActual");
-                                            FechaExTp = jObj.getString("fechaExpedicion");
-                                            FechaVigTp = jObj.getString("fechaVigencia");
-                                            Propietario = jObj.getString("propietario");
-                                            TenedorUsuario = jObj.getString("tenedorUsuario");
-                                            OficinaExpedTp = jObj.getString("oficinaExpedidora");
-                                            DelegacionTp = jObj.getString("delegacion");
-                                            NRepuveTp = jObj.getString("numeroRepuve");
-                                            MarcaTp = jObj.getString("marca");
-                                            LineaTp = jObj.getString("linea");
-                                            VersionTp = jObj.getString("version");
-                                            ClaseTipoTp = jObj.getString("claseTipo");
-                                            ColorTp = jObj.getString("color");
-                                            ModeloTp = jObj.getString("modelo");
-                                            PuertasTp = jObj.getString("puertas");
-                                            CilindrosTp = jObj.getString("cilindros");
-                                            CombustibleTp = jObj.getString("combustible");
-                                            CapacidadTp = jObj.getString("capacidad");
-                                            AgrupacionTp = jObj.getString("agrupacion");
-                                            NSerieTp = jObj.getString("serie");
-                                            RegistroPropTp = jObj.getString("registroPropiedad");
-                                            RutaSitioTp = jObj.getString("rutaSitio");
-                                            PermisionarioTp = jObj.getString("permisionario");
-                                            NMotorTp = jObj.getString("numMotor");
-                                            UsoTp = jObj.getString("uso");
-                                            ObservacionesTp = jObj.getString("observaciones");
-                                            FolioSCTTp = jObj.getString("folioSCT");
+                                        DistribuidorVp = jObj.getString("distribuidor");
+                                        MarcaVp = jObj.getString("marca");
+                                        VersionVp = jObj.getString("version");
+                                        ClaseVp = jObj.getString("clase");
+                                        TipoVp = jObj.getString("tipo");
+                                        ModeloVp = jObj.getString("modelo");
+                                        CombustibleVp = jObj.getString("combustible");
+                                        CilindrosVp = jObj.getString("cilindros");
+                                        ColorVp = jObj.getString("color");
+                                        UsoVp = jObj.getString("uso");
+                                        ProcedenciaVp = jObj.getString("procedencia");
+                                        PuertasVp = jObj.getString("puertas");
+                                        NMotorVp = jObj.getString("numMotor");
+                                        RepuveVp = jObj.getString("repuve");
+                                        FolioSCTVp = jObj.getString("folioSct");
+                                        OficinaExpVp = jObj.getString("oficinaExpedidora");
+                                        PropietarioVp = jObj.getString("propietario");
+                                        RFCVp = jObj.getString("rfc");
+                                        DireccionVp = jObj.getString("direccion");
+                                        ColoniaVp = jObj.getString("colonia");
+                                        LocalidadVp = jObj.getString("localidad");
+                                        UltimaRevalidacionVp = jObj.getString("ultimaRevalidacion");
+                                        EstatusVp = jObj.getString("estatus");
+                                        TelefonoVp = jObj.getString("telefono");
+                                        FechaVp = jObj.getString("fechaVencimiento");
 
-                                            Intent i = new Intent(TarjetasConductor.this,TransportePublico.class);
-                                            i.putExtra("EstatusActual",EstatusActual);
-                                            i.putExtra("FechaExTp",FechaExTp);
-                                            i.putExtra("FechaVigTp",FechaVigTp);
-                                            i.putExtra("Propietario",Propietario);
-                                            i.putExtra("TenedorUsuario",TenedorUsuario);
-                                            i.putExtra("OficinaExpedTp",OficinaExpedTp);
-                                            i.putExtra("DelegacionTp",DelegacionTp);
-                                            i.putExtra("NRepuveTp",NRepuveTp);
-                                            i.putExtra("MarcaTp",MarcaTp);
-                                            i.putExtra("LineaTp",LineaTp);
-                                            i.putExtra("VersionTp",VersionTp);
-                                            i.putExtra("ClaseTipoTp",ClaseTipoTp);
-                                            i.putExtra("ColorTp",ColorTp);
-                                            i.putExtra("ModeloTp",ModeloTp);
-                                            i.putExtra("PuertasTp",PuertasTp);
-                                            i.putExtra("CilindrosTp",CilindrosTp);
-                                            i.putExtra("CombustibleTp",CombustibleTp);
-                                            i.putExtra("CapacidadTp",CapacidadTp);
-                                            i.putExtra("AgrupacionTp",AgrupacionTp);
-                                            i.putExtra("NSerieTp",NSerieTp);
-                                            i.putExtra("RegistroPropTp",RegistroPropTp);
-                                            i.putExtra("RutaSitioTp",RutaSitioTp);
-                                            i.putExtra("PermisionarioTp",PermisionarioTp);
-                                            i.putExtra("NMotorTp",NMotorTp);
-                                            i.putExtra("UsoTp",UsoTp);
-                                            i.putExtra("ObservacionesTp",ObservacionesTp);
-                                            i.putExtra("FolioSCTTp",FolioSCTTp);
-                                            startActivity(i);
-                                            finish();
-                                        }else if(SerieVp != null){
-                                            DistribuidorVp = jObj.getString("distribuidor");
-                                            MarcaVp = jObj.getString("marca");
-                                            VersionVp = jObj.getString("version");
-                                            ClaseVp = jObj.getString("clase");
-                                            TipoVp = jObj.getString("tipo");
-                                            ModeloVp = jObj.getString("modelo");
-                                            CombustibleVp = jObj.getString("combustible");
-                                            CilindrosVp = jObj.getString("cilindros");
-                                            ColorVp = jObj.getString("color");
-                                            UsoVp = jObj.getString("uso");
-                                            ProcedenciaVp = jObj.getString("procedencia");
-                                            PuertasVp = jObj.getString("puertas");
-                                            NMotorVp = jObj.getString("numMotor");
-                                            RepuveVp = jObj.getString("repuve");
-                                            FolioSCTVp = jObj.getString("folioSct");
-                                            OficinaExpVp = jObj.getString("oficinaExpedidora");
-                                            PropietarioVp = jObj.getString("propietario");
-                                            RFCVp = jObj.getString("rfc");
-                                            DireccionVp = jObj.getString("direccion");
-                                            ColoniaVp = jObj.getString("colonia");
-                                            LocalidadVp = jObj.getString("localidad");
-                                            UltimaRevalidacionVp = jObj.getString("ultimaRevalidacion");
-                                            EstatusVp = jObj.getString("estatus");
-                                            TelefonoVp = jObj.getString("telefono");
-                                            FechaVp = jObj.getString("fechaVencimiento");
-
-                                            Intent i = new Intent(TarjetasConductor.this,TransportePrivado.class);
-                                            i.putExtra("DistribuidorVp",DistribuidorVp);
-                                            i.putExtra("MarcaVp",MarcaVp);
-                                            i.putExtra("VersionVp",VersionVp);
-                                            i.putExtra("ClaseVp",ClaseVp);
-                                            i.putExtra("TipoVp",TipoVp);
-                                            i.putExtra("ModeloVp",ModeloVp);
-                                            i.putExtra("CombustibleVp",CombustibleVp);
-                                            i.putExtra("CilindrosVp",CilindrosVp);
-                                            i.putExtra("ColorVp",ColorVp);
-                                            i.putExtra("UsoVp",UsoVp);
-                                            i.putExtra("ProcedenciaVp",ProcedenciaVp);
-                                            i.putExtra("PuertasVp",PuertasVp);
-                                            i.putExtra("NMotorVp",NMotorVp);
-                                            i.putExtra("RepuveVp",RepuveVp);
-                                            i.putExtra("FolioSCTVp",FolioSCTVp);
-                                            i.putExtra("OficinaExpVp",OficinaExpVp);
-                                            i.putExtra("PropietarioVp",PropietarioVp);
-                                            i.putExtra("RFCVp",RFCVp);
-                                            i.putExtra("DireccionVp",DireccionVp);
-                                            i.putExtra("ColoniaVp",ColoniaVp);
-                                            i.putExtra("LocalidadVp",LocalidadVp);
-                                            i.putExtra("UltimaRevalidacionVp",UltimaRevalidacionVp);
-                                            i.putExtra("EstatusVp",EstatusVp);
-                                            i.putExtra("TelefonoVp",TelefonoVp);
-                                            i.putExtra("FechaVp",FechaVp);
-                                            startActivity(i);
-                                        }else{
-                                            Intent i = new Intent(TarjetasConductor.this,TransporteGeneral.class);
-                                            startActivity(i);
-                                        }
+                                        Intent i = new Intent(TarjetasConductor.this,TransportePrivado.class);
+                                        i.putExtra("Placa",Placa);
+                                        i.putExtra("SerieVp",SerieVp);
+                                        i.putExtra("DistribuidorVp",DistribuidorVp);
+                                        i.putExtra("MarcaVp",MarcaVp);
+                                        i.putExtra("VersionVp",VersionVp);
+                                        i.putExtra("ClaseVp",ClaseVp);
+                                        i.putExtra("TipoVp",TipoVp);
+                                        i.putExtra("ModeloVp",ModeloVp);
+                                        i.putExtra("CombustibleVp",CombustibleVp);
+                                        i.putExtra("CilindrosVp",CilindrosVp);
+                                        i.putExtra("ColorVp",ColorVp);
+                                        i.putExtra("UsoVp",UsoVp);
+                                        i.putExtra("ProcedenciaVp",ProcedenciaVp);
+                                        i.putExtra("PuertasVp",PuertasVp);
+                                        i.putExtra("NMotorVp",NMotorVp);
+                                        i.putExtra("RepuveVp",RepuveVp);
+                                        i.putExtra("FolioSCTVp",FolioSCTVp);
+                                        i.putExtra("OficinaExpVp",OficinaExpVp);
+                                        i.putExtra("PropietarioVp",PropietarioVp);
+                                        i.putExtra("RFCVp",RFCVp);
+                                        i.putExtra("DireccionVp",DireccionVp);
+                                        i.putExtra("ColoniaVp",ColoniaVp);
+                                        i.putExtra("LocalidadVp",LocalidadVp);
+                                        i.putExtra("UltimaRevalidacionVp",UltimaRevalidacionVp);
+                                        i.putExtra("EstatusVp",EstatusVp);
+                                        i.putExtra("TelefonoVp",TelefonoVp);
+                                        i.putExtra("FechaVp",FechaVp);
+                                        startActivity(i);
                                     }
 
                                     Log.i("HERE", ""+jObj);

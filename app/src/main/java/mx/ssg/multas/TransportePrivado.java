@@ -2,13 +2,14 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,16 +20,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Calendar;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class TransportePrivado extends AppCompatActivity {
-    ImageView btnList,btnBuscarPlaca;
+    Button btnGuardar;
+
+    ImageView btnList,btnVistaPrincipal,btnInfraccion;
     TextView txtNoPlacaTC;
     EditText txtSerieVp,txtDistribuidorVp,txtMarcaVp,txtVersionVp,txtClaseVp,txtTipoVp,txtModeloVp,txtCombustibleVp,txtCilindrosVp,txtColorVp;
     EditText txtUsoVp,txtProcedenciaVp,txtPuertasVp,txtNMotorVp,txtRepuveVp,txtFolioSCTVp,txtOficinaExpVp,txtPropietarioVp,txtRFCVp,txtDireccionVp;
@@ -36,20 +41,35 @@ public class TransportePrivado extends AppCompatActivity {
     String noPlacaTC,respuestaJson;
     String SerieVp,DistribuidorVp,MarcaVp,VersionVp,ClaseVp,TipoVp,ModeloVp,CombustibleVp,CilindrosVp,ColorVp;
     String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
-    String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
+    String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,EmailVp,ObservacionesVp;
+
+    SharedPreferences share;
+    SharedPreferences.Editor editor;
+    int numberRandom;
+    public String codigoVerifi, cargarInfoRandom;
+
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
-    private int dia,mes,año;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transporte_privado);
+        cargarDatos();
+
+        if(cargarInfoRandom.isEmpty()){
+            Random();
+        }else {
+            System.out.println(cargarInfoRandom);
+        }
+
+        txtNoPlacaTC = findViewById(R.id.txtPlacaVp);
+        /////posicion de cursor///////////
+        txtNoPlacaTC.setFocusableInTouchMode(true); txtNoPlacaTC.requestFocus();
+
 
         btnList = findViewById(R.id.btnListVP);
         txtNoPlacaTC = findViewById(R.id.txtPlacaVp);
-        btnBuscarPlaca = findViewById(R.id.imgBuscarNoPlacaVp);
-
         txtSerieVp = findViewById(R.id.txtSerieVp);
         txtDistribuidorVp = findViewById(R.id.txtDistribuidorVp);
         txtMarcaVp = findViewById(R.id.txtMarcaVp);
@@ -80,12 +100,96 @@ public class TransportePrivado extends AppCompatActivity {
         txtEmailVp = findViewById(R.id.txtEmailVp);
         txtObservacionesVp = findViewById(R.id.txtObservacionesVp);
 
+        btnGuardar = findViewById(R.id.imgGuardarVehiculoParticular);
+        btnVistaPrincipal = findViewById(R.id.imgVistaPVP);
+        btnInfraccion = findViewById(R.id.imgTerminalVP);
 
         btnReglamento = findViewById(R.id.lyInicio3);
         btnLugaresPago = findViewById(R.id.lyCategoria3);
         btnContactos = findViewById(R.id.lyContacto3);
         btnTabulador = findViewById(R.id.lyFavoritos3);
 
+        Intent i = getIntent();
+        noPlacaTC = i.getStringExtra("Placa");
+        SerieVp = i.getStringExtra("SerieVp");
+        DistribuidorVp = i.getStringExtra("DistribuidorVp");
+        MarcaVp = i.getStringExtra("MarcaVp");
+        VersionVp = i.getStringExtra("VersionVp");
+        ClaseVp = i.getStringExtra("ClaseVp");
+        TipoVp = i.getStringExtra("TipoVp");
+        ModeloVp = i.getStringExtra("ModeloVp");
+        CombustibleVp = i.getStringExtra("CombustibleVp");
+        CilindrosVp = i.getStringExtra("CilindrosVp");
+        ColorVp = i.getStringExtra("ColorVp");
+        UsoVp = i.getStringExtra("UsoVp");
+        ProcedenciaVp = i.getStringExtra("ProcedenciaVp");
+        PuertasVp = i.getStringExtra("PuertasVp");
+        NMotorVp = i.getStringExtra("NMotorVp");
+        RepuveVp = i.getStringExtra("RepuveVp");
+        FolioSCTVp = i.getStringExtra("FolioSCTVp");
+        OficinaExpVp = i.getStringExtra("OficinaExpVp");
+        PropietarioVp = i.getStringExtra("PropietarioVp");
+        RFCVp = i.getStringExtra("RFCVp");
+        DireccionVp = i.getStringExtra("DireccionVp");
+        ColoniaVp = i.getStringExtra("ColoniaVp");
+        LocalidadVp = i.getStringExtra("LocalidadVp");
+        UltimaRevalidacionVp = i.getStringExtra("UltimaRevalidacionVp");
+        EstatusVp = i.getStringExtra("EstatusVp");
+        TelefonoVp = i.getStringExtra("TelefonoVp");
+        FechaVp = i.getStringExtra("FechaVp");
+
+        txtNoPlacaTC.setText(noPlacaTC);
+        txtSerieVp.setText(SerieVp);
+        txtDistribuidorVp.setText(DistribuidorVp);
+        txtMarcaVp.setText(MarcaVp);
+        txtVersionVp.setText(VersionVp);
+        txtClaseVp.setText(ClaseVp);
+        txtTipoVp.setText(TipoVp);
+        txtModeloVp.setText(ModeloVp);
+        txtCombustibleVp.setText(CombustibleVp);
+        txtCilindrosVp.setText(CilindrosVp);
+        txtColorVp.setText(ColorVp);
+        txtUsoVp.setText(UsoVp);
+        txtProcedenciaVp.setText(ProcedenciaVp);
+        txtPuertasVp.setText(PuertasVp);
+        txtNMotorVp.setText(NMotorVp);
+        txtRepuveVp.setText(RepuveVp);
+        txtFolioSCTVp.setText(FolioSCTVp);
+        txtOficinaExpVp.setText(OficinaExpVp);
+        txtPropietarioVp.setText(PropietarioVp);
+        txtRFCVp.setText(RFCVp);
+        txtDireccionVp.setText(DireccionVp);
+        txtColoniaVp.setText(ColoniaVp);
+        txtLocalidadVp.setText(LocalidadVp);
+        txtUltimaRevalidacionVp.setText(UltimaRevalidacionVp);
+        txtEstatusVp.setText(EstatusVp);
+        txtTelefonoVp.setText(TelefonoVp);
+        txtFechaVp.setText(FechaVp);
+
+        btnVistaPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePrivado.this, TarjetasConductor.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnInfraccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePrivado.this, Infraccion.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getExistRegistro();
+            }
+        });
 
         btnReglamento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,48 +223,15 @@ public class TransportePrivado extends AppCompatActivity {
                 finish();
             }
         });
-
-        btnBuscarPlaca.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(txtNoPlacaTC.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"DEBE AGREGAR ALGÚN COMENTARIO",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
-                    getPlacaParticularBJ();
-                }
-            }
-        });
-
-        ///////////// calendario para fechas en formulario///////////
-        txtFechaVp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                dia = c.get(Calendar.DAY_OF_MONTH);
-                mes = c.get(Calendar.MONTH);
-                año = c.get(Calendar.YEAR);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePrivado.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        txtFechaVp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                    }
-
-                }, dia, mes, año);
-                datePickerDialog.show();
-            }
-        });
     }
 
-    /******************GET A BAJA CALIFORNIA***********************************/
-    public void getPlacaParticularBJ() {
-        noPlacaTC = txtNoPlacaTC.getText().toString();
+    /******************GET A LA BD***********************************/
+    public void getExistRegistro() {
+        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?noPlacaToken="+noPlacaTC)
+                .url("http://187.174.102.142/AppTransito/api/Vehiculo?idExistente="+cargarInfoRandom)
                 .build();
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -172,86 +243,139 @@ public class TransportePrivado extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    final String myResponse = response.body().string();
-                    TransportePrivado.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                respuestaJson = "null";
-                                if(myResponse.equals(respuestaJson)){
-                                    Toast.makeText(getApplicationContext(),"NO SE CUENTA CON INFORMACIÓN",Toast.LENGTH_SHORT).show();
-                                }else{
-                                    JSONObject jObj = null;
-                                    String resObj = myResponse;
-                                    resObj = resObj.replace("["," ");
-                                    resObj = resObj.replace("]"," ");
-
-                                    jObj = new JSONObject(""+resObj+"");
-
-                                    SerieVp = jObj.getString("serie");
-                                    DistribuidorVp = jObj.getString("distribuidor");
-                                    MarcaVp = jObj.getString("marca");
-                                    VersionVp = jObj.getString("version");
-                                    ClaseVp = jObj.getString("clase");
-                                    TipoVp = jObj.getString("tipo");
-                                    ModeloVp = jObj.getString("modelo");
-                                    CombustibleVp = jObj.getString("combustible");
-                                    CilindrosVp = jObj.getString("cilindros");
-                                    ColorVp = jObj.getString("color");
-                                    UsoVp = jObj.getString("uso");
-                                    ProcedenciaVp = jObj.getString("procedencia");
-                                    PuertasVp = jObj.getString("puertas");
-                                    NMotorVp = jObj.getString("numMotor");
-                                    RepuveVp = jObj.getString("repuve");
-                                    FolioSCTVp = jObj.getString("folioSct");
-                                    OficinaExpVp = jObj.getString("oficinaExpedidora");
-                                    PropietarioVp = jObj.getString("propietario");
-                                    RFCVp = jObj.getString("rfc");
-                                    DireccionVp = jObj.getString("direccion");
-                                    ColoniaVp = jObj.getString("colonia");
-                                    LocalidadVp = jObj.getString("localidad");
-                                    UltimaRevalidacionVp = jObj.getString("ultimaRevalidacion");
-                                    EstatusVp = jObj.getString("estatus");
-                                    TelefonoVp = jObj.getString("telefono");
-                                    FechaVp = jObj.getString("fechaVencimiento");
-
-                                    txtSerieVp.setText(SerieVp);
-                                    txtDistribuidorVp.setText(DistribuidorVp);
-                                    txtMarcaVp.setText(MarcaVp);
-                                    txtVersionVp.setText(VersionVp);
-                                    txtClaseVp.setText(ClaseVp);
-                                    txtTipoVp.setText(TipoVp);
-                                    txtModeloVp.setText(ModeloVp);
-                                    txtCombustibleVp.setText(CombustibleVp);
-                                    txtCilindrosVp.setText(CilindrosVp);
-                                    txtColorVp.setText(ColorVp);
-                                    txtUsoVp.setText(UsoVp);
-                                    txtProcedenciaVp.setText(ProcedenciaVp);
-                                    txtPuertasVp.setText(PuertasVp);
-                                    txtNMotorVp.setText(NMotorVp);
-                                    txtRepuveVp.setText(RepuveVp);
-                                    txtFolioSCTVp.setText(FolioSCTVp);
-                                    txtOficinaExpVp.setText(OficinaExpVp);
-                                    txtPropietarioVp.setText(PropietarioVp);
-                                    txtRFCVp.setText(RFCVp);
-                                    txtDireccionVp.setText(DireccionVp);
-                                    txtColoniaVp.setText(ColoniaVp);
-                                    txtLocalidadVp.setText(LocalidadVp);
-                                    txtUltimaRevalidacionVp.setText(UltimaRevalidacionVp);
-                                    txtEstatusVp.setText(EstatusVp);
-                                    txtTelefonoVp.setText(TelefonoVp);
-                                    txtFechaVp.setText(FechaVp);
-                                    Log.i("HERE", ""+jObj);
-                                }
-                            }catch(JSONException e){
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getApplicationContext(), "YA EXISTE UN REGISTRO CON ESTOS DATOS", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        insertRegistro();
+                    }
+                    Log.i("HERE", resp);
                 }
             }
 
         });
+    }
+
+    //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
+    private void insertRegistro() {
+        cargarDatos();
+        ObservacionesVp = txtObservacionesVp.getText().toString();
+        EmailVp = txtEmailVp.getText().toString();
+
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("IdInfraccion", cargarInfoRandom)
+                .add("Placa", noPlacaTC )
+                .add("NoSerie", SerieVp)
+                .add("Distribuidor", DistribuidorVp)
+                .add("Marca", MarcaVp)
+                .add("Version", VersionVp)
+                .add("Clase", ClaseVp)
+                .add("Tipo", TipoVp)
+                .add("Combustible", CombustibleVp)
+                .add("Cilindros", CilindrosVp)
+                .add("Color", ColorVp)
+                .add("Uso", UsoVp)
+                .add("Procedencia",ProcedenciaVp)
+                .add("Puertas", PuertasVp)
+                .add("NoMotor", NMotorVp)
+                .add("Repuve", RepuveVp)
+                .add("FolioSCT", FolioSCTVp)
+                .add("OficinaExoedidora", OficinaExpVp)
+                .add("Propietario", PropietarioVp)
+                .add("RFC", RFCVp)
+                .add("Direccion", DireccionVp)
+                .add("Colonia", ColoniaVp)
+                .add("Localidad", LocalidadVp)
+                .add("UltimaRevalidacion", UltimaRevalidacionVp)
+                .add("Estatus", EstatusVp)
+                .add("Telefono", TelefonoVp)
+                .add("FechaVencimiento", FechaVp)
+                .add("Uso", UsoVp)
+                .add("Observaciones", ObservacionesVp)
+                .add("Email", EmailVp)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Vehiculo/")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare(); // to be able to make toast
+                Toast.makeText(getApplicationContext(), "ERROR AL ENVIAR SU REGISTRO, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET", Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().toString();
+                    TransportePrivado.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "REGISTRO ENVIADO CON EXITO", Toast.LENGTH_SHORT).show();
+                            txtNoPlacaTC.setText("");
+                            txtSerieVp.setText("");
+                            txtDistribuidorVp.setText("");
+                            txtMarcaVp.setText("");
+                            txtVersionVp.setText("");
+                            txtClaseVp.setText("");
+                            txtTipoVp.setText("");
+                            txtModeloVp.setText("");
+                            txtCombustibleVp.setText("");
+                            txtCilindrosVp.setText("");
+                            txtColorVp.setText("");
+                            txtUsoVp.setText("");
+                            txtProcedenciaVp.setText("");
+                            txtPuertasVp.setText("");
+                            txtNMotorVp.setText("");
+                            txtRepuveVp.setText("");
+                            txtFolioSCTVp.setText("");
+                            txtOficinaExpVp.setText("");
+                            txtPropietarioVp.setText("");
+                            txtRFCVp.setText("");
+                            txtDireccionVp.setText("");
+                            txtColoniaVp.setText("");
+                            txtLocalidadVp.setText("");
+                            txtUltimaRevalidacionVp.setText("");
+                            txtEstatusVp.setText("");
+                            txtTelefonoVp.setText("");
+                            txtFechaVp.setText("");
+                            txtEmailVp.setText("");
+                            txtObservacionesVp.setText("");
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
+    public void Random() {
+        Random random = new Random();
+        numberRandom = random.nextInt(90000) * 99;
+        codigoVerifi = String.valueOf(numberRandom);
+        System.out.println(codigoVerifi);
+        guardarRandom();
+    }
+    private void guardarRandom() {
+        share = getSharedPreferences("main", MODE_PRIVATE);
+        editor = share.edit();
+        editor.putString("RANDOM","20"+codigoVerifi);
+        editor.commit();
+    }
+    public void cargarDatos() {
+        share = getSharedPreferences("main", Context.MODE_PRIVATE);
+        cargarInfoRandom = share.getString("RANDOM", "");
     }
 
 }

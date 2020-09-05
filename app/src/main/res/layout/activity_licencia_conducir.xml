@@ -75,7 +75,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/ic_licencia"/>
+                        android:src="@drawable/ic_licenciaconducir"/>
                 </LinearLayout>
                 <!--TITULO IMAGEN1 TITLE-->
                 <LinearLayout
@@ -377,9 +377,7 @@
                                 android:id="@+id/txtTipocalle"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 5-->
                         <LinearLayout
@@ -431,9 +429,7 @@
                                 android:id="@+id/txtCalleLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 6-->
                         <LinearLayout
@@ -487,9 +483,7 @@
                                 android:id="@+id/txtNumeroCalle"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 7-->
                         <LinearLayout
@@ -543,9 +537,7 @@
                                 android:id="@+id/txtColoniaLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 8-->
                         <LinearLayout
@@ -600,9 +592,7 @@
                                 android:id="@+id/txtCP"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 9-->
                         <LinearLayout
@@ -657,9 +647,7 @@
                                 android:id="@+id/txtMunicipioLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 10-->
                         <LinearLayout
@@ -713,9 +701,7 @@
                                 android:id="@+id/txtEstadoLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 11-->
                         <LinearLayout
@@ -770,9 +756,7 @@
                                 android:id="@+id/txtFechaExLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 12-->
                         <LinearLayout
@@ -828,9 +812,7 @@
                                 android:id="@+id/txtFechaVenLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 13-->
                         <LinearLayout
@@ -886,9 +868,7 @@
                                 android:id="@+id/txtTipoVigLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 14-->
                         <LinearLayout
@@ -943,9 +923,7 @@
                                 android:id="@+id/txtTipoLic"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 15-->
                         <LinearLayout
@@ -1000,9 +978,7 @@
                                 android:id="@+id/txtRFCLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 16-->
                         <LinearLayout
@@ -1057,9 +1033,7 @@
                                 android:id="@+id/txtHomoLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 17-->
                         <LinearLayout
@@ -1115,9 +1089,7 @@
                                 android:id="@+id/txtGrupoSanguiLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center" />
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 18-->
                         <LinearLayout
@@ -1172,9 +1144,7 @@
                                 android:id="@+id/txtRequeriemientosEspLC"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:focusable="false"
-                                android:gravity="center"
-                                android:inputType="date" />
+                                android:gravity="center"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 19-->
                         <LinearLayout

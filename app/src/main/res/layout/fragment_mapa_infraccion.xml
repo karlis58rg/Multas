@@ -482,14 +482,14 @@
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
-                                    android:text="Salario mínimo"/>
+                                    android:text="UMAS"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/hint"
                                     android:layout_marginLeft="10dp"
                                     android:textStyle="bold"
-                                    android:text="$120.°° MXN"/>
+                                    android:text="$86.°° MXN"/>
                             </LinearLayout>
                             <!--BOTTON FOODER-->
                             <LinearLayout
