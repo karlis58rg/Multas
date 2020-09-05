@@ -78,19 +78,19 @@ public class NetPay extends AppCompatActivity {
     private ArrayList<String> resSalario;
     public String direccionInfraccion;
     public int countResultado;
-    public String nombre;
-    public String estado;
-    public String municipio;
-    public String tipoLic;
-    public String expedicion;
-    public String vencimiento;
-    public String observaciones;
+    public String nombre = " ";
+    public String estado = " ";
+    public String municipio = " ";
+    public String tipoLic = " ";
+    public String expedicion = " ";
+    public String vencimiento = " ";
+    public String observaciones = "SIN OBSERVACIONES";
     String cargarInfoUser;
     SharedPreferences share;
     public String nombreAgente;
     public String cargo;
-    public String descInfracciones;
-    public String umas;
+    public String descInfracciones = " ";
+    public String umas = " ";
     public String total,totalComplemento = " ";
 
     @Override
@@ -211,6 +211,8 @@ public class NetPay extends AppCompatActivity {
                             if(resp.equals(valorRfc)){
                                 Toast.makeText(getApplicationContext(), "NO SE ENCONTRO INFORMACIÓN ", Toast.LENGTH_SHORT).show();
                             }else{
+                                resp = resp.replace('"',' ');
+                                resp = resp.trim();
                                 String[] textElements = resp.split(",");
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
@@ -264,6 +266,8 @@ public class NetPay extends AppCompatActivity {
                             if(resp.equals(valorRfc)){
                                 Toast.makeText(getApplicationContext(), "NO SE ENCONTRO INFORMACIÓN ", Toast.LENGTH_SHORT).show();
                             }else{
+                                resp = resp.replace('"',' ');
+                                resp = resp.trim();
                                 String[] textElements = resp.split(",");
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
@@ -311,6 +315,8 @@ public class NetPay extends AppCompatActivity {
                             if(resp.equals(valorRfc)){
                                 Toast.makeText(getApplicationContext(), "NO SE ENCONTRO INFORMACIÓN ", Toast.LENGTH_SHORT).show();
                             }else{
+                                resp = resp.replace('"',' ');
+                                resp = resp.trim();
                                 String[] textElements = resp.split(",");
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
@@ -366,28 +372,59 @@ public class NetPay extends AppCompatActivity {
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN:"+folio+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n" +"NOMBRE: " +nombre + "\n" + "ESTADO: "+estado+"\n"+"MUNICIPIO: "+municipio+"\n"+"TIPO LICENCIA: "+tipoLic+"\n"+"EXPEDICIÓN: "+expedicion+"\n"+"VENCIMIENTO: "+vencimiento+"\n"+"OBSERVACIONES: "+observaciones+"\n \n FIRMA ___________________"+"\n\n");
+        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN:"+folio+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n");
         unit2.setGravity(Gravity.CENTER);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit2);
 
+        //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit3 = page.createUnit();
-        unit3.setText("DATOS DEL AGENTE"+"\n\n"+"NOMBRE: "+nombreAgente+"\n"+"CARGO: "+cargo+"\n\n"+"FIRMA ___________________"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
-        unit3.setGravity(Gravity.CENTER);
-        //Se crea una nueva línea y se agrega la unidad pasada
+        unit3.setText("NOMBRE: " +nombre + "\n" + "ESTADO: "+estado+"\n"+"MUNICIPIO: "+municipio+"\n"+"TIPO LICENCIA: "+tipoLic+"\n"+"EXPEDICIÓN: "+expedicion+"\n"+"VENCIMIENTO: "+vencimiento+"\n"+"OBSERVACIONES: "+observaciones+"\n\n\n\n FIRMA ___________________"+"\n\n");
+        unit3.setGravity(Gravity.LEFT);
+        //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit3);
 
         IPage.ILine.IUnit unit4 = page.createUnit();
-        unit4.setText("INFRACCIONES"+"\n\n"+descInfracciones+"\n\n"+umas+"\n"+"VALOR DE LA UMA $86.00"+"\n"+total+","+totalComplemento+"\n\n"+"LUGARES DE PAGO"+"\n\n"+"PODRÁS ACUDIR A REALIZAR TU PAGO A LAS CAJAS DE IMOS EN EL MUNICIPIO DE LA INFRACCIÓN DESPUÉS DE 24 HORAS DEL LEVANTAMIENTO DE LA INFRACCIÓN, PODRÁS REALIZAR TU PAGO CON TARJETA DE CRÉDITO O DÉBITO Y EN EFECTIVO O IMOS PONE A TU SERVICIO EL PAGO EN LÍNEA A TRAVÉS DE LA PÁGINA HTTPS://IMOS.GOB.MX/SERVICIOENLINEA \n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit4.setText("DATOS DEL AGENTE"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit4.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit4);
 
         IPage.ILine.IUnit unit5 = page.createUnit();
-        unit5.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
-        unit5.setGravity(Gravity.CENTER);
+        unit5.setText("NOMBRE: "+nombreAgente+"\n"+"CARGO: "+cargo+"\n\n\n\n"+"FIRMA ___________________"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit5.setGravity(Gravity.LEFT);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit5);
+
+        IPage.ILine.IUnit unit6 = page.createUnit();
+        unit6.setText("INFRACCIONES"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit6.setGravity(Gravity.CENTER);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit6);
+
+        IPage.ILine.IUnit unit7 = page.createUnit();
+        unit7.setText(descInfracciones+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit7.setGravity(Gravity.LEFT);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit7);
+
+        IPage.ILine.IUnit unit8 = page.createUnit();
+        unit8.setText(umas+"\n"+"VALOR DE LA UMA $86.00"+"\n"+total+","+totalComplemento+"\n\n"+"LUGARES DE PAGO"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit8.setGravity(Gravity.CENTER);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit8);
+
+        IPage.ILine.IUnit unit9 = page.createUnit();
+        unit9.setText("PODRÁS ACUDIR A REALIZAR TU PAGO A LAS CAJAS DE IMOS EN EL MUNICIPIO DE LA INFRACCIÓN DESPUÉS DE 24 HORAS DEL LEVANTAMIENTO DE LA INFRACCIÓN, PODRÁS REALIZAR TU PAGO CON TARJETA DE CRÉDITO O DÉBITO Y EN EFECTIVO O IMOS PONE A TU SERVICIO EL PAGO EN LÍNEA A TRAVÉS DE LA PÁGINA HTTPS://IMOS.GOB.MX/SERVICIOENLINEA \n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit9.setGravity(Gravity.LEFT);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit9);
+
+        IPage.ILine.IUnit unit10 = page.createUnit();
+        unit10.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit10.setGravity(Gravity.CENTER);
+        //Se crea una nueva línea y se agrega la unidad pasada
+        page.addLine().addUnit(unit10);
 
        /* IPage.ILine.IUnit unit4 = page.createUnit();
         unit4.setText("TECAJETE 240, PITAHAYAS, PACHUCA DE SOTO");

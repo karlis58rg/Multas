@@ -273,7 +273,11 @@ public class LicenciaConducir extends AppCompatActivity {
         GrupoSanguiLC = txtGrupoSanguiLC.getText().toString();
         RequeriemientosEspLC = txtRequeriemientosEspLC.getText().toString();
         EmailLC = txtEmailLC.getText().toString();
-        ObservacionesLC = txtObservacionesLC.getText().toString();
+        if(txtObservacionesLC.getText().toString().isEmpty()){
+            ObservacionesLC = "SIN OBSERVACIONES";
+        }else{
+            ObservacionesLC = txtObservacionesLC.getText().toString();
+        }
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()

@@ -86,7 +86,7 @@ public class TarjetasConductor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(txtNoSerie.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"EL No. DE SERIE ES NECESARIO",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"EL No. DE LICENCIA ES NECESARIO",Toast.LENGTH_SHORT).show();
                 }else{
                     serie = txtNoSerie.getText().toString();
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class TarjetasConductor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(txtPlaca.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(),"EL No. DE SERIE ES NECESARIO",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"LA PLACA ES NECESARIA",Toast.LENGTH_SHORT).show();
                 }else{
                     placa = txtPlaca.getText().toString();
                     Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR, ESTO PUEDE TARDAR UNOS SEGUNDOS",Toast.LENGTH_SHORT).show();
