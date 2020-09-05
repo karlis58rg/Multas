@@ -178,9 +178,7 @@ public class TransportePrivado extends AppCompatActivity {
         btnInfraccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TransportePrivado.this, Infraccion.class);
-                startActivity(i);
-                finish();
+                getExistRegistroLicencia();
             }
         });
 
@@ -356,6 +354,47 @@ public class TransportePrivado extends AppCompatActivity {
                     });
                 }
             }
+        });
+    }
+    /******************GET A LA BD***********************************/
+    public void getExistRegistroLicencia() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarInfoRandom)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "true";
+                    if(resp.equals(valorUser)){
+                        Intent i = new Intent(TransportePrivado.this, Infraccion.class);
+                        startActivity(i);
+                        finish();
+                    }else{
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getApplicationContext(), "LO SENTIMOS, LOS DATOS DE LA LICENCIA SON NECESARIOS", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(TransportePrivado.this, TarjetasConductor.class);
+                        startActivity(i);
+                        finish();
+                        Looper.loop();
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
         });
     }
 
