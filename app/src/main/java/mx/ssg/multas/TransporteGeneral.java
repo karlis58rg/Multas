@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,7 +31,7 @@ import okhttp3.Response;
 
 public class TransporteGeneral extends AppCompatActivity {
 
-    ImageView btnVistaP,btnInfraccion;
+    ImageView btnVistaP,btnInfraccion,btnListTC;
     Button btnGuardar;
     EditText txtNoPlacaVG,txtSerieVG,txtMarcaVG,txtVersionVG,txtClaseVG,txtTipoVG,txtModeloVG,txtCombustibleVG,txtCilindrosVG,txtColorVG,txtUsoVG;
     EditText txtPuertasVG,txtNMotorVG,txtPropietarioVG,txtRFCVp,txtDireccionVG,txtColoniaVG,txtLocalidadVG,txtEstatusVG,txtEmailVG,txtObservacionesVG;
@@ -37,6 +39,8 @@ public class TransporteGeneral extends AppCompatActivity {
     String Placa = " ",SerieVG = " ",MarcaVG = " ",VersionVG = " ",ClaseVG = " ",TipoVG = " ",ModeloVG = " ",CombustibleVG = " ",CilindrosVG = " ",ColorVG = " ";
     String UsoVG = " ",PuertasVG = " ",NMotorVG = " ",PropietarioVG = " ";
     String DireccionVG = " ",ColoniaVG = " ",LocalidadVG = " ",EstatusVG = " ",EmailVG = " ",ObservacionesVG = " ";
+
+    String email;
 
     SharedPreferences share;
     SharedPreferences.Editor editor;
@@ -85,12 +89,24 @@ public class TransporteGeneral extends AppCompatActivity {
         btnVistaP = findViewById(R.id.imgVistaPV);
         btnGuardar = findViewById(R.id.imgGuardarVehiculo);
         btnInfraccion = findViewById(R.id.imgTerminalV);
+        btnListTC= findViewById(R.id.btnListTC);
 
 
         btnReglamento = findViewById(R.id.lyInicio4);
         btnLugaresPago = findViewById(R.id.lyCategoria4);
         btnContactos = findViewById(R.id.lyContacto4);
         btnTabulador = findViewById(R.id.lyFavoritos4);
+
+
+
+
+        btnListTC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransporteGeneral.this,Reglamento.class);
+                startActivity(i);
+            }
+        });
 
         btnVistaP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +127,12 @@ public class TransporteGeneral extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ///////validacion email//////
+
+                if(validateEmailAddress( txtEmailVG.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "EMAIL VALIDO", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "EMAIL INVALIDO.", Toast.LENGTH_SHORT).show();}
                 getExistRegistro();
             }
         });
@@ -149,7 +171,18 @@ public class TransporteGeneral extends AppCompatActivity {
             }
         });
 
+
+
     }
+    private boolean validateEmailAddress(String emailAddress){
+        String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = emailAddress;
+        Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        return matcher.matches();
+    }
+
+
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {

@@ -105,7 +105,9 @@
                             android:layout_height="50dp"
                             android:gravity="center"
                             android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ  abcdfghijklmnñopqrstuvwxyz 0123456789 "
+                            android:inputType="textCapCharacters"
+                            android:maxLength="25"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lblBuscaCIV"
@@ -184,8 +186,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:imeOptions="actionNext"
-                            android:inputType="number" />
+                            android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdfghijklmnñopqrstuvwxyz 0123456789 "
+                            android:inputType="textCapCharacters"
+                            android:maxLength="10" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lblBuscaCIVTC"

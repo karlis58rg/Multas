@@ -2,6 +2,7 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -42,11 +47,13 @@ public class TransportePrivado extends AppCompatActivity {
     String SerieVp,DistribuidorVp,MarcaVp,VersionVp,ClaseVp,TipoVp,ModeloVp,CombustibleVp,CilindrosVp,ColorVp;
     String UsoVp,ProcedenciaVp,PuertasVp,NMotorVp,RepuveVp,FolioSCTVp,OficinaExpVp,PropietarioVp,RFCVp;
     String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,EmailVp,ObservacionesVp;
+    String email;
 
     SharedPreferences share;
     SharedPreferences.Editor editor;
     int numberRandom;
     public String codigoVerifi, cargarInfoRandom;
+    private int dia,mes,año;
 
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
 
@@ -185,6 +192,13 @@ public class TransportePrivado extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ///////validacion email//////
+
+                if(validateEmailAddress( txtEmailVp.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "EMAIL VALIDO", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "EMAIL INVALIDO.", Toast.LENGTH_SHORT).show();}
                 getExistRegistro();
             }
         });
@@ -221,6 +235,46 @@ public class TransportePrivado extends AppCompatActivity {
                 finish();
             }
         });
+        btnList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePrivado.this,Reglamento.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        ///////////// calendario para fechas en formulario///////////
+        txtFechaVp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia = c.get(Calendar.DAY_OF_MONTH);
+                mes = c.get(Calendar.MONTH);
+                año = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePrivado.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaVp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia, mes, año);
+                datePickerDialog.show();
+            }
+        });
+
+
+
+
+    }
+
+    /////////validar email////////
+    private boolean validateEmailAddress(String emailAddress){
+        String  expression="^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = emailAddress;
+        Pattern pattern = Pattern.compile(expression,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        return matcher.matches();
     }
 
     /******************GET A LA BD***********************************/

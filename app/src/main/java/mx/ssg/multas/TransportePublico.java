@@ -2,6 +2,7 @@ package mx.ssg.multas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Random;
 
 import okhttp3.Call;
@@ -40,7 +43,7 @@ public class TransportePublico extends AppCompatActivity {
     String FolioSCTTp,EmailTp = " ",NotasTp = " ";
 
     Button btnGuardar;
-    ImageView btnVistaPrincipal,btnInfraccion;
+    ImageView btnVistaPrincipal,btnInfraccion,btnMenuTpu;
 
     SharedPreferences share;
     SharedPreferences.Editor editor;
@@ -48,6 +51,7 @@ public class TransportePublico extends AppCompatActivity {
     public String codigoVerifi, cargarInfoRandom;
 
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
+    private int dia,mes,año,dia1,mes1,año1;
 
 
     @Override
@@ -61,6 +65,11 @@ public class TransportePublico extends AppCompatActivity {
         }else {
             System.out.println(cargarInfoRandom);
         }
+
+        ////boton menu //////
+        btnMenuTpu = findViewById(R.id.btnListTpu);
+
+
 
         txtPlacaTp = findViewById(R.id.txtPlacaTp);
         /////posicion de cursor///////////
@@ -176,6 +185,15 @@ public class TransportePublico extends AppCompatActivity {
             }
         });
 
+        btnMenuTpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TransportePublico.this,Reglamento.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
         btnVistaPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,7 +242,48 @@ public class TransportePublico extends AppCompatActivity {
                 finish();
             }
         });
+
+        ///////////// calendario para fechas en formulario///////////
+        txtFechaExTp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia = c.get(Calendar.DAY_OF_MONTH);
+                mes = c.get(Calendar.MONTH);
+                año = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePublico.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaExTp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia, mes, año);
+                datePickerDialog.show();
+            }
+        });
+
+        txtFechaVigTp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                dia1 = c.get(Calendar.DAY_OF_MONTH);
+                mes1 = c.get(Calendar.MONTH);
+                año1 = c.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(TransportePublico.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        txtFechaVigTp.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+
+                }, dia1, mes1, año1);
+                datePickerDialog.show();
+            }
+        });
+
     }
+
 
     /******************GET A LA BD***********************************/
     public void getExistRegistroLicencia() {

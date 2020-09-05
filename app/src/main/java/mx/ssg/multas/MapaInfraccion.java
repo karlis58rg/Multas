@@ -330,8 +330,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 cargarDatos();
-                if (claveInfraccion != "MANEJAR EN ESTADO DE EBRIEDAD"){
-                    claveInfraccion = "MANEJAR EN ESTADO DE EBRIEDAD";
+                if (claveInfraccion != "POR FALTA DE LUZ BLANCA EN LA PLACA"){
+                    claveInfraccion = "POR FALTA DE LUZ BLANCA EN LA PLACA";
                     resClave = "3";
                     resSalarios = "75";
                     /***LLENADO DE LA TABLA***/
@@ -361,8 +361,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnVelocimetro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (claveInfraccion != "EXCESO DE VELOCIDAD") {
-                    claveInfraccion = "EXCESO DE VELOCIDAD";
+                if (claveInfraccion != "FALTA DE LUZ DE REVERSA") {
+                    claveInfraccion = "FALTA DE LUZ DE REVERSA";
                     resClave = "4";
                     resSalarios = "20";
                     /***LLENADO DE LA TABLA***/
@@ -390,8 +390,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnSemaforo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion != "PASARSE ALTO DEL SEMAFORO"){
-                claveInfraccion = "PASARSE ALTO DEL SEMAFORO";
+                if(claveInfraccion != "POR ODOMETRO EN MAL ESTADO"){
+                claveInfraccion = "POR ODOMETRO EN MAL ESTADO";
                 resClave = "22";
                 resSalarios = "20";
                 /***LLENADO DE LA TABLA***/
@@ -419,8 +419,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnVuelta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion != "DAR VUELTA EN U EN ZONA PROHIBIDA"){
-                claveInfraccion = "DAR VUELTA EN U EN ZONA PROHIBIDA";
+                if(claveInfraccion != "POR FALTA DE TIMBRE PARA QUE EL PASAJE ANUNCIE EL DESCENSO"){
+                claveInfraccion ="POR FALTA DE TIMBRE PARA QUE EL PASAJE ANUNCIE EL DESCENSO";
                 resClave = "30";
                 resSalarios = "5";
                 /***LLENADO DE LA TABLA***/
@@ -448,8 +448,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnDobleFila.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion !="ESTACIONARSE EN DOBLE FILA"){
-                claveInfraccion = "ESTACIONARSE EN DOBLE FILA";
+                if(claveInfraccion !="POR FALTA DE ASEO EN EL INTERIOR Y EXTERIOR DE LA UNIDAD"){
+                claveInfraccion = "POR FALTA DE ASEO EN EL INTERIOR Y EXTERIOR DE LA UNIDAD";
                 resClave = "17";
                 resSalarios = "4";
                 /***LLENADO DE LA TABLA***/
@@ -478,8 +478,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnCasco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion!="FALTA DE CASCO PROTECTOR, AL CONDUCIRMOTOCICLETA"){
-                claveInfraccion = "FALTA DE CASCO PROTECTOR, AL CONDUCIRMOTOCICLETA";
+                if(claveInfraccion!="POR FALTA DE ASEO DEL OPERADOR"){
+                claveInfraccion = "POR FALTA DE ASEO DEL OPERADOR";
                 resClave = "51";
                 resSalarios = "2";
                 /***LLENADO DE LA TABLA***/
@@ -507,8 +507,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnCinturon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion !="NO USAR CINTURON DE SEGURIDAD"){
-                claveInfraccion = "NO USAR CINTURON DE SEGURIDAD";
+                if(claveInfraccion !="POR NO PORTAR EL UNIFORME AUTORIZADO "){
+                claveInfraccion = "POR NO PORTAR EL UNIFORME AUTORIZADO ";
                 resClave = "128";
                 resSalarios = "3";
                 /***LLENADO DE LA TABLA***/
@@ -537,8 +537,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnEstacionarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion !="ESTACIONARSE EN ZONA PROHIBIDA"){
-                claveInfraccion = "ESTACIONARSE EN ZONA PROHIBIDA";
+                if(claveInfraccion !="POR NO DESINFECTAR LAS UNIDADES"){
+                claveInfraccion = "POR NO DESINFECTAR LAS UNIDADES";
                 resClave = "14";
                 resSalarios = "5";
                 /***LLENADO DE LA TABLA***/
