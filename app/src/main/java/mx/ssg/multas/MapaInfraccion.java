@@ -113,7 +113,8 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     String cadenaBorrar = "";
     String cadenaSalarioBorrar = "";
     public static String direccion,municipio,estado;
-    public  static String direccionTurno;
+    public static String direccionTurno;
+    public static String contrasenia;
     public String respLicencia;
     public String licenciaExist;
     public String tarjetaExist;
@@ -167,6 +168,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         //************************************** ACCIONES DE LA VISTA **************************************//
         //Random();
         cargarDatos();
+        generateRandomString(6);
         getExistRegistroLicencia();
         getExistRegistroTarjeta();
 
@@ -764,8 +766,10 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         RequestBody body = new FormBody.Builder()
                 .add("IdInfraccion", cargarInfoRandom)
                 .add("Usuario", cargarInfoUsuario)
-                .add("Latitud", lat_origen.toString()) //lat_origen.toString()
-                .add("Longitud", lon_origen.toString()) //
+                .add("Latitud", lat_origen.toString())
+                .add("Longitud", lon_origen.toString())
+                .add("Direccion", direccionTurno)
+                .add("Contrasena", contrasenia) //
                 .add("Fecha", fecha)
                 .add("Hora", hora)
                 .add("Garantia",resGarantia+ " " +resGarantiaPlaca+ " " +resGarantiaTCirculacion+ " " +resGarantiaVehiculo+ " " +resGarantiaLconducir )
@@ -797,6 +801,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     i.putExtra("MONTO", montoApagar);
                     i.putExtra("FOLIO", cargarInfoRandom);
                     i.putExtra("DIRECCION", direccionTurno);
+                    i.putExtra("CONTRASENIA", contrasenia);
                     eliminarDatos();
                     startActivity(i);
                 }
@@ -1075,6 +1080,19 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         aux = new LatLng(lat_origen, lon_origen);
 
         mi_ubi(aux);
+    }
+
+    public String generateRandomString(int length) {
+        String randomString = "";
+
+        final char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890".toCharArray();
+        final Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            randomString = randomString + chars[random.nextInt(chars.length)];
+        }
+        contrasenia = randomString;
+        System.out.println(contrasenia);
+        return randomString;
     }
 
     /******************** LLENAR EL COMBO *************************************/
