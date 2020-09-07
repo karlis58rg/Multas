@@ -65,7 +65,7 @@
                     android:layout_width="150dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="50dp"
                     app:srcCompat="@drawable/ic_licencia" />
                 <!-- CAMPOS A BUSCAR DE LICENCIA DE CONDUCIR -->
                 <LinearLayout
@@ -120,8 +120,8 @@
                         android:layout_weight="0.03">
                         <ImageView
                             android:id="@+id/imgBuscarNoSerieCIV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/icn_buscar" />
                     </LinearLayout>
                     <!--IMAGEN3 TITLE-->
@@ -201,8 +201,8 @@
                         android:layout_weight="0.03">
                         <ImageView
                             android:id="@+id/imgBuscarPlacaCIV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:src="@drawable/icn_buscar" />
                     </LinearLayout>
                     <!--IMAGEN3 TITLE-->
