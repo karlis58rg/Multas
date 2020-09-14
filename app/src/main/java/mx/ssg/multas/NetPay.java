@@ -157,10 +157,9 @@ public class NetPay extends AppCompatActivity {
                 //cadenaInfraccion();
                 Toast.makeText(getApplicationContext(),"UN MOMENTO POR FAVOR",Toast.LENGTH_SHORT).show();
                 getCadenaImpresion();
+                getSendEmail();
             }
         });
-
-
     }
 
     @Override
@@ -185,6 +184,34 @@ public class NetPay extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    /******************GET A LA BD***********************************/
+    public void getSendEmail() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Email?idExistente="+folio)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    String resp = myResponse;
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
+    }
+
 
     /******************GET A LA BD***********************************/
     private void getCadenaImpresion() {
@@ -225,7 +252,6 @@ public class NetPay extends AppCompatActivity {
                                 expedicion = textElements[5];
                                 vencimiento = textElements[6];
                                 observaciones = textElements[7];
-
                                 //cadenaImpresion = resp;
                                 //cadenaImpresion = cadenaImpresion.replace('\n','\n');
                                 System.out.println(nombre+ "\n"+estado);

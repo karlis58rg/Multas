@@ -174,7 +174,7 @@ public class LicenciaConducir extends AppCompatActivity {
                 ///////validacion email//////
 
                 if(validateEmailAddress( txtEmailLC.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "EMAIL VALIDO.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "EMAIL VALIDO.", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(), "EMAIL INVALIDO.", Toast.LENGTH_SHORT).show();
                 }

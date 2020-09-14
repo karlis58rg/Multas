@@ -1148,9 +1148,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:gravity="center"
-                                android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                 android:inputType="textCapCharacters"
-                                android:maxLength="30"
+                                android:maxLength="10"
                                 android:imeOptions="actionNext"/>
                         </LinearLayout>
                         <!--IMG BUSCAR REGISTRO 18-->

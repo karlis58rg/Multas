@@ -3,7 +3,9 @@ package mx.ssg.multas;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import mx.ssg.multas.SqLite.DataHelper;
 import okhttp3.Call;
@@ -53,11 +56,24 @@ public class TarjetasConductor extends AppCompatActivity {
     String DireccionVp,ColoniaVp,LocalidadVp,UltimaRevalidacionVp,EstatusVp,TelefonoVp,FechaVp,UrlVp,EmailVp,ObservacionesVp;
     String Tag = "TarjetasConductor";
     int countResultado;
+    String cargarInfoUser;
+
+    int numberRandom;
+    public String codigoVerifi, cargarInfoRandom;
+    SharedPreferences share;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarjetas_conductor);
+        cargarDatos();
+
+        if(cargarInfoRandom.isEmpty()){
+            Random();
+        }else {
+            System.out.println(cargarInfoRandom);
+        }
         ListTabulador();
 
         txtNoSerie = findViewById(R.id.txtNoSerieCIV);
@@ -190,7 +206,7 @@ public class TarjetasConductor extends AppCompatActivity {
     public void getUsuaioLicencia() {
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?noLicencia="+serie)
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noLicencia="+serie)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -286,9 +302,10 @@ public class TarjetasConductor extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getPlacaPublica() {
+        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/TransportePublico?noPlacaToken="+placa)
+                .url("http://187.174.102.142/AppTransito/api/TransportePublico?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -405,7 +422,7 @@ public class TarjetasConductor extends AppCompatActivity {
     public void getPlacaParticular() {
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?noPlacaToken="+placa)
+                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -513,6 +530,26 @@ public class TarjetasConductor extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void Random() {
+        Random random = new Random();
+        numberRandom = random.nextInt(90000) * 99;
+        codigoVerifi = String.valueOf(numberRandom);
+        System.out.println(codigoVerifi);
+        guardarRandom();
+    }
+
+    private void guardarRandom() {
+        share = getSharedPreferences("main", MODE_PRIVATE);
+        editor = share.edit();
+        editor.putString("RANDOM","20"+codigoVerifi);
+        editor.commit();
+    }
+    public void cargarDatos() {
+        share = getSharedPreferences("main", Context.MODE_PRIVATE);
+        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarInfoUser = share.getString("USER","");
     }
 
     private void ListTabulador() {

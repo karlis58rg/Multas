@@ -1219,7 +1219,7 @@
                                     android:gravity="center"
                                     android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ 0123456789 "
                                     android:inputType="textCapCharacters"
-                                    android:maxLength="30"
+                                    android:maxLength="50"
                                     android:imeOptions="actionNext"/>
                             </LinearLayout>
                             <!--IMG BUSCAR REGISTRO 19-->
