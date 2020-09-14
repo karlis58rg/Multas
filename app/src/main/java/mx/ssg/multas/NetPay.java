@@ -393,63 +393,64 @@ public class NetPay extends AppCompatActivity {
 
         //Crear unidad que contiene texto y otros formatos
         IPage.ILine.IUnit unit1 = page.createUnit();
-        unit1.setText(" IMOS \n INSTITUTO DE MOVILIDAD SUSTENTABLE \n GOBIERNO DE BAJA CALIFORNIA \n\n\n REGLAMENTO DE TRANSPORTE PUBLICO PARA EL MUNICIPIO DE TIJUANA. \n PUBLICADO EN EL PERIÓDICO OFICIAL NO. 23, DE FECHA 31 DE MAYO DE 2002, TOMO CIX. \n \n"+"FECHA EXPECIDIÓN: "+fecha+" \n"+"HORA: "+hora);
+        unit1.setText(" IMOS \n INSTITUTO DE MOVILIDAD SUSTENTABLE \n Del Gobierno del Estado de Baja California \n\n\n Reglamento de Transporte Publico para El Municipio De Tijuana, BC, aplicado de manera supletoria tal y como lo establece el Décimo Séptimo Transitorio de la Ley de Movilidad\n" +
+                "Sustentable y de Transporte del Estado de Baja California\n \n \n"+"Fecha de Emisión: "+fecha+" \n"+"HORA: "+hora);
         unit1.setGravity(Gravity.CENTER);
         unit1.setTextStyle(1);
         page.addLine().addUnit(unit1);
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit2 = page.createUnit();
-        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN: "+folio+"\n \n \n"+"CONTRASEÑA WEB: "+contrasenia+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n");
+        unit2.setText("\n"+"Direcciòn: "+direccionInfraccion+"\n \n"+"No.INFRACCIÓN: "+folio+"\n \n"+"CONTRASEÑA WEB: "+contrasenia+"\n \n \n" + "DATOS DEL INFRACTOR" + "\n \n");
         unit2.setGravity(Gravity.CENTER);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit2);
 
         //Se pueden agregar 2 o más unidades a una línea y se dividirá en columnas
         IPage.ILine.IUnit unit3 = page.createUnit();
-        unit3.setText("NOMBRE: " +nombre + "\n" + "ESTADO: "+estado+"\n"+"MUNICIPIO: "+municipio+"\n"+"TIPO LICENCIA: "+tipoLic+"\n"+"EXPEDICIÓN: "+expedicion+"\n"+"VENCIMIENTO: "+vencimiento+"\n"+"OBSERVACIONES: "+observaciones+"\n\n\n\n FIRMA ___________________"+"\n\n");
+        unit3.setText("NOMBRE: " +nombre + "\n" + "ESTADO: "+estado+"\n"+"MUNICIPIO: "+municipio+"\n"+"TIPO LICENCIA: "+tipoLic+"\n"+"EXPEDICIÓN: "+expedicion+"\n"+"VENCIMIENTO: "+vencimiento+"\n"+"OBSERVACIONES: "+observaciones+"\n\n\n\n FIRMA DEL INFRACTOR ___________________"+"\n\n");
         unit3.setGravity(Gravity.LEFT);
         //Se crea una línea y se agregan sus unidades.
         page.addLine().addUnit(unit3);
 
         IPage.ILine.IUnit unit4 = page.createUnit();
-        unit4.setText("DATOS DEL AGENTE"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit4.setText("DATOS DEL INSPECTOR DE MOVILIDAD"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit4.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit4);
 
         IPage.ILine.IUnit unit5 = page.createUnit();
-        unit5.setText("NOMBRE: "+nombreAgente+"\n"+"CARGO: "+cargo+"\n\n\n\n"+"FIRMA ___________________"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit5.setText("El que suscribe la presente Boleta de Infracción el  C. "+nombreAgente+", Inspector de movilidad, del Instituto de Movilidad Sustentable del Estado de Baja California, facultades conferidas mediante nombramiento expedido por el Director General del Instituto en fecha "+fecha+" quien se identificó con el infractor con credencial institucional expedida y otorgada por el Instituto, con número de empleado la cual cuenta con nombre y fotografía del suscrito. \n\n\n"+"FIRMA DEL INSPECTOR___________________"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit5.setGravity(Gravity.LEFT);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit5);
 
         IPage.ILine.IUnit unit6 = page.createUnit();
-        unit6.setText("INFRACCIONES"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit6.setText("CONDUCTA:"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit6.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit6);
 
         IPage.ILine.IUnit unit7 = page.createUnit();
-        unit7.setText(descInfracciones+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit7.setText(descInfracciones+"\n\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit7.setGravity(Gravity.LEFT);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit7);
 
         IPage.ILine.IUnit unit8 = page.createUnit();
-        unit8.setText(umas+"\n"+"VALOR DE LA UMA $86.00"+"\n"+total+","+totalComplemento+"\n\n"+"LUGARES DE PAGO"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit8.setText(umas+"\n\n"+"VALOR DE LA UMA ACTUAL $86.00"+"\n\n"+total+","+totalComplemento+"\n\n"+"LUGARES DE PAGO"+"\n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit8.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit8);
 
         IPage.ILine.IUnit unit9 = page.createUnit();
-        unit9.setText("PODRÁS ACUDIR A REALIZAR TU PAGO A LAS CAJAS DE IMOS EN EL MUNICIPIO DE LA INFRACCIÓN DESPUÉS DE 24 HORAS DEL LEVANTAMIENTO DE LA INFRACCIÓN, PODRÁS REALIZAR TU PAGO CON TARJETA DE CRÉDITO O DÉBITO Y EN EFECTIVO O IMOS PONE A TU SERVICIO EL PAGO EN LÍNEA A TRAVÉS DE LA PÁGINA HTTPS://IMOS.GOB.MX/SERVICIOENLINEA \n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit9.setText("Podrás realizar pago de la infracción en las instalaciones del instituto en los horarios de atención o a través del portal oficial: WWW.IMOS.GOB.MX/INSPECCION \n\n");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit9.setGravity(Gravity.LEFT);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit9);
 
         IPage.ILine.IUnit unit10 = page.createUnit();
-        unit10.setText("TERMINOS Y CONDICIONES INSTITUTO DE MOVILIDAD SUSTENTABLE");  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
+        unit10.setText("Métodos de pago: \n\n El infractor reconoce la falta cometida y acepta hacer el pago inmediato de la sanción en el dispositivo móvil a cargo del Inspector de Movilidad mediante pago electrónico con tarjeta de crédito o debito \n\n\n Firma de Conformidad ___________________ \n\n\n No se puede hacer pago en efectivo por este medio móvil" );  //TRAERME LA DIRECCIÒN DE LA VISTA MAPA INFRACCIÓN. SU LUGAR ES ANTES DEL FOLIO
         unit10.setGravity(Gravity.CENTER);
         //Se crea una nueva línea y se agrega la unidad pasada
         page.addLine().addUnit(unit10);
