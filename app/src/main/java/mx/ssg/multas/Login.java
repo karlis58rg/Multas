@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -27,7 +30,7 @@ import okhttp3.Response;
 public class Login extends AppCompatActivity {
     Button btnIniciarL;
     EditText txtUserL,txtPassL;
-    String user,pass,respUser;
+    String user,pass,respUser,respIdMunicipio,respuestaJson;
     int bandera;
     SharedPreferences share;
     SharedPreferences.Editor editor;
@@ -56,14 +59,15 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"LA CONTRASEÑA NO PUEDE SER MENOR A TRES LETRAS",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getApplicationContext(), "ESTAMOS PROCESANDO SU SOLICITUD, UN MOMENTO POR FAVOR", Toast.LENGTH_SHORT).show();
-                    getUsuaioL();
+                    //getUsuaioL();
+                    getUsuarioAndMunicipio();
                 }
             }
         });
     }
 
     /******************GET A LA BD***********************************/
-    public void getUsuaioL() {
+    /*public void getUsuaioL() {
         user = txtUserL.getText().toString().toUpperCase();
         pass = txtPassL.getText().toString().toUpperCase();
 
@@ -87,7 +91,7 @@ public class Login extends AppCompatActivity {
                     myResponse = myResponse.replace('"',' ');
                     myResponse = myResponse.trim();
                     String resp = myResponse;
-                    String valorUser = "false";
+                    String valorUser = "SIN INFORMACION";
                     if(resp.equals(valorUser)){
                         Looper.prepare(); // to be able to make toast
                         Toast.makeText(getApplicationContext(), "LO SENTIMOS, USUARIO NO REGISTRADO", Toast.LENGTH_SHORT).show();
@@ -109,10 +113,67 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /******************GET A LA BD***********************************/
+    public void getUsuarioAndMunicipio() {
+        user = txtUserL.getText().toString().toUpperCase();
+        pass = txtPassL.getText().toString().toUpperCase();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Usuarios?userMunicipio="+user+"&passMunicipio="+pass)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String myResponse = response.body().string();
+                    Login.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                respuestaJson = "[\"SIN INFORMACION\"]";
+                                if (myResponse.equals(respuestaJson)) {
+                                    Toast.makeText(getApplicationContext(), "LO SENTIMOS, NO SE CUENTA CON INFORMACIÓN DE ESTE USUARIO", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    bandera = 1;
+                                    JSONObject jObj = null;
+                                    String resObj = myResponse;
+                                    System.out.println(resObj);
+                                    resObj = resObj.replace("[", " ");
+                                    resObj = resObj.replace("]", " ");
+                                    jObj = new JSONObject("" + resObj + "");
+                                    respUser = jObj.getString("m_Item1");
+                                    respIdMunicipio = jObj.getString("m_Item2");
+                                    guardarDatosUser();
+                                    Intent i = new Intent(Login.this,LoginUser.class);
+                                    startActivity(i);
+                                    finish();
+                                    Log.i("HERE", "" + jObj);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+            }
+
+        });
+    }
+
     private void guardarDatosUser(){
         share = getSharedPreferences("main",MODE_PRIVATE);
         editor = share.edit();
         editor.putString("USER",respUser);
+        editor.putString("IDMUNICIPIO",respIdMunicipio);
         editor.putInt("STATUS",bandera);
         editor.commit();
     }

@@ -50,7 +50,7 @@ public class LicenciaConducir extends AppCompatActivity {
     public static EditText txtFechaExLC,txtFechaVenLC,txtTipoVigLC,txtTipoLic,txtRFCLC,txtHomoLC,txtGrupoSanguiLC,txtRequeriemientosEspLC,txtEmailLC,txtObservacionesLC;
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
     String Tag = "LICENCIA CONDUCIR";
-    String licencia = " " ,nombre = " " ,apaterno = " " ,amaterno = " " ,Tipocalle = " " ,CalleLC = " " ,NumeroCalle = " " ,ColoniaLC = " " ,CP,MunicipioLC = " " ,EstadoLC = " " ,FechaExLC = " " ,respuestaJson;
+    String licencia = " " ,nombre = " " ,apaterno = " " ,amaterno = " " ,Tipocalle = " " ,CalleLC = " " ,NumeroCalle = " " ,ColoniaLC = " " ,CP = "", MunicipioLC = " " ,EstadoLC = " " ,FechaExLC = " " ,respuestaJson;
     String FechaVenLC = " " ,TipoVigLC = " " ,TipoLic = " " ,RFCLC = " " ,HomoLC = " " ,GrupoSanguiLC = " " ,RequeriemientosEspLC = " " ,EmailLC = " " ,ObservacionesLC = " ";
     private  DatePickerDialog.OnDateSetListener dateSetListener,date;
     Calendar calendar = Calendar.getInstance();
@@ -59,19 +59,13 @@ public class LicenciaConducir extends AppCompatActivity {
     private int dia,mes,año,dia1,mes1,año1;
     String email;
     int numberRandom;
-    public String codigoVerifi, cargarInfoRandom;
+    public String cargarFolioInfra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_licencia_conducir);
-        cargarDatos();
-
-        if(cargarInfoRandom.isEmpty()){
-            Random();
-        }else {
-            System.out.println(cargarInfoRandom);
-        }
+        cargarFolio();
 
         btnMenuL = findViewById(R.id.btnListL);
         btnTarjetaL = findViewById(R.id.imgTCLicencia);
@@ -273,16 +267,14 @@ public class LicenciaConducir extends AppCompatActivity {
         Matcher matcher = pattern.matcher(inputStr);
         return matcher.matches();
 
-
 }
 
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {
-        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -316,7 +308,6 @@ public class LicenciaConducir extends AppCompatActivity {
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistroLicencia() {
-        cargarDatos();
         licencia = txtLicencia.getText().toString();
         apaterno = txtApaterno.getText().toString();
         amaterno = txtAmaterno.getText().toString();
@@ -345,7 +336,7 @@ public class LicenciaConducir extends AppCompatActivity {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", cargarInfoRandom)
+                .add("IdInfraccion", cargarFolioInfra)
                 .add("NoLicencia", licencia )
                 .add("ApellidoPL", apaterno)
                 .add("ApellidoML", amaterno)
@@ -417,23 +408,8 @@ public class LicenciaConducir extends AppCompatActivity {
             }
         });
     }
-
-    public void Random() {
-        Random random = new Random();
-        numberRandom = random.nextInt(90000) * 99;
-        codigoVerifi = String.valueOf(numberRandom);
-        System.out.println(codigoVerifi);
-        guardarRandom();
-    }
-
-    private void guardarRandom() {
-        share = getSharedPreferences("main", MODE_PRIVATE);
-        editor = share.edit();
-        editor.putString("RANDOM","20"+codigoVerifi);
-        editor.commit();
-    }
-    public void cargarDatos() {
+    public void cargarFolio(){
         share = getSharedPreferences("main", Context.MODE_PRIVATE);
-        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
 }

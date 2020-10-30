@@ -45,7 +45,8 @@ public class TransporteGeneral extends AppCompatActivity {
     SharedPreferences share;
     SharedPreferences.Editor editor;
     int numberRandom;
-    public String codigoVerifi, cargarInfoRandom;
+    public String cargarFolioInfra;
+
 
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
 
@@ -53,13 +54,7 @@ public class TransporteGeneral extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transporte_general);
-        cargarDatos();
-
-        if(cargarInfoRandom.isEmpty()){
-            Random();
-        }else {
-            System.out.println(cargarInfoRandom);
-        }
+        cargarFolio();
 
         txtNoPlacaVG = findViewById(R.id.txtPlacaVG);
         /////posicion de cursor///////////
@@ -128,7 +123,6 @@ public class TransporteGeneral extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ///////validacion email//////
-
                 if(validateEmailAddress( txtEmailVG.getText().toString())){
                     //Toast.makeText(getApplicationContext(), "EMAIL VALIDO", Toast.LENGTH_SHORT).show();
                 }else{
@@ -186,10 +180,9 @@ public class TransporteGeneral extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {
-        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/ConcentradoVehiculos?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/ConcentradoVehiculos?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -223,7 +216,6 @@ public class TransporteGeneral extends AppCompatActivity {
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistro() {
-        cargarDatos();
         Placa = txtNoPlacaVG.getText().toString();
         SerieVG = txtSerieVG.getText().toString();
         MarcaVG = txtMarcaVG.getText().toString();
@@ -247,7 +239,7 @@ public class TransporteGeneral extends AppCompatActivity {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", cargarInfoRandom)
+                .add("IdInfraccion", cargarFolioInfra)
                 .add("Placa", Placa )
                 .add("NoSerie", SerieVG)
                 .add("Marca", MarcaVG)
@@ -320,10 +312,9 @@ public class TransporteGeneral extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getExistRegistroLicencia() {
-        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -360,22 +351,8 @@ public class TransporteGeneral extends AppCompatActivity {
         });
     }
 
-
-    public void Random() {
-        Random random = new Random();
-        numberRandom = random.nextInt(90000) * 99;
-        codigoVerifi = String.valueOf(numberRandom);
-        System.out.println(codigoVerifi);
-        guardarRandom();
-    }
-    private void guardarRandom() {
-        share = getSharedPreferences("main", MODE_PRIVATE);
-        editor = share.edit();
-        editor.putString("RANDOM","20"+codigoVerifi);
-        editor.commit();
-    }
-    public void cargarDatos() {
+    public void cargarFolio(){
         share = getSharedPreferences("main", Context.MODE_PRIVATE);
-        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
 }

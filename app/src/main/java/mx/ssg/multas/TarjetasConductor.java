@@ -59,7 +59,7 @@ public class TarjetasConductor extends AppCompatActivity {
     String cargarInfoUser;
 
     int numberRandom;
-    public String codigoVerifi, cargarInfoRandom;
+    public String codigoVerifi,cargarIdMunicipio,folioInfra,cargarFolioInfra;
     SharedPreferences share;
     SharedPreferences.Editor editor;
 
@@ -68,14 +68,8 @@ public class TarjetasConductor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarjetas_conductor);
         cargarDatos();
-
-        if(cargarInfoRandom.isEmpty()){
-            Random();
-        }else {
-            System.out.println(cargarInfoRandom);
-        }
+        getAgenteMunicipio();
         ListTabulador();
-
         txtNoSerie = findViewById(R.id.txtNoSerieCIV);
         txtPlaca = findViewById(R.id.txtPlacaCIV);
         btnBuscarSerie = findViewById(R.id.imgBuscarNoSerieCIV);
@@ -204,9 +198,10 @@ public class TarjetasConductor extends AppCompatActivity {
     /********************************************************************************************************************/
     /******************GET A LA BD***********************************/
     public void getUsuaioLicencia() {
+        cargarFolio();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noLicencia="+serie)
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?infraccionId="+cargarFolioInfra+"&user="+cargarInfoUser+"&noLicencia="+serie)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -291,7 +286,6 @@ public class TarjetasConductor extends AppCompatActivity {
                             }catch(JSONException e){
                                 e.printStackTrace();
                             }
-
                         }
                     });
                 }
@@ -302,10 +296,10 @@ public class TarjetasConductor extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getPlacaPublica() {
-        cargarDatos();
+        cargarFolio();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/TransportePublico?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
+                .url("http://187.174.102.142/AppTransito/api/TransportePublico?infraccionId="+cargarFolioInfra+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -420,9 +414,10 @@ public class TarjetasConductor extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getPlacaParticular() {
+        cargarFolio();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?infraccionId="+cargarInfoRandom+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
+                .url("http://187.174.102.142/AppTransito/api/VehiculoParticular?infraccionId="+cargarFolioInfra+"&user="+cargarInfoUser+"&noPlacaToken="+placa)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -532,24 +527,59 @@ public class TarjetasConductor extends AppCompatActivity {
         });
     }
 
-    public void Random() {
-        Random random = new Random();
-        numberRandom = random.nextInt(90000) * 99;
-        codigoVerifi = String.valueOf(numberRandom);
-        System.out.println(codigoVerifi);
-        guardarRandom();
+    /******************GET A LA BD***********************************/
+    public void getAgenteMunicipio() {
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Folio?municipio="+cargarIdMunicipio)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL OBTENER LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    myResponse = myResponse.replace('"',' ');
+                    myResponse = myResponse.trim();
+                    String resp = myResponse;
+                    String valorUser = "SIN INFORMACION";
+                    if(resp.equals(valorUser)){
+                        Looper.prepare(); // to be able to make toast
+                        Toast.makeText(getApplicationContext(), "LO SENTIMOS, NO SE PUDO GENERAR EL FOLIO, FAVOR DE INTENTARLO NUEVAMENTE", Toast.LENGTH_SHORT).show();
+                        Looper.loop();
+                    }else{
+                        folioInfra = resp;
+                        guardarFolio();
+                    }
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
     }
 
-    private void guardarRandom() {
+    private void guardarFolio() {
         share = getSharedPreferences("main", MODE_PRIVATE);
         editor = share.edit();
-        editor.putString("RANDOM","20"+codigoVerifi);
+        editor.putString("FOLIOINFRACCION",folioInfra);
         editor.commit();
     }
+
     public void cargarDatos() {
         share = getSharedPreferences("main", Context.MODE_PRIVATE);
-        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarIdMunicipio = share.getString("IDMUNICIPIO", "");
         cargarInfoUser = share.getString("USER","");
+    }
+
+    public void cargarFolio(){
+        share = getSharedPreferences("main", Context.MODE_PRIVATE);
+        cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
 
     private void ListTabulador() {

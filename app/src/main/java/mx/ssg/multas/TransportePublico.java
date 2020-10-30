@@ -50,7 +50,7 @@ public class TransportePublico extends AppCompatActivity {
     SharedPreferences share;
     SharedPreferences.Editor editor;
     int numberRandom;
-    public String codigoVerifi, cargarInfoRandom;
+    public String cargarFolioInfra;
 
     private LinearLayout btnReglamento,btnLugaresPago,btnContactos,btnTabulador;
     private int dia,mes,año,dia1,mes1,año1;
@@ -60,13 +60,7 @@ public class TransportePublico extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transporte_publico);
-        cargarDatos();
-
-        if(cargarInfoRandom.isEmpty()){
-            Random();
-        }else {
-            System.out.println(cargarInfoRandom);
-        }
+        cargarFolio();
 
         ////boton menu //////
         btnMenuTpu = findViewById(R.id.btnListTpu);
@@ -295,10 +289,9 @@ public class TransportePublico extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getExistRegistroLicencia() {
-        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/Licencia?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -337,10 +330,9 @@ public class TransportePublico extends AppCompatActivity {
 
     /******************GET A LA BD***********************************/
     public void getExistRegistro() {
-        cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Transporte?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/Transporte?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -374,13 +366,12 @@ public class TransportePublico extends AppCompatActivity {
 
     //***************** INSERTA A LA BD MEDIANTE EL WS **************************//
     private void insertRegistro() {
-        cargarDatos();
         NotasTp = txtNotasTp.getText().toString();
         EmailTp = txtEmailTp.getText().toString();
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", cargarInfoRandom)
+                .add("IdInfraccion", cargarFolioInfra)
                 .add("Placa", Placa )
                 .add("Economico", Economico)
                 .add("EstatusActual", EstatusActual)
@@ -480,23 +471,9 @@ public class TransportePublico extends AppCompatActivity {
         Matcher matcher = pattern.matcher(inputStr);
         return matcher.matches();
     }
-
-    public void Random() {
-        Random random = new Random();
-        numberRandom = random.nextInt(90000) * 99;
-        codigoVerifi = String.valueOf(numberRandom);
-        System.out.println(codigoVerifi);
-        guardarRandom();
-    }
-    private void guardarRandom() {
-        share = getSharedPreferences("main", MODE_PRIVATE);
-        editor = share.edit();
-        editor.putString("RANDOM","20"+codigoVerifi);
-        editor.commit();
-    }
-    public void cargarDatos() {
+    public void cargarFolio(){
         share = getSharedPreferences("main", Context.MODE_PRIVATE);
-        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
 
 }

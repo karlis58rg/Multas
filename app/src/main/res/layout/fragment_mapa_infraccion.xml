@@ -253,7 +253,7 @@
                                     android:id="@+id/imgAlcohol"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_alcohol"
+                                    android:src="@drawable/icn_personas"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <LinearLayout
@@ -267,7 +267,7 @@
                                     android:id="@+id/imgVelocimetro"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_velocimetro"
+                                    android:src="@drawable/icn_llanta"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <!--BOTTON FOODER-->
@@ -282,7 +282,7 @@
                                     android:id="@+id/imgSemaforo"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_semaforo"
+                                    android:src="@drawable/icn_revision"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <!--IMAGEN2 FOODER-->
@@ -297,7 +297,21 @@
                                     android:id="@+id/imgVuelta"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_vuelta"
+                                    android:src="@drawable/ic_tarjeta"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgVuelta1"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/icn_seguro"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                         </LinearLayout>
@@ -323,7 +337,7 @@
                                     android:id="@+id/imgDobleFila"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_doblefila"
+                                    android:src="@drawable/icn_carril"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <LinearLayout
@@ -337,7 +351,7 @@
                                     android:id="@+id/imgCasco"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_casco"
+                                    android:src="@drawable/icn_prohibido"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <!--BOTTON FOODER-->
@@ -352,7 +366,7 @@
                                     android:id="@+id/imgCinturon"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_cinturon"
+                                    android:src="@drawable/icn_placasvigentes"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                             <!--IMAGEN2 FOODER-->
@@ -367,7 +381,21 @@
                                     android:id="@+id/imgEstacionarse"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
-                                    android:src="@drawable/icn_estacionarse"
+                                    android:src="@drawable/icn_cinturon"
+                                    android:background="@drawable/drawable_pressed"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:weightSum="1">
+                                <ImageView
+                                    android:id="@+id/imgEstacionarse1"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/icn_polarizados"
                                     android:background="@drawable/drawable_pressed"/>
                             </LinearLayout>
                         </LinearLayout>

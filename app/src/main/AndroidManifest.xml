@@ -18,7 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TransporteGeneral"></activity>
+        <activity android:name=".LicenciaConducirOffline">
+        </activity>
+        <activity android:name=".GuardarRegistrosOffline">
+        </activity>
+        <activity android:name=".VehiculosOffline">
+        </activity>
+        <activity android:name=".TransporteGeneral" />
         <activity android:name=".TransportePrivado" />
         <activity android:name=".TransportePublico" />
         <activity android:name=".Mapa" />

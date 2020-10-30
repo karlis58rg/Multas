@@ -52,8 +52,6 @@ public class LoginUser extends AppCompatActivity {
             }
         });
 
-
-
         btnEntrarLU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +125,7 @@ public class LoginUser extends AppCompatActivity {
         share = getSharedPreferences("main",MODE_PRIVATE);
         editor = share.edit();
         editor.remove("USER").commit();
+        editor.remove("IDMUNICIPIO").commit();
         editor.remove("STATUS").commit();
     }
 
