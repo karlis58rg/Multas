@@ -93,7 +93,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     EditText txtDocReteInfra, txtObservacionesInfraccion;
     ImageView btnAgregarInfraccion, btnAlcohol, btnVelocimetro, btnSemaforo, btnVuelta, btnDobleFila, btnCasco, btnCinturon, btnEstacionarse;
-    String cargarInfoUsuario, cargarInfoRandom;
+    String cargarInfoUsuario, cargarFolioInfra;
     String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson,resGarantia, resGarantiaPlaca, resGarantiaVehiculo, resGarantiaTCirculacion, resGarantiaLconducir;
     int monto = 0;
     int salarioMinimo = 86;
@@ -647,7 +647,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         cargarDatos();
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", cargarInfoRandom)
+                .add("IdInfraccion", cargarFolioInfra)
                 .add("Clave", resClave)
                 .add("Descripcion", claveInfraccion)
                 .add("SalMinimos", resSalarios)
@@ -673,7 +673,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                         @Override
                         public void run() {
                             System.out.println("EL DATO SE ENVIO CORRECTAMENTE");
-                            System.out.println(cargarInfoRandom);
+                            System.out.println(cargarFolioInfra);
                         }
                     });
                 }
@@ -686,7 +686,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/TempInfraccion?infraccionDelete="+cargarInfoRandom+"&descripcionDelete="+cadenaBorrar)
+                .url("http://187.174.102.142/AppTransito/api/TempInfraccion?infraccionDelete="+cargarFolioInfra+"&descripcionDelete="+cadenaBorrar)
                 .delete()
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -764,7 +764,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
-                .add("IdInfraccion", cargarInfoRandom)
+                .add("IdInfraccion", cargarFolioInfra)
                 .add("Usuario", cargarInfoUsuario)
                 .add("Latitud", lat_origen.toString())
                 .add("Longitud", lon_origen.toString())
@@ -799,7 +799,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                     Intent i = new Intent(getActivity(), NetPay.class);
                     montoApagar = Double.valueOf(cargarInfoValor);
                     i.putExtra("MONTO", montoApagar);
-                    i.putExtra("FOLIO", cargarInfoRandom);
+                    i.putExtra("FOLIO", cargarFolioInfra);
                     i.putExtra("DIRECCION", direccionTurno);
                     i.putExtra("CONTRASENIA", contrasenia);
                     eliminarDatos();
@@ -814,7 +814,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/LicenciaConducir?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -852,7 +852,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         cargarDatos();
         final OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/TarjetaCirculacion?idExistente="+cargarInfoRandom)
+                .url("http://187.174.102.142/AppTransito/api/TarjetaCirculacion?idExistente="+cargarFolioInfra)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -890,14 +890,14 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         share = getActivity().getSharedPreferences("main", Context.MODE_PRIVATE);
         cargarInfoValor = share.getInt("ValorInfraccion", 0);
         cargarInfoUsuario = share.getString("USER", "");
-        cargarInfoRandom = share.getString("RANDOM", "");
+        cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
 
     private void eliminarDatos() {
         share = getActivity().getSharedPreferences("main", Context.MODE_PRIVATE);
         editor = share.edit();
         editor.remove("ValorInfraccion").commit();
-        editor.remove("RANDOM").commit();
+        editor.remove("FOLIOINFRACCION").commit();
     }
 
     private void guardarDatosInfra() {

@@ -68,7 +68,13 @@ public class TarjetasConductor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarjetas_conductor);
         cargarDatos();
-        getAgenteMunicipio();
+        cargarFolio();
+        if(cargarFolioInfra.isEmpty()){
+            getAgenteMunicipio();
+            System.out.println(cargarFolioInfra);
+        }else{
+            System.out.println(cargarFolioInfra);
+        }
         ListTabulador();
         txtNoSerie = findViewById(R.id.txtNoSerieCIV);
         txtPlaca = findViewById(R.id.txtPlacaCIV);

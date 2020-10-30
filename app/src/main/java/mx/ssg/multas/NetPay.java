@@ -41,8 +41,10 @@ import mx.com.netpay.sdk.models.PrintRequest;
 import mx.com.netpay.sdk.models.SaleRequest;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetPay extends AppCompatActivity {
@@ -130,7 +132,6 @@ public class NetPay extends AppCompatActivity {
                 SaleRequest sale = new SaleRequest(appId,amount,tip,msi,waiter,settlementId,settlementDate,table,folio,checkIn,tableId,additionalData,traceability,exchangeRateUsd,pendingAmount);
                 try {
                     smartApi.doTrans(sale);
-                    putPagoStatus();
                 }catch(Exception e){
                     lblRespuesta.setText(e.getMessage());
                     System.out.println(e);
@@ -183,15 +184,21 @@ public class NetPay extends AppCompatActivity {
                 lblRespuesta.setText("OPCION NO DISPONIBLE");
             }
         }
+        putPagoStatus();
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     /******************GET A LA BD***********************************/
     public void putPagoStatus() {
         cargarDatos();
+        int statusPago = 2;
         final OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("status", "2")
+                .build();
         final Request request = new Request.Builder()
-                .url("http://187.174.102.142/AppTransito/api/Infracciones?folioUpdate="+folio)
+                .url("http://187.174.102.142/AppTransito/api/Infracciones?folioUpdate="+folio+"&status="+statusPago)
+                .put(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
