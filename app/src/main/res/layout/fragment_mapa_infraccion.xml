@@ -250,7 +250,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgAlcohol"
+                                    android:id="@+id/imgpasajeros"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_personas"
@@ -264,7 +264,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgVelocimetro"
+                                    android:id="@+id/imgllantamal"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_llanta"
@@ -279,7 +279,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgSemaforo"
+                                    android:id="@+id/imgmecanico"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_revision"
@@ -294,7 +294,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgVuelta"
+                                    android:id="@+id/imgvigenciatarjeta"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/ic_tarjeta"
@@ -308,7 +308,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgVuelta1"
+                                    android:id="@+id/imgseguro"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_seguro"
@@ -334,7 +334,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgDobleFila"
+                                    android:id="@+id/imgcarril"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_carril"
@@ -348,7 +348,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgCasco"
+                                    android:id="@+id/imgdesensopasaje"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_prohibido"
@@ -363,7 +363,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgCinturon"
+                                    android:id="@+id/imgplacasvigencia"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_placasvigentes"
@@ -378,7 +378,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgEstacionarse"
+                                    android:id="@+id/imgcinturon"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_cinturon"
@@ -392,7 +392,7 @@
                                 android:orientation="vertical"
                                 android:weightSum="1">
                                 <ImageView
-                                    android:id="@+id/imgEstacionarse1"
+                                    android:id="@+id/imgpolarizados"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:src="@drawable/icn_polarizados"

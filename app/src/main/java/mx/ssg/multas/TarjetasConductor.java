@@ -659,6 +659,16 @@ public class TarjetasConductor extends AppCompatActivity {
             dataHelper.insertTabulador(63, "A QUIEN PRESTE EL SERVICIO DE TRANSPORTE DE CARGA SIN LA ESCOLTA O LA UNIDAD DE APOYO REQUERIDA Y ESTABLECIDA EN EL PERMISO ESPECIAL PARA LA PRESTACION DEL SERVICIO", "273", "3", 40);
             dataHelper.insertTabulador(64, "A LOS VEHICULOS DE CARGA QUE EFEXCTUEN TRASBORDO DE MERCANCIA EN LA VIA PUBLICA", "273", "4", 55);
             dataHelper.insertTabulador(65, "A QUIEN PRESTE EL SERVICIO DE TRNSPORTE DE CARGA SIN EL PERMISO PARA LA PRESTACION DEL SERVICIO, DEBIENDOSE ORDENAR LA DETENCION DEL VEHICULO ", "273", "5", 80);
+            dataHelper.insertTabulador(66, "TRANSITAR CON LLANTAS EN MAL ESTADO ", "274", "1", 5);
+            dataHelper.insertTabulador(67, "NO CONTAR CON REVISION MECANICA VIGENTE", "274", "2", 10);
+            dataHelper.insertTabulador(68, "NO CONTAR CON POLIZA DE SEGURO VIGENTE", "274", "3", 10);
+            dataHelper.insertTabulador(69, "NO PORTAR CINTURON DE SEGURIDAD", "274", "4", 5);
+            dataHelper.insertTabulador(70, "TRAER VIDRIOS POLARIZADOS ", "274", "5", 10);
+            dataHelper.insertTabulador(71, "NO CONTAR CON PLACAS VIGENTES", "274", "6", 10);
+            dataHelper.insertTabulador(72, "EFECTUAR ASENSO Y DESENSO FUERA DE LUGAR AUTORIZADO ", "274", "7", 10);
+            dataHelper.insertTabulador(73, "TRANSPORTAR MAYOR NUMERO DE PERSONAS DE LO APROBADO", "274", "8", 10);
+            dataHelper.insertTabulador(74, "NO CONTAR CON LICENCIA CORRESPONDIENTE VIGENTE", "274", "9", 10);
+            dataHelper.insertTabulador(75, "POR NO CIRCULAR POR CARRIL DERECHO", "274", "10", 10);
 
         }
     }

@@ -54,7 +54,7 @@ public class NetPay extends AppCompatActivity {
     String respuestaJson;
     String appId = "mx.ssg.multas";
     String orderId;
-    Double amount;
+    Float amount = 0.0f;
     Double tip;
     int msi;
     int waiter;
@@ -115,8 +115,8 @@ public class NetPay extends AppCompatActivity {
 
         /*********** PARAMETROS PROVINIENTES DE LA INFRACCION **********/
         Intent i1 = getIntent();
-        //amount = i1.getDoubleExtra("MONTO",0);
-        amount = 1.0;
+        amount = i1.getFloatExtra("MONTO",0.0f);
+        //amount = 1.0;
         folio = i1.getStringExtra("FOLIO");
         direccionInfraccion = i1.getStringExtra("DIRECCION");
         contrasenia = i1.getStringExtra("CONTRASENIA");

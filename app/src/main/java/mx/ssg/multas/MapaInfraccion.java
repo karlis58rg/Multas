@@ -92,12 +92,12 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     long detenerse;
 
     EditText txtDocReteInfra, txtObservacionesInfraccion;
-    ImageView btnAgregarInfraccion, btnAlcohol, btnVelocimetro, btnSemaforo, btnVuelta, btnDobleFila, btnCasco, btnCinturon, btnEstacionarse;
+    ImageView btnAgregarInfraccion, btnpasajeros,btnllantamal ,btnmecanico, btnvigenciatarjet,btnseguro,btnCarril,btndesensopa,btnplacasvigen ,btncinturon ,btnpolarizado ;
     String cargarInfoUsuario, cargarFolioInfra;
     String fecha, hora, documentoRetenido, claveInfraccion, respuestaJson,resGarantia, resGarantiaPlaca, resGarantiaVehiculo, resGarantiaTCirculacion, resGarantiaLconducir;
     int monto = 0;
-    int salarioMinimo = 86;
-    int sumaSalarios = 0;
+    float salarioMinimo = 86.88f;
+    float sumaSalarios = 0.0f;
     int restaSalarios = 0;
     int varSalarios = 0;
 
@@ -107,9 +107,9 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     Button btnGuardarInfraccion;
     int numberRandom;
     public String codigoVerifi, resClave, resSalarios;
-    public int cargarInfoValor = 0;
-    public Double montoApagar;
-    int valor = 0;
+    public float cargarInfoValor = 0.0f;
+    public float montoApagar = 0.0f;
+    float valor = 0.0f;
     String cadenaBorrar = "";
     String cadenaSalarioBorrar = "";
     public static String direccion,municipio,estado;
@@ -192,14 +192,16 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
         btnAgregarInfraccion = view.findViewById(R.id.imgAgregarInfraccion);
         btnGuardarInfraccion = view.findViewById(R.id.imgGuardarInfraccion);
 
-        btnAlcohol = view.findViewById(R.id.imgAlcohol);
-        btnVelocimetro = view.findViewById(R.id.imgVelocimetro);
-        btnSemaforo = view.findViewById(R.id.imgSemaforo);
-        btnVuelta = view.findViewById(R.id.imgVuelta);
-        btnDobleFila = view.findViewById(R.id.imgDobleFila);
-        btnCasco = view.findViewById(R.id.imgCasco);
-        btnCinturon = view.findViewById(R.id.imgCinturon);
-        btnEstacionarse = view.findViewById(R.id.imgEstacionarse);
+        btnpasajeros = view.findViewById(R.id.imgpasajeros);
+        btnllantamal = view.findViewById(R.id.imgllantamal);
+        btnmecanico = view.findViewById(R.id.imgmecanico);
+        btnvigenciatarjet = view.findViewById(R.id.imgvigenciatarjeta);
+        btnseguro = view.findViewById(R.id.imgseguro);
+        btnCarril = view.findViewById(R.id.imgcarril);
+        btndesensopa = view.findViewById(R.id.imgdesensopasaje);
+        btnplacasvigen = view.findViewById(R.id.imgplacasvigencia);
+        btncinturon = view.findViewById(R.id.imgcinturon);
+        btnpolarizado = view.findViewById(R.id.imgpolarizados);
 
         txtMontoInfraPagar = view.findViewById(R.id.lblMontoInfraccion);
         spinCatTabulador = view.findViewById(R.id.spinInfraccion);
@@ -326,12 +328,42 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        btnAlcohol.setOnClickListener(new View.OnClickListener() {
+        btnpasajeros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion !="TRANSPORTAR MAYOR NUMERO DE PERSONAS DE LO APROBADO"){
+                    claveInfraccion = "TRANSPORTAR MAYOR NUMERO DE PERSONAS DE LO APROBADO";
+                    resClave = "14";
+                    resSalarios = "5";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btnllantamal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cargarDatos();
-                if (claveInfraccion != "POR FALTA DE LUZ BLANCA EN LA PLACA"){
-                    claveInfraccion = "POR FALTA DE LUZ BLANCA EN LA PLACA";
+                if (claveInfraccion != "TRANSITAR CON LLANTAS EN MAL ESTADO"){
+                    claveInfraccion = "TRANSITAR CON LLANTAS EN MAL ESTADO";
                     resClave = "3";
                     resSalarios = "75";
                     /***LLENADO DE LA TABLA***/
@@ -358,11 +390,11 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-        btnVelocimetro.setOnClickListener(new View.OnClickListener() {
+        btnmecanico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (claveInfraccion != "FALTA DE LUZ DE REVERSA") {
-                    claveInfraccion = "FALTA DE LUZ DE REVERSA";
+                if (claveInfraccion != "NO CONTAR CON REVISION MECANICA VIGENTE") {
+                    claveInfraccion = "NO CONTAR CON REVISION MECANICA VIGENTE";
                     resClave = "4";
                     resSalarios = "20";
                     /***LLENADO DE LA TABLA***/
@@ -387,178 +419,214 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-        btnSemaforo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(claveInfraccion != "POR ODOMETRO EN MAL ESTADO"){
-                claveInfraccion = "POR ODOMETRO EN MAL ESTADO";
-                resClave = "22";
-                resSalarios = "20";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
-                }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
-            }else{
-                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        btnVuelta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(claveInfraccion != "POR FALTA DE TIMBRE PARA QUE EL PASAJE ANUNCIE EL DESCENSO"){
-                claveInfraccion ="POR FALTA DE TIMBRE PARA QUE EL PASAJE ANUNCIE EL DESCENSO";
-                resClave = "30";
-                resSalarios = "5";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
-                }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
-            }else{
-                Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
-                  }
-            }
-        });
-        btnDobleFila.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(claveInfraccion !="POR FALTA DE ASEO EN EL INTERIOR Y EXTERIOR DE LA UNIDAD"){
-                claveInfraccion = "POR FALTA DE ASEO EN EL INTERIOR Y EXTERIOR DE LA UNIDAD";
-                resClave = "17";
-                resSalarios = "4";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
-                }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
 
-            }else{
+        btnvigenciatarjet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion !="NO CONTAR CON LICENCIA CORRESPONDIENTE VIGENTE"){
+                    claveInfraccion = "NO CONTAR CON LICENCIA CORRESPONDIENTE VIGENTE";
+                    resClave = "14";
+                    resSalarios = "5";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
                     Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        btnCasco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(claveInfraccion!="POR FALTA DE ASEO DEL OPERADOR"){
-                claveInfraccion = "POR FALTA DE ASEO DEL OPERADOR";
-                resClave = "51";
-                resSalarios = "2";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
-                }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
-            }else{
-                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        btnCinturon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(claveInfraccion !="POR NO PORTAR EL UNIFORME AUTORIZADO "){
-                claveInfraccion = "POR NO PORTAR EL UNIFORME AUTORIZADO ";
-                resClave = "128";
-                resSalarios = "3";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
-                }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
 
-            }else{
-                Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
-            }
-           }
-        });
-        btnEstacionarse.setOnClickListener(new View.OnClickListener() {
+        btnseguro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(claveInfraccion !="POR NO DESINFECTAR LAS UNIDADES"){
-                claveInfraccion = "POR NO DESINFECTAR LAS UNIDADES";
-                resClave = "14";
-                resSalarios = "5";
-                /***LLENADO DE LA TABLA***/
-                palabras.add(claveInfraccion + "  " + "  " + resSalarios);
-                adaptador1.notifyDataSetChanged();
-                /**************************/
-                inserInfraccionTemp();
-                if (cargarInfoValor != 0) {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios + cargarInfoValor; //360
-                    guardarDatosInfra();
-                } else {
-                    monto = Integer.parseInt(resSalarios);
-                    sumaSalarios = monto * salarioMinimo;
-                    valor = sumaSalarios; //360
-                    guardarDatosInfra();
+                if(claveInfraccion != "NO CONTAR CON POLIZA DE SEGURO VIGENTE"){
+                    claveInfraccion = "NO CONTAR CON POLIZA DE SEGURO VIGENTE";
+                    resClave = "22";
+                    resSalarios = "20";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
-                txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
-            }else{
+            }
+        });
+
+        btnCarril.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion !="POR NO CIRCULAR POR CARRIL DERECHO"){
+                    claveInfraccion = "POR NO CIRCULAR POR CARRIL DERECHO";
+                    resClave = "14";
+                    resSalarios = "5";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btndesensopa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion !="EFECTUAR ASENSO Y DESENSO FUERA DE LUGAR AUTORIZADO"){
+                    claveInfraccion = "EFECTUAR ASENSO Y DESENSO FUERA DE LUGAR AUTORIZADO";
+                    resClave = "128";
+                    resSalarios = "3";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btnplacasvigen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion!="NO CONTAR CON PLACAS VIGENTES"){
+                    claveInfraccion = "NO CONTAR CON PLACAS VIGENTES";
+                    resClave = "51";
+                    resSalarios = "2";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btncinturon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion != "NO PORTAR CINTURON DE SEGURIDAD"){
+                    claveInfraccion ="NO PORTAR CINTURON DE SEGURIDAD";
+                    resClave = "30";
+                    resSalarios = "5";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+                }else{
+                    Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        btnpolarizado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(claveInfraccion !="TRAER VIDRIOS POLARIZADOS"){
+                    claveInfraccion = "TRAER VIDRIOS POLARIZADOS";
+                    resClave = "17";
+                    resSalarios = "4";
+                    /***LLENADO DE LA TABLA***/
+                    palabras.add(claveInfraccion + "  " + "  " + resSalarios);
+                    adaptador1.notifyDataSetChanged();
+                    /**************************/
+                    inserInfraccionTemp();
+                    if (cargarInfoValor != 0) {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios + cargarInfoValor; //360
+                        guardarDatosInfra();
+                    } else {
+                        monto = Integer.parseInt(resSalarios);
+                        sumaSalarios = monto * salarioMinimo;
+                        valor = sumaSalarios; //360
+                        guardarDatosInfra();
+                    }
+                    txtMontoInfraPagar.setText("$" + valor + " " + "MXN"); //TE TRAES LOS SALARIOS DEL COMBO Y SE LOS QUITAS AL VALOR
+
+                }else{
                     Toast.makeText(getContext(), "EL ELEMENTO YA SE ENCUENTRA AGREGADO", Toast.LENGTH_LONG).show();
                 }
             }
@@ -797,7 +865,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
                 if (response.isSuccessful()) {
                     final String myResponse = response.body().toString();
                     Intent i = new Intent(getActivity(), NetPay.class);
-                    montoApagar = Double.valueOf(cargarInfoValor);
+                    montoApagar = cargarInfoValor;
                     i.putExtra("MONTO", montoApagar);
                     i.putExtra("FOLIO", cargarFolioInfra);
                     i.putExtra("DIRECCION", direccionTurno);
@@ -888,7 +956,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
 
     public void cargarDatos() {
         share = getActivity().getSharedPreferences("main", Context.MODE_PRIVATE);
-        cargarInfoValor = share.getInt("ValorInfraccion", 0);
+        cargarInfoValor = share.getFloat("ValorInfraccion", 0.0f);
         cargarInfoUsuario = share.getString("USER", "");
         cargarFolioInfra = share.getString("FOLIOINFRACCION", "");
     }
@@ -903,7 +971,7 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
     private void guardarDatosInfra() {
         share = getActivity().getSharedPreferences("main", Context.MODE_PRIVATE);
         editor = share.edit();
-        editor.putInt("ValorInfraccion", valor);
+        editor.putFloat("ValorInfraccion", valor);
         editor.commit();
     }
 
@@ -1169,6 +1237,16 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             dataHelper.insertTabulador(63, "A QUIEN PRESTE EL SERVICIO DE TRANSPORTE DE CARGA SIN LA ESCOLTA O LA UNIDAD DE APOYO REQUERIDA Y ESTABLECIDA EN EL PERMISO ESPECIAL PARA LA PRESTACION DEL SERVICIO", "273", "3", 40);
             dataHelper.insertTabulador(64, "A LOS VEHICULOS DE CARGA QUE EFEXCTUEN TRASBORDO DE MERCANCIA EN LA VIA PUBLICA", "273", "4", 55);
             dataHelper.insertTabulador(65, "A QUIEN PRESTE EL SERVICIO DE TRNSPORTE DE CARGA SIN EL PERMISO PARA LA PRESTACION DEL SERVICIO, DEBIENDOSE ORDENAR LA DETENCION DEL VEHICULO ", "273", "5", 80);
+            dataHelper.insertTabulador(66, "TRANSITAR CON LLANTAS EN MAL ESTADO ", "274", "1", 5);
+            dataHelper.insertTabulador(67, "NO CONTAR CON REVISION MECANICA VIGENTE", "274", "2", 10);
+            dataHelper.insertTabulador(68, "NO CONTAR CON POLIZA DE SEGURO VIGENTE", "274", "3", 10);
+            dataHelper.insertTabulador(69, "NO PORTAR CINTURON DE SEGURIDAD", "274", "4", 5);
+            dataHelper.insertTabulador(70, "TRAER VIDRIOS POLARIZADOS ", "274", "5", 10);
+            dataHelper.insertTabulador(71, "NO CONTAR CON PLACAS VIGENTES", "274", "6", 10);
+            dataHelper.insertTabulador(72, "EFECTUAR ASENSO Y DESENSO FUERA DE LUGAR AUTORIZADO ", "274", "7", 10);
+            dataHelper.insertTabulador(73, "TRANSPORTAR MAYOR NUMERO DE PERSONAS DE LO APROBADO", "274", "8", 10);
+            dataHelper.insertTabulador(74, "NO CONTAR CON LICENCIA CORRESPONDIENTE VIGENTE", "274", "9", 10);
+            dataHelper.insertTabulador(75, "POR NO CIRCULAR POR CARRIL DERECHO", "274", "10", 10);
 
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_layout, R.id.txt, list);
