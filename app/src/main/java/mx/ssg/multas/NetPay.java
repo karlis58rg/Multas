@@ -130,6 +130,7 @@ public class NetPay extends AppCompatActivity {
                 SaleRequest sale = new SaleRequest(appId,amount,tip,msi,waiter,settlementId,settlementDate,table,folio,checkIn,tableId,additionalData,traceability,exchangeRateUsd,pendingAmount);
                 try {
                     smartApi.doTrans(sale);
+                    putPagoStatus();
                 }catch(Exception e){
                     lblRespuesta.setText(e.getMessage());
                     System.out.println(e);
@@ -183,6 +184,33 @@ public class NetPay extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /******************GET A LA BD***********************************/
+    public void putPagoStatus() {
+        cargarDatos();
+        final OkHttpClient client = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url("http://187.174.102.142/AppTransito/api/Infracciones?folioUpdate="+folio)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                Looper.prepare();
+                Toast.makeText(getApplicationContext(),"ERROR AL ENVIAR LA INFORMACIÓN, POR FAVOR VERIFIQUE SU CONEXIÓN A INTERNET",Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String myResponse = response.body().string();
+                    String resp = myResponse;
+                    Log.i("HERE", resp);
+                }
+            }
+
+        });
     }
 
     /******************GET A LA BD***********************************/
