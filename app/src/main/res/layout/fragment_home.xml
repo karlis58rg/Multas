@@ -25,8 +25,8 @@
 
                 <ImageView
                     android:id="@+id/imgTerminal"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/icn_terminal" />
 
@@ -45,10 +45,41 @@
                     android:id="@+id/lblGenerarInfraccion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Infracción"
+                    android:text="Infracción con internet"
                     android:textColor="@color/hint"
                     android:textSize="23sp"
                     app:layout_constraintTop_toBottomOf="@+id/lblGenerar" />
+
+                <ImageView
+                    android:id="@+id/imgTerminalOffline"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/icn_terminal"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/lblGenerarOffline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Generar"
+                    android:textColor="@color/hint"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:scaleType="centerInside"
+                    app:layout_constraintTop_toBottomOf="@+id/imgTerminal"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/lblGenerarInfraccionOffline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Infracción sin internet"
+                    android:textColor="@color/hint"
+                    android:textSize="23sp"
+                    app:layout_constraintTop_toBottomOf="@+id/lblGenerar"
+                    android:visibility="gone"/>
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

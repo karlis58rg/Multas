@@ -277,6 +277,7 @@ public class NetPay extends AppCompatActivity {
                             }else{
                                 resp = resp.replace('"',' ');
                                 resp = resp.trim();
+                                /*********SEPARADO POR COMAS**************/
                                 String[] textElements = resp.split(",");
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
@@ -331,6 +332,7 @@ public class NetPay extends AppCompatActivity {
                             }else{
                                 resp = resp.replace('"',' ');
                                 resp = resp.trim();
+                                /*********SEPARADO POR COMAS**************/
                                 String[] textElements = resp.split(",");
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
@@ -384,6 +386,7 @@ public class NetPay extends AppCompatActivity {
                                 List<String> qrlList = Arrays.asList(textElements);
                                 countResultado = qrlList.size();
                                 if(countResultado > 3){
+                                    /***********SEPARADO POR COMAS**************/
                                     descInfracciones = textElements[0];
                                     umas = textElements[1];
                                     total = textElements[2];

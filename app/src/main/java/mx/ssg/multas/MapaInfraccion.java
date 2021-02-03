@@ -272,28 +272,6 @@ public class MapaInfraccion extends Fragment implements OnMapReadyCallback {
             }
         });
 
-      /* cheplaca.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.checkPlaca) {
-                    resGarantia = "Placa";
-                } else if (checkedId == R.id.checkTCirculacion) {
-                    resGarantia = "T.Circulacion";
-                }
-            }
-        });
-
-        radioGarantia1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioVehiculo) {
-                    resGarantia1 = "Vehículo";
-                } else if (checkedId == R.id.radioLConducir) {
-                    resGarantia1 = "L.Conducir";
-                }
-            }
-        });
-*/
         lv1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {

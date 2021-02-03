@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import mx.ssg.multas.Contactos;
+import mx.ssg.multas.LicenciaConducirOffline;
 import mx.ssg.multas.LugaresDePago;
 import mx.ssg.multas.R;
 import mx.ssg.multas.Tabulador;
@@ -25,7 +26,7 @@ import mx.ssg.multas.ViewPDFController;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private ImageView btnTerminal;
+    private ImageView btnTerminal,btnTerminalOffline;
     private LinearLayout btnReglamento,btnLugaresPago,btnContacto,btnTabulador;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
 
         /*************************** EVENTO DE LOS BOTONES *******************************/
         btnTerminal = root.findViewById(R.id.imgTerminal);
+        btnTerminalOffline = root.findViewById(R.id.imgTerminalLCOffLine);
         btnReglamento = root.findViewById(R.id.lyInicio);
         btnLugaresPago = root.findViewById(R.id.lyCategoria);
         btnContacto = root.findViewById(R.id.lyContacto);
@@ -49,6 +51,9 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+
+
         btnReglamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
